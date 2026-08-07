@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Image unavailable offline">
+  <rect width="800" height="600" fill="#000000" />
+  <rect x="6" y="6" width="788" height="588" fill="none" stroke="#990000" stroke-width="6" />
+  <g stroke="#FAF92A" stroke-width="10" stroke-linecap="round" fill="none">
+    <path d="M300 260 h180 a20 20 0 0 1 20 20 v100 a20 20 0 0 1 -20 20 h-180 a20 20 0 0 1 -20 -20 v-100 a20 20 0 0 1 20 -20 z" />
+    <circle cx="345" cy="310" r="14" fill="#FAF92A" stroke="none" />
+    <path d="M280 380 l60 -50 l50 40 l40 -35 l60 55" />
+    <line x1="255" y1="235" x2="525" y2="425" stroke="#990000" />
+  </g>
+  <text x="400" y="450" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="26" font-weight="700" fill="#ffffff" letter-spacing="0.5">
+    Image unavailable offline
+  </text>
+  <text x="400" y="480" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="15" fill="#a3a3a3" letter-spacing="0.5">
+    It will load again once you're back online
+  </text>
+</svg>

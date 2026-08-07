@@ -1,0 +1,22 @@
+import withSerwistInit from '@serwist/next';
+
+const withSerwist = withSerwistInit({
+  swSrc: 'app/sw.ts',
+  swDest: 'public/sw.js',
+  disable: process.env.NODE_ENV === 'development',
+  additionalPrecacheEntries: [{ url: '/offline-placeholder.svg', revision: '1' }],
+});
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+    ],
+  },
+};
+
+export default withSerwist(nextConfig);
