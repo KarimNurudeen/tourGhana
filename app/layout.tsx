@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="flex min-h-full w-full flex-col bg-black text-white">
         <script
           // Runs synchronously during HTML parsing, before the browser's first
