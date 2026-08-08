@@ -4,19 +4,21 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeftIcon, ChevronRightIcon, PlayIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { shortStories } from '@/data/stories';
+import type { ChannelVideo } from '@/lib/youtube';
 import { SectionHeading } from './SectionHeading';
 import { VideoLightbox } from './VideoLightbox';
 
-export function ShortStories() {
+export function ShortStories({ videos }: { videos: ChannelVideo[] }) {
   const trackRef = useRef<HTMLUListElement>(null);
-  const [activeSlug, setActiveSlug] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   const scrollBy = (direction: 1 | -1) => {
     trackRef.current?.scrollBy({ left: direction * 400, behavior: 'smooth' });
   };
 
-  const activeStory = shortStories.find((story) => story.slug === activeSlug);
+  const activeVideo = videos.find((video) => video.id === activeId);
+
+  if (videos.length === 0) return null;
 
   return (
     <section aria-labelledby="short-stories" className="bg-flagGreen py-14">
@@ -26,7 +28,7 @@ export function ShortStories() {
             <span id="short-stories" className="sr-only">
               Short films
             </span>
-            <SectionHeading title="Short Films" light />
+            <SectionHeading title="Short Films" href="/videos" light />
           </div>
           <div className="flex shrink-0 gap-3">
             <button
@@ -49,38 +51,40 @@ export function ShortStories() {
         <ul
           ref={trackRef}
           className="no-scrollbar mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2">
-          {shortStories.map((story) => (
+          {videos.map((video) => (
             <motion.li
-              key={story.title}
+              key={video.id}
               whileHover={{ y: -6 }}
               transition={{ type: 'spring', stiffness: 300, damping: 24 }}
               className="relative w-[240px] shrink-0 snap-start sm:w-[280px]">
               <motion.button
                 type="button"
-                onClick={() => setActiveSlug(story.slug)}
+                onClick={() => setActiveId(video.id)}
                 whileTap={{ scale: 0.96 }}
-                aria-label={`Play: ${story.title}`}
+                aria-label={`Play: ${video.title}`}
                 className="group block w-full text-left">
-                <div className="relative aspect-[3/5] overflow-hidden">
+                <div className="relative aspect-video overflow-hidden">
                   <Image
-                    src={story.image}
-                    alt={story.title}
+                    src={video.thumbnail}
+                    alt={video.title}
                     fill
                     className="object-cover transition duration-500 group-hover:scale-105"
                     sizes="280px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-4">
-                    <p className="text-[17px] font-bold leading-snug text-white">
-                      {story.title}
+                    <p className="line-clamp-2 text-[15px] font-bold leading-snug text-white">
+                      {video.title}
                     </p>
-                    <div className="mt-4 flex items-center gap-3">
+                    <div className="mt-3 flex items-center gap-3">
                       <span className="flex h-8 w-8 items-center justify-center rounded-full bg-flagRed transition group-hover:bg-[#700000]">
                         <PlayIcon className="h-3.5 w-3.5 fill-white text-white" />
                       </span>
-                      <span className="text-[13px] font-semibold text-white">
-                        {story.duration}
-                      </span>
+                      {video.duration && (
+                        <span className="text-[13px] font-semibold text-white">
+                          {video.duration}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -91,10 +95,9 @@ export function ShortStories() {
       </div>
 
       <VideoLightbox
-        youtubeId={activeStory?.youtubeId ?? null}
-        title={activeStory?.title ?? ''}
-        tourHref={activeStory ? `/tours/${activeStory.slug}` : undefined}
-        onClose={() => setActiveSlug(null)}
+        youtubeId={activeVideo?.id ?? null}
+        title={activeVideo?.title ?? ''}
+        onClose={() => setActiveId(null)}
       />
     </section>
   );

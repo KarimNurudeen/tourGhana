@@ -1,14 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { featuredRegionLinks, heroLead, heroMore } from '@/data/stories';
-import { tourBySlug } from '@/data/tours';
+import type { ChannelVideo } from '@/lib/youtube';
 import { RegionTag } from './RegionTag';
 import { HeroVideo } from './HeroVideo';
 import { StaggerReveal } from './StaggerReveal';
 
-export function HeroBlock() {
-  const heroVideo = heroLead.slug ? tourBySlug[heroLead.slug]?.videos?.[0] : undefined;
-
+export function HeroBlock({ heroVideo }: { heroVideo?: ChannelVideo }) {
   return (
     <section aria-labelledby="hero-topic" className="border-t border-rule pt-5">
       <div className="flex flex-wrap items-center gap-x-7 gap-y-2">
@@ -72,9 +70,9 @@ export function HeroBlock() {
 
         {heroVideo ? (
           <HeroVideo
-            src={heroVideo.src}
-            poster={heroVideo.poster}
-            caption={`WATCH: ${heroVideo.caption}`}
+            videoId={heroVideo.id}
+            poster={heroVideo.thumbnail}
+            caption={`WATCH: ${heroVideo.title}`}
           />
         ) : (
           <figure className="relative h-full">

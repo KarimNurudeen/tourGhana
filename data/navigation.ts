@@ -22,6 +22,7 @@ export const primaryNav: NavItem[] = [
 
 },
 { label: 'TOP ATTRACTIONS', href: '/attractions' },
+{ label: 'VIDEOS', href: '/videos' },
 { label: 'SPECIAL EVENTS', href: '/category/festivals' },
 { label: 'ACCOMMODATION', href: '/where-to-stay' },
 { label: 'TOUR OPERATORS', href: '/tour-operators' },

@@ -11,15 +11,22 @@ import { ShortStories } from '@/components/ShortStories';
 import { Sidebar } from '@/components/Sidebar';
 import { TopicSection } from '@/components/TopicSection';
 import { photoStrip, topicBlocks } from '@/data/stories';
+import { getChannelVideos } from '@/lib/youtube';
 
-export default function Home() {
+export default async function Home() {
+  const channelVideos = await getChannelVideos(15);
+  const [heroVideo, ...restVideos] = channelVideos;
+  const shortFilmVideos = restVideos.slice(0, 6);
+  const [mostWatchedLead, ...mostWatchedRest] = restVideos.slice(6);
+  const mostWatchedMore = mostWatchedRest.slice(0, 3);
+
   return (
     <main id="main" className="w-full bg-black">
       <div className="mx-auto max-w-page px-4 pt-8">
         <div className="grid gap-12 lg:grid-cols-[1fr_320px] xl:gap-16">
           <div className="space-y-14">
             <ScrollReveal y={20}>
-              <HeroBlock />
+              <HeroBlock heroVideo={heroVideo} />
             </ScrollReveal>
             <PhotoStrip items={photoStrip} />
             {topicBlocks.map((block) => (
@@ -39,13 +46,15 @@ export default function Home() {
       </div>
 
       <ScrollReveal className="mt-14">
-        <ShortStories />
+        <ShortStories videos={shortFilmVideos} />
       </ScrollReveal>
 
       <div className="mx-auto max-w-page space-y-16 px-4 py-16">
-        <ScrollReveal>
-          <MostWatched />
-        </ScrollReveal>
+        {mostWatchedLead && (
+          <ScrollReveal>
+            <MostWatched lead={mostWatchedLead} more={mostWatchedMore} />
+          </ScrollReveal>
+        )}
         <ScrollReveal>
           <ForYou />
         </ScrollReveal>

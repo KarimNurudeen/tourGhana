@@ -14,7 +14,6 @@ export type Story = {
   slug?: string;
   region?: string;
   image?: string;
-  youtubeId?: string;
 };
 
 export type TopicBlock = {
@@ -31,14 +30,6 @@ export type CategoryColumn = {
   href: string;
   lead: Story;
   items: Story[];
-};
-
-export type ShortStory = {
-  title: string;
-  image: string;
-  duration: string;
-  slug: string;
-  youtubeId?: string;
 };
 
 export type HistoryEvent = {

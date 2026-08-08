@@ -4,7 +4,6 @@ import {
   CategoryColumn,
   HistoryEvent,
   LinkItem,
-  ShortStory,
   Story,
   TopicBlock } from
 '../types/content';
@@ -110,55 +109,6 @@ fromTour('nzulezu'),
 fromTour('paga-crocodile-pond'),
 fromTour('damba-festival'),
 fromTour('bonwire-kente')];
-
-
-export const shortStories: ShortStory[] = [
-{
-  title: 'Sunrise over the Wli Falls trail in the Volta Region',
-  image: images.wli,
-  duration: '2:17',
-  slug: 'wli-waterfalls',
-  youtubeId: 'cswIBScFd7U'
-},
-{
-  title: 'Canoes leaving Elmina harbour before the tide turns',
-  image: images.elmina,
-  duration: '2:02',
-  slug: 'elmina-harbour',
-  youtubeId: 'TNav0EoeNGI'
-},
-{
-  title: 'A chief’s durbar at Manhyia Palace, in full kente',
-  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786114223/tour-ghana/manhyia-palace-museum.jpg',
-  duration: '36:10',
-  slug: 'manhyia-palace',
-  youtubeId: 'LHoSJb1P1Qc'
-},
-{
-  title: 'Drummers open the Homowo procession in Accra',
-  image: images.festival,
-  duration: '12:38',
-  slug: 'homowo-festival',
-  youtubeId: 'nR4qaS20pUI'
-},
-{
-  title: 'Crossing the stilt walkway into Nzulezu village',
-  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786113778/tour-ghana/nzulezu-stilt-village.jpg',
-  duration: '16:35',
-  slug: 'nzulezu',
-  youtubeId: 'NsFwZtkgDDI'
-}];
-
-
-export const mostWatchedLead: Story = {
-  ...fromTour('independence-square'),
-  youtubeId: 'URAx1ERxIcU'
-};
-
-export const mostWatchedMore: Story[] = [
-fromTour('accra-food'),
-fromTour('labadi-beach'),
-fromTour('aburi-gardens')];
 
 
 export const forYouLead: Story = {
