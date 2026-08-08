@@ -26,18 +26,13 @@ export function Footer() {
       <div className="mx-auto max-w-page px-4">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2">
-              <Image
-                src="/tour-ghana-globe.png"
-                alt=""
-                width={272}
-                height={273}
-                className="h-12 w-12"
-              />
-              <span className="text-[24px] font-black leading-none tracking-tight text-black">
-                Tour Ghana
-              </span>
-            </div>
+            <Image
+              src="/tour-ghana-logo.png"
+              alt="Tour Ghana"
+              width={744}
+              height={715}
+              className="h-[120px] w-auto"
+            />
             <p className="mt-4 text-[17px] font-semibold text-neutral-400">
               The Gateway to Africa
             </p>

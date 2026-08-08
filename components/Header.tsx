@@ -13,6 +13,7 @@ export function Header() {
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [openDesktopSection, setOpenDesktopSection] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [tickerOpen, setTickerOpen] = useState(false);
   const desktopNavRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -50,7 +51,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-flagGreen text-white">
       <div className="mx-auto max-w-page px-4">
-        <div className="flex items-center gap-4 py-2">
+        <div className="flex items-center gap-4 py-2 lg:py-1.5">
           <button
             type="button"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
@@ -69,16 +70,13 @@ export function Header() {
             className="order-2 flex shrink-0 items-center gap-2 lg:order-1"
             aria-label="Tour Ghana home">
             <Image
-              src="/tour-ghana-globe.png"
-              alt=""
-              width={272}
-              height={273}
+              src="/tour-ghana-logo.png"
+              alt="Tour Ghana"
+              width={744}
+              height={715}
               priority
-              className="h-12 w-12"
+              className="h-[104px] w-auto py-2 lg:h-16 lg:py-0"
             />
-            <span className="text-[24px] font-black leading-none tracking-tight text-black">
-              Tour Ghana
-            </span>
           </Link>
 
           <div
@@ -144,18 +142,37 @@ export function Header() {
           </div>
         </div>
 
-        <div className="hidden items-center gap-6 overflow-x-auto pb-2.5 lg:flex">
-          <span className="bg-flagRed px-2 py-0.5 text-[11px] font-bold tracking-widest">
-            NOW
-          </span>
-          {tickerLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="whitespace-nowrap text-[14px] font-semibold hover:text-flagGold">
-              {link.label}
-            </Link>
-          ))}
+        <div className="hidden lg:block">
+          <div
+            className={`overflow-hidden transition-all duration-300 ease-in-out ${
+              tickerOpen ? 'max-h-12 opacity-100' : 'max-h-0 opacity-0'}`
+            }>
+            <div className="flex items-center gap-6 overflow-x-auto pb-2.5">
+              <span className="bg-flagRed px-2 py-0.5 text-[11px] font-bold tracking-widest">
+                NOW
+              </span>
+              {tickerLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="whitespace-nowrap text-[14px] font-semibold hover:text-flagGold">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setTickerOpen((v) => !v)}
+            aria-expanded={tickerOpen}
+            aria-label={tickerOpen ? 'Hide latest updates' : 'Show latest updates'}
+            className="flex w-full items-center justify-center gap-1 py-1 text-white/70 hover:text-flagGold">
+            <ChevronDownIcon
+              className={`h-4 w-4 transition-transform duration-300 ${
+                tickerOpen ? 'rotate-180' : ''}`
+              } />
+          </button>
         </div>
       </div>
 
