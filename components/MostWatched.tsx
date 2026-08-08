@@ -1,11 +1,18 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { PlayIcon } from 'lucide-react';
 import { mostWatchedLead, mostWatchedMore } from '@/data/stories';
 import { SectionHeading } from './SectionHeading';
 import { RegionTag } from './RegionTag';
+import { VideoLightbox } from './VideoLightbox';
 
 export function MostWatched() {
+  const [videoOpen, setVideoOpen] = useState(false);
+
   return (
     <section aria-labelledby="most-watched">
       <span id="most-watched" className="sr-only">
@@ -55,7 +62,12 @@ export function MostWatched() {
         </div>
 
         <figure className="relative">
-          <Link href={`/tours/${mostWatchedLead.slug}`} className="group block">
+          <motion.button
+            type="button"
+            onClick={() => setVideoOpen(true)}
+            whileTap={{ scale: 0.98 }}
+            aria-label={`Play: ${mostWatchedLead.title}`}
+            className="group block w-full text-left">
             <div className="relative aspect-[16/10] w-full">
               <Image
                 src={mostWatchedLead.image!}
@@ -68,9 +80,16 @@ export function MostWatched() {
             <span className="absolute bottom-5 left-5 flex h-14 w-14 items-center justify-center rounded-full bg-flagRed text-white transition group-hover:bg-[#700000]">
               <PlayIcon className="h-6 w-6 fill-white" />
             </span>
-          </Link>
+          </motion.button>
         </figure>
       </div>
+
+      <VideoLightbox
+        youtubeId={videoOpen ? mostWatchedLead.youtubeId ?? null : null}
+        title={mostWatchedLead.title}
+        tourHref={mostWatchedLead.slug ? `/tours/${mostWatchedLead.slug}` : undefined}
+        onClose={() => setVideoOpen(false)}
+      />
     </section>
   );
 }

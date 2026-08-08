@@ -6,11 +6,13 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ChevronDownIcon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
 import { primaryNav, tickerLinks } from '@/data/navigation';
+import { SearchOverlay } from './SearchOverlay';
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [openDesktopSection, setOpenDesktopSection] = useState<string | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
   const desktopNavRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -56,24 +58,27 @@ export function Header() {
             onClick={() => setMobileOpen((v) => !v)}
             className="order-1 rounded p-1 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:hidden">
             {mobileOpen ? (
-              <XIcon className="h-6 w-6" />
+              <XIcon className="h-8 w-8" />
             ) : (
-              <MenuIcon className="h-6 w-6" />
+              <MenuIcon className="h-8 w-8" />
             )}
           </button>
 
           <Link
             href="/"
-            className="order-2 flex shrink-0 items-center lg:order-1"
+            className="order-2 flex shrink-0 items-center gap-2 lg:order-1"
             aria-label="Tour Ghana home">
             <Image
-              src="/tour-ghana-logo.png"
-              alt="Tour Ghana"
-              width={134}
-              height={75}
+              src="/tour-ghana-globe.png"
+              alt=""
+              width={272}
+              height={273}
               priority
-              className="h-9 w-auto"
+              className="h-12 w-12"
             />
+            <span className="text-[24px] font-black leading-none tracking-tight text-black">
+              Tour Ghana
+            </span>
           </Link>
 
           <div
@@ -131,9 +136,10 @@ export function Header() {
           <div className="order-4 ml-auto flex items-center gap-4">
             <button
               type="button"
+              onClick={() => setSearchOpen(true)}
               aria-label="Search Tour Ghana"
               className="hover:text-flagGold">
-              <SearchIcon className="h-5 w-5" />
+              <SearchIcon className="h-7 w-7" />
             </button>
           </div>
         </div>
@@ -163,7 +169,7 @@ export function Header() {
 
       <div
         aria-hidden={!mobileOpen}
-        className={`fixed inset-y-0 left-0 z-50 w-72 max-w-[80vw] transform overflow-y-auto bg-flagGreen shadow-xl transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed left-0 top-0 z-50 max-h-[75vh] w-72 max-w-[80vw] transform overflow-y-auto border-4 border-flagRed bg-flagGreen/25 shadow-xl backdrop-blur-md transition-transform duration-300 ease-in-out lg:hidden ${
           mobileOpen ? 'translate-x-0' : '-translate-x-full'}`
         }>
         <nav aria-label="Mobile" className="px-4 py-4">
@@ -212,6 +218,8 @@ export function Header() {
           ))}
         </nav>
       </div>
+
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }

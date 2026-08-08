@@ -14,6 +14,7 @@ export type Story = {
   slug?: string;
   region?: string;
   image?: string;
+  youtubeId?: string;
 };
 
 export type TopicBlock = {
@@ -37,6 +38,7 @@ export type ShortStory = {
   image: string;
   duration: string;
   slug: string;
+  youtubeId?: string;
 };
 
 export type HistoryEvent = {

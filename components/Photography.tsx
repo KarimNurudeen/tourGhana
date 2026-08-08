@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { photography } from '@/data/stories';
 import { SectionHeading } from './SectionHeading';
 import { RegionTag } from './RegionTag';
+import { StaggerReveal } from './StaggerReveal';
 
 export function Photography() {
   return (
@@ -12,7 +13,7 @@ export function Photography() {
       </span>
       <SectionHeading title="Ghana in Photos" />
 
-      <div className="mt-8 grid gap-8 border-4 border-flagRed bg-flagGreen/25 p-6 backdrop-blur-md md:grid-cols-3">
+      <StaggerReveal className="mt-8 grid gap-8 border-4 border-flagRed bg-flagGreen/25 p-6 backdrop-blur-md md:grid-cols-3">
         {photography.map((story) => (
           <article key={story.slug}>
             <Link href={`/tours/${story.slug}`} className="relative block aspect-[4/3] w-full overflow-hidden rounded-xl">
@@ -32,7 +33,7 @@ export function Photography() {
             <RegionTag region={story.region} />
           </article>
         ))}
-      </div>
+      </StaggerReveal>
     </section>
   );
 }

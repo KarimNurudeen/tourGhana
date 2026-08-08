@@ -1,5 +1,6 @@
 import { Tour } from '@/types/content';
 import { TourCard } from './TourCard';
+import { StaggerReveal } from './StaggerReveal';
 
 type TourGridProps = {
   tours: Tour[];
@@ -16,10 +17,10 @@ export function TourGrid({ tours, columns = 'sm:grid-cols-2 lg:grid-cols-4' }: T
   }
 
   return (
-    <div className={`grid gap-8 border-4 border-flagRed bg-flagGreen/25 p-6 backdrop-blur-md ${columns}`}>
+    <StaggerReveal className={`grid gap-8 border-4 border-flagRed bg-flagGreen/25 p-6 backdrop-blur-md ${columns}`}>
       {tours.map((tour) => (
         <TourCard key={tour.slug} tour={tour} />
       ))}
-    </div>
+    </StaggerReveal>
   );
 }

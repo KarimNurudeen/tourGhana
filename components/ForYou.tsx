@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { forYouGrid, forYouLead } from '@/data/stories';
 import { SectionHeading } from './SectionHeading';
 import { RegionTag } from './RegionTag';
+import { StaggerReveal } from './StaggerReveal';
 
 export function ForYou() {
   return (
@@ -34,7 +35,7 @@ export function ForYou() {
           </p>
         </article>
 
-        <div className="grid gap-x-6 gap-y-8 border-4 border-flagRed bg-flagGreen/25 p-6 backdrop-blur-md sm:grid-cols-2">
+        <StaggerReveal className="grid gap-x-6 gap-y-8 border-4 border-flagRed bg-flagGreen/25 p-6 backdrop-blur-md sm:grid-cols-2">
           {forYouGrid.map((story) => (
             <article key={story.slug}>
               <Link href={`/tours/${story.slug}`} className="relative block aspect-[16/10] w-full overflow-hidden rounded-xl">
@@ -54,7 +55,7 @@ export function ForYou() {
               <RegionTag region={story.region} />
             </article>
           ))}
-        </div>
+        </StaggerReveal>
       </div>
     </section>
   );

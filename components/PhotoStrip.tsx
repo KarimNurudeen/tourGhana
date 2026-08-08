@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Story } from '@/types/content';
+import { StaggerReveal } from './StaggerReveal';
 
 type PhotoStripProps = {
   items: Story[];
@@ -8,7 +9,7 @@ type PhotoStripProps = {
 
 export function PhotoStrip({ items }: PhotoStripProps) {
   return (
-    <div className="grid grid-cols-3 gap-1.5 border-4 border-flagRed bg-flagGreen/25 p-3 backdrop-blur-md sm:grid-cols-6">
+    <StaggerReveal className="grid grid-cols-3 gap-1.5 border-4 border-flagRed bg-flagGreen/25 p-3 backdrop-blur-md sm:grid-cols-6">
       {items.map((story) => (
         <Link
           key={story.slug}
@@ -24,6 +25,6 @@ export function PhotoStrip({ items }: PhotoStripProps) {
           />
         </Link>
       ))}
-    </div>
+    </StaggerReveal>
   );
 }

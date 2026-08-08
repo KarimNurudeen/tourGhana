@@ -4,6 +4,7 @@ import { featuredRegionLinks, heroLead, heroMore } from '@/data/stories';
 import { tourBySlug } from '@/data/tours';
 import { RegionTag } from './RegionTag';
 import { HeroVideo } from './HeroVideo';
+import { StaggerReveal } from './StaggerReveal';
 
 export function HeroBlock() {
   const heroVideo = heroLead.slug ? tourBySlug[heroLead.slug]?.videos?.[0] : undefined;
@@ -43,7 +44,7 @@ export function HeroBlock() {
             <h4 className="text-[13px] font-bold uppercase tracking-wide text-flagGreen">
               Nearby on this route
             </h4>
-            <div className="mt-4 grid grid-cols-2 gap-4 border-4 border-flagRed bg-flagGreen/25 p-4 backdrop-blur-md">
+            <StaggerReveal className="mt-4 grid grid-cols-2 gap-4 border-4 border-flagRed bg-flagGreen/25 p-4 backdrop-blur-md">
               {heroMore.map((story) => (
                 <article key={story.slug}>
                   <Link
@@ -65,7 +66,7 @@ export function HeroBlock() {
                   <RegionTag region={story.region} />
                 </article>
               ))}
-            </div>
+            </StaggerReveal>
           </div>
         </div>
 

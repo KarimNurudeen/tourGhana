@@ -3,12 +3,12 @@ import Image from 'next/image';
 import { ChevronRightIcon } from 'lucide-react';
 import { categoryColumns } from '@/data/stories';
 import { RegionTag } from './RegionTag';
+import { StaggerReveal } from './StaggerReveal';
 
 export function CategoryGrid() {
   return (
-    <section
-      aria-label="Browse Ghana by theme"
-      className="grid gap-10 lg:grid-cols-4">
+    <section aria-label="Browse Ghana by theme">
+    <StaggerReveal className="grid gap-10 lg:grid-cols-4">
       {categoryColumns.map((column) => (
         <div key={column.id} className="border-4 border-flagRed bg-flagGreen/25 p-5 backdrop-blur-md">
           <Link
@@ -52,6 +52,7 @@ export function CategoryGrid() {
           </ul>
         </div>
       ))}
+    </StaggerReveal>
     </section>
   );
 }

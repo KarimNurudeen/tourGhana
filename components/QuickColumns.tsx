@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRightIcon } from 'lucide-react';
@@ -12,19 +11,13 @@ import {
 } from '@/data/stories';
 import { SectionHeading } from './SectionHeading';
 import { RegionTag } from './RegionTag';
-
-const quizOptions = [
-  'Cape Coast Castle',
-  'Elmina Castle',
-  'Fort St. Jago',
-  'Fort Amsterdam',
-];
+import { Quiz } from './Quiz';
+import { StaggerReveal } from './StaggerReveal';
 
 export function QuickColumns() {
-  const [selected, setSelected] = useState<string | null>(null);
-
   return (
-    <section aria-label="Quick reference" className="grid gap-10 lg:grid-cols-4">
+    <section aria-label="Quick reference">
+    <StaggerReveal className="grid gap-10 lg:grid-cols-4">
       <div className="border-4 border-flagRed bg-flagGreen/25 p-5 backdrop-blur-md">
         <SectionHeading title="Ghana in History" />
         <Link href={`/tours/${historyFeature.slug}`} className="relative mt-6 block aspect-[4/3] w-full overflow-hidden rounded-xl">
@@ -111,51 +104,9 @@ export function QuickColumns() {
       </div>
 
       <div className="border-4 border-flagRed bg-flagGreen/25 p-5 backdrop-blur-md">
-        <SectionHeading title="Quiz" />
-        <div className="mt-6 flex items-center justify-between text-[15px] font-bold text-white">
-          <span>1/10</span>
-          <span>{selected ? '1 answered' : '0 answered'}</span>
-        </div>
-        <div className="relative mt-4 aspect-[16/10] w-full overflow-hidden rounded-xl">
-          <Image
-            src={historyFeature.image!}
-            alt=""
-            fill
-            className="object-cover"
-            sizes="(min-width: 1024px) 25vw, 100vw"
-          />
-        </div>
-        <p className="mt-3 text-[13px] font-semibold uppercase tracking-wide text-flagGold">
-          Forts &amp; Castles
-        </p>
-        <h3 className="mt-2 text-[19px] font-bold leading-snug text-white">
-          Which Ghanaian fort, built in 1482, is the oldest European building
-          south of the Sahara?
-        </h3>
-        <ul className="mt-4 space-y-2.5">
-          {quizOptions.map((option) => {
-            const isSelected = selected === option;
-            const isCorrect = option === 'Elmina Castle';
-            return (
-              <li key={option}>
-                <button
-                  type="button"
-                  onClick={() => setSelected(option)}
-                  aria-pressed={isSelected}
-                  className={`w-full border px-4 py-3 text-left text-[16px] transition ${
-                    isSelected
-                      ? isCorrect
-                        ? 'border-flagGreen bg-flagGreen/20 font-semibold text-white'
-                        : 'border-flagRed bg-flagRed/20 font-semibold text-white'
-                      : 'border-rule text-white hover:border-flagGold'}`
-                  }>
-                  {option}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+        <Quiz />
       </div>
+    </StaggerReveal>
     </section>
   );
 }

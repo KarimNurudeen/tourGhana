@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { regions } from '@/data/tours';
+import { StaggerReveal } from '@/components/StaggerReveal';
 
 export const metadata: Metadata = {
   title: 'Highlights by Region',
@@ -18,7 +19,9 @@ export default function RegionsIndexPage() {
           Browse attractions across Ghana&rsquo;s regions, grouped by where they are.
         </p>
 
-        <ul className="mt-10 grid gap-6 border-4 border-flagRed bg-flagGreen/25 p-6 backdrop-blur-md sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerReveal
+          as="ul"
+          className="mt-10 grid gap-6 border-4 border-flagRed bg-flagGreen/25 p-6 backdrop-blur-md sm:grid-cols-2 lg:grid-cols-3">
           {regions.map((region) => (
             <li key={region.slug}>
               <Link
@@ -31,7 +34,7 @@ export default function RegionsIndexPage() {
               </Link>
             </li>
           ))}
-        </ul>
+        </StaggerReveal>
       </div>
     </main>
   );

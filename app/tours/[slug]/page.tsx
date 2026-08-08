@@ -8,6 +8,7 @@ import { SectionHeading } from '@/components/SectionHeading';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { DirectionsMap } from '@/components/DirectionsMap';
 import { GalleryLightbox } from '@/components/GalleryLightbox';
+import { StaggerReveal } from '@/components/StaggerReveal';
 
 type TourPageProps = {
   params: Promise<{ slug: string }>;
@@ -292,7 +293,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
                 More in this category
               </span>
               <SectionHeading title={`More ${tour.category}`} href={`/category/${slugify(tour.category)}`} />
-              <div className="mt-8 grid gap-8 border-4 border-flagRed bg-flagGreen/25 p-6 backdrop-blur-md sm:grid-cols-2 lg:grid-cols-4">
+              <StaggerReveal className="mt-8 grid gap-8 border-4 border-flagRed bg-flagGreen/25 p-6 backdrop-blur-md sm:grid-cols-2 lg:grid-cols-4">
                 {alsoIn.map((item) => (
                   <article key={item.slug}>
                     <Link href={`/tours/${item.slug}`} className="relative block aspect-[16/10] w-full overflow-hidden rounded-xl">
@@ -316,7 +317,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
                     </p>
                   </article>
                 ))}
-              </div>
+              </StaggerReveal>
             </section>
           </ScrollReveal>
         )}

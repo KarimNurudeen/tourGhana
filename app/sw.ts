@@ -1,6 +1,6 @@
 import { defaultCache } from '@serwist/next/worker';
 import type { PrecacheEntry, SerwistGlobalConfig } from 'serwist';
-import { ExpirationPlugin, Serwist, StaleWhileRevalidate } from 'serwist';
+import { CacheableResponsePlugin, ExpirationPlugin, Serwist, StaleWhileRevalidate } from 'serwist';
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -19,8 +19,9 @@ const serwist = new Serwist({
     {
       matcher: ({ url }) => url.pathname.startsWith('/_next/image'),
       handler: new StaleWhileRevalidate({
-        cacheName: 'tour-ghana-images',
+        cacheName: 'tour-ghana-images-v2',
         plugins: [
+          new CacheableResponsePlugin({ statuses: [200] }),
           new ExpirationPlugin({
             maxEntries: 200,
             maxAgeSeconds: 60 * 60 * 24 * 30,

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ChevronLeftIcon, ChevronRightIcon, XIcon } from 'lucide-react';
+import { StaggerReveal } from './StaggerReveal';
 
 type GalleryLightboxProps = {
   images: string[];
@@ -63,7 +64,7 @@ export function GalleryLightbox({ images, alt }: GalleryLightboxProps) {
 
   return (
     <>
-      <div className="mt-5 grid gap-4 border-4 border-flagRed bg-flagGreen/25 p-4 backdrop-blur-md sm:grid-cols-2 lg:grid-cols-3">
+      <StaggerReveal className="mt-5 grid gap-4 border-4 border-flagRed bg-flagGreen/25 p-4 backdrop-blur-md sm:grid-cols-2 lg:grid-cols-3">
         {images.map((src, index) => (
           <button
             key={src}
@@ -80,7 +81,7 @@ export function GalleryLightbox({ images, alt }: GalleryLightboxProps) {
             />
           </button>
         ))}
-      </div>
+      </StaggerReveal>
 
       {activeIndex !== null && (
         <div

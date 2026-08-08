@@ -13,32 +13,32 @@ export const tours: Tour[] = [
   'A UNESCO World Heritage site on the Gulf of Guinea, Cape Coast Castle is the most visited monument on Ghana’s coast and the anchor of every heritage itinerary.',
   image: images.capeCoast,
   gallery: [
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043081/tour-ghana/cape-coast-castle-v2-1.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043083/tour-ghana/cape-coast-castle-v2-2.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043085/tour-ghana/cape-coast-castle-v2-3.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043087/tour-ghana/cape-coast-castle-v2-4.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043089/tour-ghana/cape-coast-castle-v2-5.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043091/tour-ghana/cape-coast-castle-v2-6.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043093/tour-ghana/cape-coast-castle-v2-7.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043095/tour-ghana/cape-coast-castle-v2-8.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043097/tour-ghana/cape-coast-castle-v2-9.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043100/tour-ghana/cape-coast-castle-v2-10.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043101/tour-ghana/cape-coast-castle-v2-11.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043103/tour-ghana/cape-coast-castle-v2-12.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043105/tour-ghana/cape-coast-castle-v2-13.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043108/tour-ghana/cape-coast-castle-v2-15.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043110/tour-ghana/cape-coast-castle-v2-16.jpg',
-  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786043112/tour-ghana/cape-coast-castle-v2-17.jpg'],
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043081/tour-ghana/cape-coast-castle-v2-1.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043083/tour-ghana/cape-coast-castle-v2-2.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043085/tour-ghana/cape-coast-castle-v2-3.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043087/tour-ghana/cape-coast-castle-v2-4.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043089/tour-ghana/cape-coast-castle-v2-5.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043091/tour-ghana/cape-coast-castle-v2-6.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043093/tour-ghana/cape-coast-castle-v2-7.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043095/tour-ghana/cape-coast-castle-v2-8.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043097/tour-ghana/cape-coast-castle-v2-9.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043100/tour-ghana/cape-coast-castle-v2-10.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043101/tour-ghana/cape-coast-castle-v2-11.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043103/tour-ghana/cape-coast-castle-v2-12.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043105/tour-ghana/cape-coast-castle-v2-13.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043108/tour-ghana/cape-coast-castle-v2-15.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043110/tour-ghana/cape-coast-castle-v2-16.jpg',
+  'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786043112/tour-ghana/cape-coast-castle-v2-17.jpg'],
 
   videos: [
   {
     src: 'https://res.cloudinary.com/ynvljxj8/video/upload/v1786013410/tour-ghana/cape-coast-castle-1.mp4',
-    poster: 'https://res.cloudinary.com/ynvljxj8/video/upload/f_auto,q_auto/tour-ghana/cape-coast-castle-1.jpg',
+    poster: 'https://res.cloudinary.com/ynvljxj8/video/upload/f_auto,q_auto,w_2400,c_limit/tour-ghana/cape-coast-castle-1.jpg',
     caption: 'A guided walk through Cape Coast Castle, Central Region'
   },
   {
     src: 'https://res.cloudinary.com/ynvljxj8/video/upload/v1786013415/tour-ghana/cape-coast-castle-2.mp4',
-    poster: 'https://res.cloudinary.com/ynvljxj8/video/upload/f_auto,q_auto/tour-ghana/cape-coast-castle-2.jpg',
+    poster: 'https://res.cloudinary.com/ynvljxj8/video/upload/f_auto,q_auto,w_2400,c_limit/tour-ghana/cape-coast-castle-2.jpg',
     caption: 'Cape Coast Castle from the Atlantic-facing ramparts'
   }],
 
@@ -162,7 +162,7 @@ export const tours: Tour[] = [
   summary:
   'Ghana’s largest wildlife reserve, where guided walking safaris bring visitors within metres of elephants at the waterholes.',
   image: images.mole,
-  gallery: [images.mole, 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786113785/tour-ghana/paga-crocodile-pond.jpg'],
+  gallery: [images.mole, 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786113785/tour-ghana/paga-crocodile-pond.jpg'],
   coordinates: { lat: 9.5, lng: -2 },
   overview: [
   'Mole covers 4,840 square kilometres of Guinea savanna in northern Ghana and is the country’s flagship wildlife park. Around 600 elephants use the reserve, along with buffalo, roan and kob antelope, warthog, baboon and more than 300 bird species.',
@@ -200,8 +200,8 @@ export const tours: Tour[] = [
   category: 'Culture & Heritage',
   summary:
   'A living village built entirely on stilts over Lake Tadane, reached by dugout canoe through the Amansuri wetlands.',
-  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786113778/tour-ghana/nzulezu-stilt-village.jpg',
-  gallery: ['https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786113778/tour-ghana/nzulezu-stilt-village.jpg', images.wli],
+  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786113778/tour-ghana/nzulezu-stilt-village.jpg',
+  gallery: ['https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786113778/tour-ghana/nzulezu-stilt-village.jpg', images.wli],
   coordinates: { lat: 5.020827, lng: -2.597921 },
   overview: [
   'Nzulezu, which means "surface of water", is home to around five hundred people whose houses, school and chapel all stand on raised platforms above Lake Tadane. Oral history traces the settlement to migrants from Walata in the old Ghana Empire, led there, the story goes, by a snail.',
@@ -317,8 +317,8 @@ export const tours: Tour[] = [
   category: 'Culture & Heritage',
   summary:
   'A sacred pond on the Burkina Faso border where the crocodiles are considered the reincarnated souls of the townspeople.',
-  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786113785/tour-ghana/paga-crocodile-pond.jpg',
-  gallery: ['https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786113785/tour-ghana/paga-crocodile-pond.jpg', images.mole],
+  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786113785/tour-ghana/paga-crocodile-pond.jpg',
+  gallery: ['https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786113785/tour-ghana/paga-crocodile-pond.jpg', images.mole],
   coordinates: { lat: 10.985404, lng: -1.109224 },
   overview: [
   'The crocodiles of Paga are protected by a taboo that has held for centuries: no resident of the town will harm them, and the crocodiles in turn have never harmed a resident. Each is understood to carry the soul of a member of the community.',
@@ -395,8 +395,8 @@ export const tours: Tour[] = [
   category: 'Culture & Heritage',
   summary:
   'The historic home of Asante kente weaving, twenty minutes from Kumasi, where visitors can sit at a loom themselves.',
-  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786113790/tour-ghana/bonwire-kente-weaver.jpg',
-  gallery: ['https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786113790/tour-ghana/bonwire-kente-weaver.jpg', 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786114223/tour-ghana/manhyia-palace-museum.jpg'],
+  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786113790/tour-ghana/bonwire-kente-weaver.jpg',
+  gallery: ['https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786113790/tour-ghana/bonwire-kente-weaver.jpg', 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786114223/tour-ghana/manhyia-palace-museum.jpg'],
   coordinates: { lat: 6.796479, lng: -1.502649 },
   overview: [
   'Bonwire has woven kente for the Asante court since the seventeenth century. Narrow strips come off the loom at about ten centimetres wide and are sewn edge to edge into full cloths, each pattern carrying a name and a meaning.',
@@ -435,8 +435,8 @@ export const tours: Tour[] = [
   category: 'Culture & Heritage',
   summary:
   'The former residence of the Asantehene in Kumasi, now a museum of the kingdom’s regalia, history and continuing authority.',
-  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786114223/tour-ghana/manhyia-palace-museum.jpg',
-  gallery: ['https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786114223/tour-ghana/manhyia-palace-museum.jpg', 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786113790/tour-ghana/bonwire-kente-weaver.jpg'],
+  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786114223/tour-ghana/manhyia-palace-museum.jpg',
+  gallery: ['https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786114223/tour-ghana/manhyia-palace-museum.jpg', 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786113790/tour-ghana/bonwire-kente-weaver.jpg'],
   coordinates: { lat: 6.703552, lng: -1.615004 },
   overview: [
   'Built by the British in 1925 for the returning Asantehene Prempeh I after his exile in the Seychelles, Manhyia served as the royal residence until 1974 and opened as a museum in 1995.',
@@ -474,8 +474,8 @@ export const tours: Tour[] = [
   category: 'Culture & Heritage',
   summary:
   'Black Star Square, the Independence Arch and the Kwame Nkrumah Memorial Park make up the ceremonial heart of the capital.',
-  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786114227/tour-ghana/independence-arch-sunset.jpg',
-  gallery: ['https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786114227/tour-ghana/independence-arch-sunset.jpg', images.labadi],
+  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786114227/tour-ghana/independence-arch-sunset.jpg',
+  gallery: ['https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786114227/tour-ghana/independence-arch-sunset.jpg', images.labadi],
   coordinates: { lat: 5.549067, lng: -0.192909 },
   overview: [
   'Black Star Square was built for Queen Elizabeth II’s 1961 state visit and remains the stage for Ghana’s Independence Day parade every 6 March. The Black Star Gate, the Independence Arch and the Eternal Flame of African Liberation all stand within it.',
@@ -555,7 +555,7 @@ export const tours: Tour[] = [
   summary:
   'The great festival of the Dagbon, Mamprusi and Gonja kingdoms, marked with drumming, dancing and a mounted chiefs’ durbar.',
   image: images.festival,
-  gallery: [images.festival, 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto/v1786114223/tour-ghana/manhyia-palace-museum.jpg'],
+  gallery: [images.festival, 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786114223/tour-ghana/manhyia-palace-museum.jpg'],
   coordinates: { lat: 9.367277, lng: -0.149499 },
   overview: [
   'Damba marks the birth of the Prophet Muhammad but has grown into the largest cultural festival in northern Ghana, celebrating the chieftaincy of Dagbon as much as the religious calendar.',

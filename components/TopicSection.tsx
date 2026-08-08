@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { TopicBlock } from '@/types/content';
 import { RegionTag } from './RegionTag';
+import { StaggerReveal } from './StaggerReveal';
 
 type TopicSectionProps = {
   block: TopicBlock;
@@ -41,7 +42,7 @@ export function TopicSection({ block }: TopicSectionProps) {
             <h4 className="text-[13px] font-bold uppercase tracking-wide text-flagGreen">
               More in this section
             </h4>
-            <div className="mt-4 grid grid-cols-3 gap-3 border-4 border-flagRed bg-flagGreen/25 p-3 backdrop-blur-md">
+            <StaggerReveal className="mt-4 grid grid-cols-3 gap-3 border-4 border-flagRed bg-flagGreen/25 p-3 backdrop-blur-md">
               {block.more.map((story) => (
                 <article key={story.slug}>
                   <Link
@@ -63,7 +64,7 @@ export function TopicSection({ block }: TopicSectionProps) {
                   <RegionTag region={story.region} />
                 </article>
               ))}
-            </div>
+            </StaggerReveal>
           </div>
         </div>
 
