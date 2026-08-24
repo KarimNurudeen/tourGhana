@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "topic-blocks",
+  "info": {
+    "singularName": "topic-block",
+    "pluralName": "topic-blocks",
+    "displayName": "Topic Block",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "blockId": {
+      "type": "uid",
+      "targetField": "topic",
+      "required": true
+    },
+    "topic": {
+      "type": "string",
+      "required": true
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link"
+    },
+    "lead": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tour.tour"
+    },
+    "more": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

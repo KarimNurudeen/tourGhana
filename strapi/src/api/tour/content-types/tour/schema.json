@@ -1,0 +1,100 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tours",
+  "info": {
+    "singularName": "tour",
+    "pluralName": "tours",
+    "displayName": "Tour",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "headline": {
+      "type": "string",
+      "required": true
+    },
+    "region": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::region.region"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category"
+    },
+    "summary": {
+      "type": "text",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "imageCredit": {
+      "type": "string"
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "photoCategories": {
+      "type": "json"
+    },
+    "videos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "tour.video"
+    },
+    "festivalTiming": {
+      "type": "component",
+      "repeatable": false,
+      "component": "tour.festival-timing"
+    },
+    "coordinates": {
+      "type": "component",
+      "repeatable": false,
+      "component": "tour.coordinates"
+    },
+    "overview": {
+      "type": "json"
+    },
+    "highlights": {
+      "type": "json"
+    },
+    "quickFacts": {
+      "type": "component",
+      "repeatable": true,
+      "component": "tour.quick-fact"
+    },
+    "gettingThere": {
+      "type": "json"
+    },
+    "tips": {
+      "type": "json"
+    },
+    "nearby": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour"
+    }
+  }
+}

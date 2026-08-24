@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "category-columns",
+  "info": {
+    "singularName": "category-column",
+    "pluralName": "category-columns",
+    "displayName": "Category Column",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "columnId": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "href": {
+      "type": "string",
+      "required": true
+    },
+    "lead": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tour.tour"
+    },
+    "items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

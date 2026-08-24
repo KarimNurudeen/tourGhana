@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_tour_festival_timings",
+  "info": {
+    "displayName": "Festival Timing",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "months": {
+      "type": "json"
+    },
+    "rule": {
+      "type": "component",
+      "repeatable": false,
+      "component": "tour.festival-rule"
+    },
+    "note": {
+      "type": "text"
+    }
+  }
+}

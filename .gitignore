@@ -64,3 +64,7 @@ api/.venv
 api/__pycache__
 api/**/__pycache__
 *.pyc
+
+# Strapi local dev media (production uploads go to Cloudinary)
+strapi/public/uploads/*
+!strapi/public/uploads/.gitkeep

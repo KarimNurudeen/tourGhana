@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_tour_festival_rules",
+  "info": {
+    "displayName": "Festival Rule",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "month": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "max": 12
+    },
+    "weekday": {
+      "type": "integer",
+      "required": true,
+      "min": 0,
+      "max": 6
+    },
+    "occurrence": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    }
+  }
+}

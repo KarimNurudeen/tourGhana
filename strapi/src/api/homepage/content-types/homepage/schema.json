@@ -1,0 +1,77 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepages",
+  "info": {
+    "singularName": "homepage",
+    "pluralName": "homepages",
+    "displayName": "Homepage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroLead": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tour.tour"
+    },
+    "heroMore": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour"
+    },
+    "photoStrip": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour"
+    },
+    "sidebarFeature": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tour.tour"
+    },
+    "sidebarStories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour"
+    },
+    "latestUpdates": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour"
+    },
+    "forYouLead": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tour.tour"
+    },
+    "forYouLeadTitle": {
+      "type": "string"
+    },
+    "forYouGrid": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour"
+    },
+    "historyFeature": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tour.tour"
+    },
+    "historyFeatureTitle": {
+      "type": "string"
+    },
+    "mostRead": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour"
+    },
+    "photography": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour"
+    }
+  }
+}

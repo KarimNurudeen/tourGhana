@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "travel-tips",
+  "info": {
+    "singularName": "travel-tip",
+    "pluralName": "travel-tips",
+    "displayName": "Travel Tip",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "detail": {
+      "type": "text",
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

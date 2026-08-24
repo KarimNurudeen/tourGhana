@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "quiz-questions",
+  "info": {
+    "singularName": "quiz-question",
+    "pluralName": "quiz-questions",
+    "displayName": "Quiz Question",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "category": {
+      "type": "string",
+      "required": true
+    },
+    "question": {
+      "type": "text",
+      "required": true
+    },
+    "image": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tour.tour"
+    },
+    "options": {
+      "type": "json",
+      "required": true
+    },
+    "correctAnswer": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

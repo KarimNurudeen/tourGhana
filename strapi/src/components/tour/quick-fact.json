@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_tour_quick_facts",
+  "info": {
+    "displayName": "Quick Fact",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

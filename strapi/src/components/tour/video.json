@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_tour_videos",
+  "info": {
+    "displayName": "Video",
+    "icon": "video"
+  },
+  "options": {},
+  "attributes": {
+    "src": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["videos"],
+      "required": true
+    },
+    "poster": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "caption": {
+      "type": "string"
+    }
+  }
+}

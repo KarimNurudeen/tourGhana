@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "history-events",
+  "info": {
+    "singularName": "history-event",
+    "pluralName": "history-events",
+    "displayName": "History Event",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "year": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
