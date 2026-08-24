@@ -35,9 +35,15 @@ export async function getChannelVideos(maxResults = 12): Promise<ChannelVideo[]>
   playlistUrl.searchParams.set('maxResults', String(Math.min(maxResults, 50)));
   playlistUrl.searchParams.set('key', apiKey);
 
-  const playlistRes = await fetch(playlistUrl, {
-    next: { revalidate: REVALIDATE_SECONDS },
-  });
+  let playlistRes: Response;
+  try {
+    playlistRes = await fetch(playlistUrl, {
+      next: { revalidate: REVALIDATE_SECONDS },
+    });
+  } catch (error) {
+    console.error('YouTube playlistItems request failed', error);
+    return [];
+  }
   if (!playlistRes.ok) {
     console.error('YouTube playlistItems request failed', await playlistRes.text());
     return [];
@@ -71,15 +77,19 @@ export async function getChannelVideos(maxResults = 12): Promise<ChannelVideo[]>
   videosUrl.searchParams.set('id', items.map((item) => item.videoId).join(','));
   videosUrl.searchParams.set('key', apiKey);
 
-  const videosRes = await fetch(videosUrl, {
-    next: { revalidate: REVALIDATE_SECONDS },
-  });
   const durationById = new Map<string, string>();
-  if (videosRes.ok) {
-    const videosData = await videosRes.json();
-    for (const video of videosData.items ?? []) {
-      durationById.set(video.id, formatDuration(video.contentDetails?.duration ?? 'PT0S'));
+  try {
+    const videosRes = await fetch(videosUrl, {
+      next: { revalidate: REVALIDATE_SECONDS },
+    });
+    if (videosRes.ok) {
+      const videosData = await videosRes.json();
+      for (const video of videosData.items ?? []) {
+        durationById.set(video.id, formatDuration(video.contentDetails?.duration ?? 'PT0S'));
+      }
     }
+  } catch (error) {
+    console.error('YouTube videos request failed', error);
   }
 
   return items.map((item) => ({

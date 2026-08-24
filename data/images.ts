@@ -1,6 +1,4 @@
 export const images = {
-  capeCoast: "/05040f4d-6440-4ef4-b257-cf5bf9cf83ec.jpg",
-
   kakum: "/e54d3d06-97a1-47a6-8c35-e1f595002e3c.jpg",
 
   mole: "/38315a0c-8f76-46fc-9829-fdc119906f53.jpg",

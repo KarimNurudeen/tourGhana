@@ -30,9 +30,9 @@ export const primaryNav: NavItem[] = [
 
 
 export const tickerLinks: LinkItem[] = [
-{ label: 'PANAFEST & Emancipation Day', href: '/category/festivals' },
-{ label: 'Chale Wote Street Art Festival', href: '/category/festivals' },
-{ label: 'Visa on arrival update', href: '/visas' },
+{ label: 'PANAFEST & Emancipation Day', href: '/tours/panafest-emancipation-day' },
+{ label: 'Chale Wote Street Art Festival', href: '/tours/chale-wote-festival' },
+{ label: 'Ghana visa policy update', href: '/visas' },
 { label: 'Harmattan travel advice', href: '/travel-tips' }];
 
 

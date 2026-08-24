@@ -4,15 +4,18 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
-import { ChevronDownIcon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
-import { primaryNav, tickerLinks } from '@/data/navigation';
-import { SearchOverlay } from './SearchOverlay';
+import { ChevronDownIcon, MenuIcon, XIcon } from 'lucide-react';
+import type { LinkItem, NavItem } from '@/types/content';
 
-export function Header() {
+type HeaderProps = {
+  primaryNav: NavItem[];
+  tickerLinks: LinkItem[];
+};
+
+export function Header({ primaryNav, tickerLinks }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [openDesktopSection, setOpenDesktopSection] = useState<string | null>(null);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [tickerOpen, setTickerOpen] = useState(false);
   const desktopNavRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -75,7 +78,7 @@ export function Header() {
               width={744}
               height={715}
               priority
-              className="h-[104px] w-auto py-2 lg:h-16 lg:py-0"
+              className="h-11 w-auto py-0 lg:h-16"
             />
           </Link>
 
@@ -85,7 +88,7 @@ export function Header() {
             style={{ perspective: 1000 }}>
             <nav aria-label="Primary" className="flex items-center gap-5">
               {primaryNav.map((item) =>
-                item.children ? (
+                item.children && item.children.length > 0 ? (
                   <button
                     key={item.label}
                     type="button"
@@ -129,16 +132,6 @@ export function Header() {
                 ))}
               </div>
             </div>
-          </div>
-
-          <div className="order-4 ml-auto flex items-center gap-4">
-            <button
-              type="button"
-              onClick={() => setSearchOpen(true)}
-              aria-label="Search Tour Ghana"
-              className="hover:text-flagGold">
-              <SearchIcon className="h-7 w-7" />
-            </button>
           </div>
         </div>
 
@@ -192,7 +185,7 @@ export function Header() {
         <nav aria-label="Mobile" className="px-4 py-4">
           {primaryNav.map((item) => (
             <div key={item.label} className="border-b border-white/10">
-              {item.children ? (
+              {item.children && item.children.length > 0 ? (
                 <>
                   <button
                     type="button"
@@ -235,8 +228,6 @@ export function Header() {
           ))}
         </nav>
       </div>
-
-      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }

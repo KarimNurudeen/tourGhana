@@ -52,3 +52,15 @@ public/workbox-*.js.map
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# Strapi
+strapi/.tmp
+strapi/.strapi
+strapi/.strapi-updater.json
+.npm-cache-local
+
+# Python / FastAPI
+api/.venv
+api/__pycache__
+api/**/__pycache__
+*.pyc

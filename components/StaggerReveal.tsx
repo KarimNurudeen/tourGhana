@@ -22,37 +22,61 @@ export function StaggerReveal({ children, className, as = 'div' }: StaggerReveal
 
     const ctx = gsap.context(() => {
       const items = gsap.utils.toArray<HTMLElement>(el.children);
-      const mid = (items.length - 1) / 2;
+      const containerRect = el.getBoundingClientRect();
+      const containerCenter = containerRect.left + containerRect.width / 2;
 
-      items.forEach((item, i) => {
-        const fromLeft = i % 2 === 0;
-        const spread = Math.abs(i - mid) * 12;
-
-        gsap.fromTo(
-          item,
-          {
-            opacity: 0,
-            x: fromLeft ? -90 - spread : 90 + spread,
-            y: 30,
+      // Cards still drag in from the side — but the side is picked from
+      // each item's actual on-screen column (left half of the grid vs.
+      // right half), not from its array index. Index-based left/right
+      // alternation doesn't line up with real columns once a grid wraps to
+      // 3+ columns, so same-row cards ended up flying in from opposite
+      // sides and crossing paths mid-flight. A modest, uniform offset keeps
+      // the motion readable instead of the exaggerated wide swings before.
+      gsap.fromTo(
+        items,
+        {
+          opacity: 0,
+          y: 24,
+          x: (_i, target) => {
+            const itemRect = (target as HTMLElement).getBoundingClientRect();
+            const itemCenter = itemRect.left + itemRect.width / 2;
+            return itemCenter < containerCenter ? -48 : 48;
           },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            duration: 0.9,
-            delay: i * 0.09,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      });
+        },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.07,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
     }, ref);
 
-    return () => ctx.revert();
+    // Lazy-loaded images below the fold finish loading after ScrollTrigger's
+    // initial position calc, shifting layout and staling the trigger point.
+    // Refresh once each image settles so the trigger fires at the right spot.
+    const images = Array.from(el.querySelectorAll('img')).filter((img) => !img.complete);
+    const onImageLoad = () => ScrollTrigger.refresh();
+    images.forEach((img) => img.addEventListener('load', onImageLoad, { once: true }));
+
+    // Last-resort safety net: if the reveal still never fires, don't leave
+    // real content permanently invisible.
+    const safety = setTimeout(() => {
+      gsap.set(el.children, { opacity: 1, x: 0, y: 0 });
+    }, 2500);
+
+    return () => {
+      clearTimeout(safety);
+      images.forEach((img) => img.removeEventListener('load', onImageLoad));
+      ctx.revert();
+    };
   }, []);
 
   return (

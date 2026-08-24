@@ -44,7 +44,24 @@ export function ScrollReveal({
       );
     }, ref);
 
-    return () => ctx.revert();
+    // Lazy-loaded images below the fold finish loading after ScrollTrigger's
+    // initial position calc, shifting layout and staling the trigger point.
+    // Refresh once each image settles so the trigger fires at the right spot.
+    const images = Array.from(el.querySelectorAll('img')).filter((img) => !img.complete);
+    const onImageLoad = () => ScrollTrigger.refresh();
+    images.forEach((img) => img.addEventListener('load', onImageLoad, { once: true }));
+
+    // Last-resort safety net: if the reveal still never fires, don't leave
+    // real content permanently invisible.
+    const safety = setTimeout(() => {
+      gsap.set(el, { opacity: 1, y: 0 });
+    }, 2500);
+
+    return () => {
+      clearTimeout(safety);
+      images.forEach((img) => img.removeEventListener('load', onImageLoad));
+      ctx.revert();
+    };
   }, [y, delay]);
 
   return (

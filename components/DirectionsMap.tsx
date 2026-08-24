@@ -62,7 +62,7 @@ export function DirectionsMap({ destination, destinationName }: DirectionsMapPro
 
   if (loadError) {
     return (
-      <p className="text-[15px] text-neutral-300">
+      <p className="text-[15px] text-neutral-600">
         The map could not be loaded right now.
       </p>
     );
@@ -78,7 +78,7 @@ export function DirectionsMap({ destination, destinationName }: DirectionsMapPro
           value={origin}
           onChange={(event) => setOrigin(event.target.value)}
           placeholder="Enter a starting point (e.g. Accra)"
-          className="flex-1 border border-rule bg-black px-4 py-2.5 text-[15px] text-white placeholder:text-neutral-500 focus:border-flagGold focus:outline-none"
+          className="flex-1 border border-neutral-300 bg-white px-4 py-2.5 text-[15px] text-ink placeholder:text-neutral-400 focus:border-flagGreen focus:outline-none"
         />
         <button
           type="submit"
@@ -101,25 +101,25 @@ export function DirectionsMap({ destination, destinationName }: DirectionsMapPro
             {directions && <DirectionsRenderer directions={directions} />}
           </GoogleMap>
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-neutral-900 text-[14px] text-neutral-400">
+          <div className="flex h-full w-full items-center justify-center bg-neutral-100 text-[14px] text-neutral-500">
             Loading map…
           </div>
         )}
       </div>
 
       {leg && (
-        <div className="mt-5 border-l-4 border-flagGreen bg-flagGreen/10 p-5">
-          <p className="text-[16px] font-bold text-white">
+        <div className="mt-5 border-l-4 border-flagGreen bg-flagGreen/5 p-5">
+          <p className="text-[16px] font-bold text-ink">
             {leg.distance?.text} &middot; {leg.duration?.text} drive
           </p>
-          <p className="mt-1 text-[14px] text-neutral-300">
+          <p className="mt-1 text-[14px] text-neutral-600">
             From {leg.start_address} to {leg.end_address}
           </p>
-          <ol className="mt-4 space-y-3 text-[14px] text-neutral-300">
+          <ol className="mt-4 space-y-3 text-[14px] text-neutral-600">
             {leg.steps.map((step, i) => (
               <li
                 key={i}
-                className="border-t border-white/10 pt-3 first:border-t-0 first:pt-0">
+                className="border-t border-neutral-200 pt-3 first:border-t-0 first:pt-0">
                 <span dangerouslySetInnerHTML={{ __html: step.instructions }} />
                 <span className="ml-1 text-neutral-500">
                   ({step.distance?.text})

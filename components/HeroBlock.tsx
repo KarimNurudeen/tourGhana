@@ -1,70 +1,87 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { featuredRegionLinks, heroLead, heroMore } from '@/data/stories';
+import { MapPinIcon } from 'lucide-react';
+import { getHomepage } from '@/lib/api';
 import type { ChannelVideo } from '@/lib/youtube';
+import { FeaturePanel } from './FeaturePanel';
 import { RegionTag } from './RegionTag';
 import { HeroVideo } from './HeroVideo';
 import { StaggerReveal } from './StaggerReveal';
 
-export function HeroBlock({ heroVideo }: { heroVideo?: ChannelVideo }) {
+export async function HeroBlock({ heroVideo }: { heroVideo?: ChannelVideo }) {
+  const { heroLead, heroMore } = await getHomepage();
+
   return (
     <section aria-labelledby="hero-topic" className="border-t border-rule pt-5">
-      <div className="flex flex-wrap items-center gap-x-7 gap-y-2">
-        <h2 id="hero-topic" className="text-[15px] font-bold text-white">
-          Highlights by Region
-        </h2>
-        {featuredRegionLinks.map((link, i) => (
-          <Link
-            key={link.label}
-            href={link.href}
-            className="flex items-center gap-2 text-[15px] text-white hover:text-flagGold">
-            {i === 0 && (
-              <span className="h-2 w-2 rounded-full bg-flagRed" aria-hidden />
-            )}
-            {link.label}
-          </Link>
-        ))}
-      </div>
+      <span id="hero-topic" className="sr-only">
+        Featured story
+      </span>
 
-      <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_1.55fr]">
+      <div className="grid gap-8 lg:grid-cols-[1fr_1.55fr]">
         <div>
-          <span className="bg-flagRed px-2 py-0.5 text-[11px] font-bold tracking-widest text-white">
-            OPEN TO VISITORS
-          </span>
-          <h3 className="mt-3 text-[30px] font-black leading-[1.08] tracking-tight text-white">
-            <Link href={`/tours/${heroLead.slug}`} className="hover:text-flagGold">
-              {heroLead.title}
-            </Link>
-          </h3>
-          <RegionTag region={heroLead.region} />
+          <Link
+            href={`/tours/${heroLead.slug}`}
+            className="group relative block min-h-[300px] overflow-hidden rounded-2xl border border-neutral-200 p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
+            <Image
+              src={heroLead.image!}
+              alt=""
+              fill
+              className="object-cover transition duration-500 group-hover:scale-105"
+              sizes="(min-width: 1024px) 38vw, 100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
+
+            <div className="relative flex h-full min-h-[252px] flex-col justify-between">
+              <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-flagRed px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-white">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
+                </span>
+                Open to visitors
+              </span>
+
+              <div>
+                <h3 className="text-[26px] font-black leading-[1.15] tracking-tight text-white transition group-hover:text-flagGold">
+                  {heroLead.title}
+                </h3>
+
+                <span className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[12px] font-bold uppercase tracking-wide text-white/90 backdrop-blur">
+                  <MapPinIcon className="h-3.5 w-3.5" />
+                  {heroLead.region}
+                </span>
+              </div>
+            </div>
+          </Link>
 
           <div className="mt-6 border-t border-rule pt-4">
             <h4 className="text-[13px] font-bold uppercase tracking-wide text-flagGreen">
               Nearby on this route
             </h4>
-            <StaggerReveal className="mt-4 grid grid-cols-2 gap-4 border-4 border-flagRed bg-flagGreen/25 p-4 backdrop-blur-md">
-              {heroMore.map((story) => (
-                <article key={story.slug}>
-                  <Link
-                    href={`/tours/${story.slug}`}
-                    className="relative block aspect-[4/3] w-full overflow-hidden rounded-xl">
-                    <Image
-                      src={story.image!}
-                      alt={story.title}
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 1024px) 19vw, 45vw"
-                    />
-                  </Link>
-                  <h5 className="mt-2 line-clamp-2 text-[14px] font-bold leading-snug text-white">
-                    <Link href={`/tours/${story.slug}`} className="hover:text-flagGold">
-                      {story.title}
+            <FeaturePanel>
+              <StaggerReveal className="grid grid-cols-2 gap-4 p-4">
+                {heroMore.map((story) => (
+                  <article key={story.slug}>
+                    <Link
+                      href={`/tours/${story.slug}`}
+                      className="relative block aspect-[4/3] w-full overflow-hidden rounded-xl">
+                      <Image
+                        src={story.image!}
+                        alt={story.title}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 1024px) 19vw, 45vw"
+                      />
                     </Link>
-                  </h5>
-                  <RegionTag region={story.region} />
-                </article>
-              ))}
-            </StaggerReveal>
+                    <h5 className="mt-2 line-clamp-2 text-[14px] font-bold leading-snug text-white">
+                      <Link href={`/tours/${story.slug}`} className="hover:text-flagGold">
+                        {story.title}
+                      </Link>
+                    </h5>
+                    <RegionTag region={story.region} dark />
+                  </article>
+                ))}
+              </StaggerReveal>
+            </FeaturePanel>
           </div>
         </div>
 

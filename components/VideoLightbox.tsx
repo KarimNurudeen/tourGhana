@@ -57,8 +57,8 @@ export function VideoLightbox({ youtubeId, title, tourHref, onClose }: VideoLigh
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 12 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full max-w-3xl border-4 border-flagRed bg-flagGreen/25 p-3 backdrop-blur-md">
-            <div className="relative aspect-video w-full overflow-hidden bg-black">
+            className="w-full max-w-3xl overflow-hidden rounded-2xl bg-neutral-900 shadow-2xl ring-1 ring-white/10">
+            <div className="relative aspect-video w-full bg-black">
               <iframe
                 src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`}
                 title={title}
@@ -67,12 +67,12 @@ export function VideoLightbox({ youtubeId, title, tourHref, onClose }: VideoLigh
                 className="absolute inset-0 h-full w-full"
               />
             </div>
-            <div className="flex flex-wrap items-center justify-between gap-3 px-2 py-3">
+            <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-4">
               <p className="text-[15px] font-semibold text-white">{title}</p>
               {tourHref && (
                 <Link
                   href={tourHref}
-                  className="shrink-0 border-b-2 border-flagGold text-[13px] font-bold uppercase tracking-wide text-white hover:text-flagGold">
+                  className="shrink-0 text-[13px] font-bold uppercase tracking-wide text-flagGold hover:text-white">
                   Read the full guide
                 </Link>
               )}

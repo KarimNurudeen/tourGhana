@@ -11,7 +11,7 @@ module.exports = {
         flagRed: '#990000',
         flagGold: '#FAF92A',
         flagGreen: '#006633',
-        rule: '#333333',
+        rule: '#e5e5e5',
       },
       fontFamily: {
         sans: ['Libre Franklin', 'system-ui', 'sans-serif'],

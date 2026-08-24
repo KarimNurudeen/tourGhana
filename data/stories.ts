@@ -82,14 +82,14 @@ export const topicBlocks: TopicBlock[] = [
   links: [
   { label: 'Homowo', href: '/tours/homowo-festival' },
   { label: 'Damba', href: '/tours/damba-festival' },
-  { label: 'Akwasidae', href: '/category/festivals' },
-  { label: 'Hogbetsotso', href: '/category/festivals' }],
+  { label: 'Akwasidae', href: '/tours/akwasidae-festival' },
+  { label: 'Hogbetsotso', href: '/tours/hogbetsotso-festival' }],
 
-  lead: fromTour('homowo-festival'),
+  lead: fromTour('aboakyer-festival'),
   more: [
-  fromTour('damba-festival'),
-  fromTour('manhyia-palace'),
-  fromTour('accra-food')]
+  fromTour('homowo-festival'),
+  fromTour('bakatue-festival'),
+  fromTour('chale-wote-festival')]
 
 }];
 
@@ -112,16 +112,15 @@ fromTour('bonwire-kente')];
 
 
 export const forYouLead: Story = {
-  ...fromTour('labadi-beach'),
-  image: 'https://res.cloudinary.com/ynvljxj8/image/upload/f_auto,q_auto,w_2400,c_limit/v1786113845/tour-ghana/kempinski-hotel-accra.jpg',
+  ...fromTour('kempinski-hotel-accra'),
   title: 'Where to stay in Ghana: beach lodges, city hotels and community stays'
 };
 
 export const forYouGrid: Story[] = [
-fromTour('manhyia-palace'),
-fromTour('nzulezu'),
-fromTour('mole-national-park'),
-fromTour('elmina-castle')];
+fromTour('coconut-grove-beach-resort-elmina'),
+fromTour('golden-tulip-kumasi-city'),
+fromTour('zaina-lodge-mole'),
+fromTour('labadi-beach-hotel')];
 
 
 export const historyFeature: Story = {
@@ -130,9 +129,17 @@ export const historyFeature: Story = {
 };
 
 export const historyEvents: HistoryEvent[] = [
+{ year: '1471', text: 'Portuguese traders are the first Europeans to reach the Gold Coast' },
 { year: '1482', text: 'Elmina Castle founded on the Gold Coast' },
 { year: '1701', text: 'The Asante Empire is formed at Kumasi' },
-{ year: '1992', text: 'Fourth Republic constitution adopted' }];
+{ year: '1874', text: 'Britain declares the Gold Coast a Crown colony' },
+{ year: '1900', text: 'Yaa Asantewaa leads the Asante war against British rule' },
+{ year: '1957', text: 'Ghana becomes the first sub-Saharan nation to gain independence' },
+{ year: '1960', text: 'Ghana declared a republic, Kwame Nkrumah becomes first president' },
+{ year: '1966', text: 'A military coup removes Nkrumah from power' },
+{ year: '1981', text: 'Jerry Rawlings takes power in a second coup' },
+{ year: '1992', text: 'Fourth Republic constitution adopted, multi-party rule restored' },
+{ year: '2010', text: 'Commercial oil production begins at the Jubilee Field' }];
 
 
 export const mostRead: Story[] = [
@@ -145,7 +152,7 @@ fromTour('accra-food')];
 export const travelTips: {label: string;detail: string;}[] = [
 {
   label: 'Visas & entry',
-  detail: 'Most nationalities need a visa in advance from a Ghana mission'
+  detail: 'Most travellers now apply online for an Electronic Travel Authorization before flying; ECOWAS nationals remain visa-free'
 },
 {
   label: 'Best time to visit',
@@ -153,11 +160,35 @@ export const travelTips: {label: string;detail: string;}[] = [
 },
 {
   label: 'Money',
-  detail: 'The cedi is cash and mobile money first, cards are limited'
+  detail: 'The cedi is cash and mobile money first, cards are limited outside major hotels'
 },
 {
   label: 'Health',
   detail: 'Yellow fever certificate required, malaria prophylaxis advised'
+},
+{
+  label: 'Getting around',
+  detail: 'Shared taxis and tro-tros cover most towns; Uber and Bolt operate in Accra and Kumasi'
+},
+{
+  label: 'Language',
+  detail: 'English is the official language; Twi and other local languages are widely spoken'
+},
+{
+  label: 'Connectivity',
+  detail: 'Local SIM cards from MTN, Telecel or AirtelTigo are cheap and widely available'
+},
+{
+  label: 'Electricity',
+  detail: '230V, UK-style three-pin (type G) sockets are standard'
+},
+{
+  label: 'Dress',
+  detail: 'Modest dress is expected at chieftaincy palaces, castles and religious sites'
+},
+{
+  label: 'Tipping',
+  detail: 'Not obligatory, but appreciated for guides and drivers; small notes are easiest'
 }];
 
 
@@ -188,11 +219,11 @@ export const categoryColumns: CategoryColumn[] = [
   id: 'events',
   title: 'SPECIAL EVENTS',
   href: '/category/festivals',
-  lead: fromTour('homowo-festival'),
+  lead: fromTour('fetu-afahye-festival'),
   items: [
-  fromTour('damba-festival'),
-  fromTour('manhyia-palace'),
-  fromTour('bonwire-kente')]
+  fromTour('odwira-festival'),
+  fromTour('kobine-festival'),
+  fromTour('panafest-emancipation-day')]
 
 },
 {

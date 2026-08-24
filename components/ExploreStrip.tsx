@@ -22,7 +22,7 @@ export function ExploreStrip() {
     <section aria-labelledby="ways-to-explore">
       <h2
         id="ways-to-explore"
-        className="text-[22px] font-black tracking-tight text-white">
+        className="text-[22px] font-black tracking-tight text-ink">
         Ways to explore Ghana
       </h2>
       <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3 lg:grid-cols-6">
@@ -30,7 +30,7 @@ export function ExploreStrip() {
           <li key={label}>
             <Link
               href={to}
-              className="group flex items-center gap-3 text-[15px] font-bold text-white hover:text-flagGold">
+              className="group flex items-center gap-3 text-[15px] font-bold text-ink hover:text-flagGreen">
               <span
                 className={`flex h-11 w-11 shrink-0 items-center justify-center ${tone}`}>
                 <Icon className="h-5 w-5 text-black" />

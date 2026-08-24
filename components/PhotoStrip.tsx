@@ -9,7 +9,7 @@ type PhotoStripProps = {
 
 export function PhotoStrip({ items }: PhotoStripProps) {
   return (
-    <StaggerReveal className="grid grid-cols-3 gap-1.5 border-4 border-flagRed bg-flagGreen/25 p-3 backdrop-blur-md sm:grid-cols-6">
+    <StaggerReveal className="grid grid-cols-3 gap-1.5 rounded-xl border border-neutral-200 bg-white p-3 shadow-sm sm:grid-cols-6">
       {items.map((story) => (
         <Link
           key={story.slug}

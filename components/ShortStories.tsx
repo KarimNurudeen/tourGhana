@@ -63,7 +63,7 @@ export function ShortStories({ videos }: { videos: ChannelVideo[] }) {
                 whileTap={{ scale: 0.96 }}
                 aria-label={`Play: ${video.title}`}
                 className="group block w-full text-left">
-                <div className="relative aspect-video overflow-hidden">
+                <div className="relative aspect-video overflow-hidden rounded-2xl shadow-lg">
                   <Image
                     src={video.thumbnail}
                     alt={video.title}
@@ -77,8 +77,8 @@ export function ShortStories({ videos }: { videos: ChannelVideo[] }) {
                       {video.title}
                     </p>
                     <div className="mt-3 flex items-center gap-3">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-flagRed transition group-hover:bg-[#700000]">
-                        <PlayIcon className="h-3.5 w-3.5 fill-white text-white" />
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-flagRed shadow-md backdrop-blur transition duration-300 group-hover:scale-110 group-hover:bg-white">
+                        <PlayIcon className="h-3.5 w-3.5 translate-x-0.5 fill-flagRed" />
                       </span>
                       {video.duration && (
                         <span className="text-[13px] font-semibold text-white">

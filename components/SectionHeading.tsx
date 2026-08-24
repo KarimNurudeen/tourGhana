@@ -18,7 +18,9 @@ export function SectionHeading({
       <span className="block h-1 w-20 bg-flagRed" />
       <Link
         href={href}
-        className="mt-4 inline-flex items-center gap-1 text-[26px] font-black uppercase leading-none tracking-tight text-white hover:text-flagGold">
+        className={`mt-4 inline-flex items-center gap-1 text-[26px] font-black uppercase leading-none tracking-tight ${
+          light ? 'text-white hover:text-flagGold' : 'text-flagGreen transition-opacity hover:opacity-70'}`
+        }>
         {title}
         <ChevronRightIcon className="h-6 w-6" strokeWidth={2.5} />
       </Link>
