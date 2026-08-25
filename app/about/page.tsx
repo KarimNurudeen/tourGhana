@@ -4,7 +4,7 @@ import { StaticPage } from '@/components/StaticPage';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'About Tour Ghana, an independent travel guide to Ghana.',
+  description: 'A travel guide to Ghana: attractions, culture and heritage, festivals, accommodation and licensed tour operators across all sixteen regions.',
 };
 
 const sectionHeading = 'border-t border-rule pt-5 text-[22px] font-black uppercase tracking-tight text-ink';
@@ -13,9 +13,10 @@ export default function AboutPage() {
   return (
     <StaticPage title="About Tour Ghana">
       <p>
-        Tour Ghana is an independent travel guide to the Republic of Ghana,
-        covering attractions, culture and heritage, festivals, accommodation
-        and licensed tour operators across all sixteen regions.
+        Tour Ghana brings the country&rsquo;s attractions, culture and
+        heritage, festivals, accommodation and licensed tour operators
+        together in one place, covering all sixteen regions of the Republic
+        of Ghana.
       </p>
       <p>
         The guide is built around real places, festivals and food, organised
