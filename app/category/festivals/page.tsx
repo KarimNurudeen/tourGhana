@@ -32,7 +32,7 @@ export default async function FestivalsPage() {
         </h1>
         <p className="mt-3 max-w-2xl text-[16px] text-neutral-600">
           Durbars, chieftaincy rites, harvest thanksgivings and street festivals, from the
-          Ga twins ceremony in Accra to the Kobine dance in Ghana's far north.
+          Ga twins ceremony in Accra to the Kobine dance in Ghana’s far north.
         </p>
 
         <TourBrowser tours={festivals} viewLabel="View festival" />
