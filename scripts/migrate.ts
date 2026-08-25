@@ -192,15 +192,20 @@ async function uploadMedia(src: string | undefined): Promise<number | null> {
   return uploaded.id;
 }
 
-function idFor(slug?: string, tourIdBySlug?: Map<string, number>): number | null {
-  if (!slug || !tourIdBySlug) return null;
-  return tourIdBySlug.get(slug) ?? null;
+// Relations are addressed by documentId, never by the numeric row id. Tours
+// have draft & publish enabled, so each one exists as two rows sharing a
+// single documentId — a numeric id pins the relation to one version, and a
+// relation set from the draft rows comes back empty from the default
+// (published) query. documentId resolves to whichever version is being read.
+function idFor(slug?: string, tourDocIdBySlug?: Map<string, string>): string | null {
+  if (!slug || !tourDocIdBySlug) return null;
+  return tourDocIdBySlug.get(slug) ?? null;
 }
 
-function idsFor(stories: Story[], tourIdBySlug: Map<string, number>): number[] {
+function idsFor(stories: Story[], tourDocIdBySlug: Map<string, string>): string[] {
   return stories
-    .map((s) => (s.slug ? tourIdBySlug.get(s.slug) : undefined))
-    .filter((id): id is number => id !== undefined);
+    .map((s) => (s.slug ? tourDocIdBySlug.get(s.slug) : undefined))
+    .filter((id): id is string => id !== undefined);
 }
 
 // ---------------------------------------------------------------------------
@@ -371,8 +376,8 @@ async function main() {
   for (const tour of tours) {
     if (!tour.nearby || tour.nearby.length === 0) continue;
     const nearbyIds = tour.nearby
-      .map((slug) => tourIdBySlug.get(slug))
-      .filter((id): id is number => id !== undefined);
+      .map((slug) => tourDocIdBySlug.get(slug))
+      .filter((id): id is string => id !== undefined);
     if (nearbyIds.length === 0) continue;
     const tourDocId = tourDocIdBySlug.get(tour.slug)!;
     await strapiRequest(`/api/tours/${tourDocId}`, {
@@ -402,7 +407,7 @@ async function main() {
   const tourSlugByImage = new Map(tours.map((t) => [t.image, t.slug]));
   for (const q of quizQuestions) {
     const tourSlug = tourSlugByImage.get(q.image);
-    const tourId = tourSlug ? tourIdBySlug.get(tourSlug) : undefined;
+    const tourId = tourSlug ? tourDocIdBySlug.get(tourSlug) : undefined;
     await strapiRequest('/api/quiz-questions', {
       method: 'POST',
       body: JSON.stringify({
@@ -427,8 +432,8 @@ async function main() {
           blockId: block.id,
           topic: block.topic,
           links: block.links,
-          lead: idFor(block.lead.slug, tourIdBySlug),
-          more: idsFor(block.more, tourIdBySlug),
+          lead: idFor(block.lead.slug, tourDocIdBySlug),
+          more: idsFor(block.more, tourDocIdBySlug),
           order: i,
         },
       }),
@@ -444,8 +449,8 @@ async function main() {
           columnId: col.id,
           title: col.title,
           href: col.href,
-          lead: idFor(col.lead.slug, tourIdBySlug),
-          items: idsFor(col.items, tourIdBySlug),
+          lead: idFor(col.lead.slug, tourDocIdBySlug),
+          items: idsFor(col.items, tourDocIdBySlug),
           order: i,
         },
       }),
@@ -474,19 +479,19 @@ async function main() {
     method: 'PUT',
     body: JSON.stringify({
       data: {
-        heroLead: idFor(heroLead.slug, tourIdBySlug),
-        heroMore: idsFor(heroMore, tourIdBySlug),
-        photoStrip: idsFor(photoStrip, tourIdBySlug),
-        sidebarFeature: idFor(sidebarFeature.slug, tourIdBySlug),
-        sidebarStories: idsFor(sidebarStories, tourIdBySlug),
-        latestUpdates: idsFor(latestUpdates, tourIdBySlug),
-        forYouLead: idFor(forYouLead.slug, tourIdBySlug),
+        heroLead: idFor(heroLead.slug, tourDocIdBySlug),
+        heroMore: idsFor(heroMore, tourDocIdBySlug),
+        photoStrip: idsFor(photoStrip, tourDocIdBySlug),
+        sidebarFeature: idFor(sidebarFeature.slug, tourDocIdBySlug),
+        sidebarStories: idsFor(sidebarStories, tourDocIdBySlug),
+        latestUpdates: idsFor(latestUpdates, tourDocIdBySlug),
+        forYouLead: idFor(forYouLead.slug, tourDocIdBySlug),
         forYouLeadTitle: forYouLead.title,
-        forYouGrid: idsFor(forYouGrid, tourIdBySlug),
-        historyFeature: idFor(historyFeature.slug, tourIdBySlug),
+        forYouGrid: idsFor(forYouGrid, tourDocIdBySlug),
+        historyFeature: idFor(historyFeature.slug, tourDocIdBySlug),
         historyFeatureTitle: historyFeature.title,
-        mostRead: idsFor(mostRead, tourIdBySlug),
-        photography: idsFor(photography, tourIdBySlug),
+        mostRead: idsFor(mostRead, tourDocIdBySlug),
+        photography: idsFor(photography, tourDocIdBySlug),
       },
     }),
   });
