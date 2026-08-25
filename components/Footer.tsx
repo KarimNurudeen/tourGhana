@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ExternalLinkIcon } from 'lucide-react';
 
 const siteLinks = [
   { label: 'About Tour Ghana', href: '/about' },
@@ -11,20 +10,11 @@ const siteLinks = [
   { label: 'Advertise With Us', href: '/advertise' },
 ];
 
-const resourceLinks = [
-  'Ghana Tourism Authority',
-  'Ghana Immigration Service',
-  'Ghana Museums & Monuments Board',
-  'Ghana Tourism Federation',
-  'Ghana Hotels Association',
-  'Tour Operators Union of Ghana',
-];
-
 export function Footer() {
   return (
     <footer className="bg-flagGreen py-16 text-white">
       <div className="mx-auto max-w-page px-4">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr]">
           <div>
             <Image
               src="/tour-ghana-logo.png"
@@ -60,23 +50,6 @@ export function Footer() {
             </ul>
           </nav>
 
-          <nav aria-label="Official resources">
-            <h3 className="text-[14px] font-bold uppercase tracking-wide text-neutral-400">
-              Official Resources
-            </h3>
-            <ul className="mt-5 space-y-4">
-              {resourceLinks.map((link) => (
-                <li key={link}>
-                  <Link
-                    href="/"
-                    className="inline-flex items-center gap-1.5 text-[15px] font-semibold uppercase tracking-wide hover:text-flagGold">
-                    {link}
-                    <ExternalLinkIcon className="h-3.5 w-3.5" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
         </div>
 
         <div className="mt-14 flex flex-col gap-6 border-t border-white/20 pt-7 sm:flex-row sm:items-center sm:justify-between">
