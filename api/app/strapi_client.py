@@ -44,6 +44,13 @@ TOUR_POPULATE = {
     "populate[gallery]": "true",
     "populate[nearby]": "true",
     "populate[videos][populate]": "*",
+    # Components are omitted entirely unless named here — quickFacts came back
+    # as [] and coordinates/festivalTiming as None, so tour pages rendered an
+    # empty Quick Facts panel and no map pin. festivalTiming holds a nested
+    # `rule` component, hence the deep populate.
+    "populate[quickFacts]": "true",
+    "populate[coordinates]": "true",
+    "populate[festivalTiming][populate]": "*",
 }
 
 
