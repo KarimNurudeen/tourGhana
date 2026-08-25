@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     default: 'Tour Ghana — The Gateway to Africa',
     template: '%s | Tour Ghana',
   },
+  // Without this, search engines compose a snippet from whatever body text
+  // they find — which is how the footer blurb ended up as the Google
+  // description for the homepage.
+  description:
+    'Plan a trip to Ghana: attractions, culture and heritage, festivals, ' +
+    'accommodation and licensed tour operators across all sixteen regions.',
 };
 
 export default async function RootLayout({
