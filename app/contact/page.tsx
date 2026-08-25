@@ -30,9 +30,9 @@ export default function ContactPage() {
       <h2 className={sectionHeading}>Email</h2>
       <p>
         <a
-          href="mailto:hello@tourghana.example"
+          href="mailto:hello@tourghana.com"
           className="font-semibold text-ink underline hover:text-flagGreen">
-          hello@tourghana.example
+          hello@tourghana.com
         </a>
       </p>
       <p>

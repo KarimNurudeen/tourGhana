@@ -11,7 +11,7 @@ const siteLinks = [
   { label: 'Advertise With Us', href: '/advertise' },
 ];
 
-const partnerLinks = [
+const resourceLinks = [
   'Ghana Tourism Authority',
   'Ghana Immigration Service',
   'Ghana Museums & Monuments Board',
@@ -60,12 +60,12 @@ export function Footer() {
             </ul>
           </nav>
 
-          <nav aria-label="Official partners">
+          <nav aria-label="Official resources">
             <h3 className="text-[14px] font-bold uppercase tracking-wide text-neutral-400">
-              Official Partners
+              Official Resources
             </h3>
             <ul className="mt-5 space-y-4">
-              {partnerLinks.map((link) => (
+              {resourceLinks.map((link) => (
                 <li key={link}>
                   <Link
                     href="/"
