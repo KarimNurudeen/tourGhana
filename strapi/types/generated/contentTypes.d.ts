@@ -542,6 +542,38 @@ export interface ApiHistoryEventHistoryEvent
   };
 }
 
+export interface ApiHistoryPageHistoryPage extends Struct.SingleTypeSchema {
+  collectionName: 'history_pages';
+  info: {
+    description: 'The written history on /history. The Key Dates timeline is edited separately under History Event.';
+    displayName: 'History Page';
+    pluralName: 'history-pages';
+    singularName: 'history-page';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'>;
+    imageCaption: Schema.Attribute.String;
+    intro: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::history-page.history-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    sections: Schema.Attribute.Component<'history.section', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
   collectionName: 'homepages';
   info: {
@@ -1302,6 +1334,7 @@ declare module '@strapi/strapi' {
       'api::category-column.category-column': ApiCategoryColumnCategoryColumn;
       'api::category.category': ApiCategoryCategory;
       'api::history-event.history-event': ApiHistoryEventHistoryEvent;
+      'api::history-page.history-page': ApiHistoryPageHistoryPage;
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::navigation.navigation': ApiNavigationNavigation;
       'api::quiz-question.quiz-question': ApiQuizQuestionQuizQuestion;

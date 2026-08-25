@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.routers import homepage, navigation, quiz, taxonomy, tours
+from app.routers import history, homepage, navigation, quiz, taxonomy, tours
 
 app = FastAPI(title="Tour Ghana API")
 
@@ -18,6 +18,7 @@ app.include_router(taxonomy.router)
 app.include_router(homepage.router)
 app.include_router(navigation.router)
 app.include_router(quiz.router)
+app.include_router(history.router)
 
 
 @app.get("/health")

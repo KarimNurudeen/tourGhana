@@ -99,6 +99,24 @@ export async function getHomepage(): Promise<HomepageData> {
   return apiFetch<HomepageData>('/api/homepage');
 }
 
+export type HistoryPageData = {
+  image: string | null;
+  imageCaption: string | null;
+  intro: string | null;
+  sections: { heading: string; paragraphs: string[] }[];
+};
+
+// Deliberately non-fatal: the three services deploy independently, so this
+// endpoint can briefly 404 while the API layer catches up. The page renders
+// its Key Dates timeline either way rather than failing the whole build.
+export async function getHistoryPage(): Promise<HistoryPageData> {
+  try {
+    return await apiFetch<HistoryPageData>('/api/history');
+  } catch {
+    return { image: null, imageCaption: null, intro: null, sections: [] };
+  }
+}
+
 export type NavigationData = {
   primaryNav: NavItem[];
   tickerLinks: LinkItem[];

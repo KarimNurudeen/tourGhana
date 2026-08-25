@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_history_sections",
+  "info": {
+    "displayName": "History Section",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

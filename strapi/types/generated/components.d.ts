@@ -1,5 +1,17 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface HistorySection extends Struct.ComponentSchema {
+  collectionName: 'components_history_sections';
+  info: {
+    displayName: 'History Section';
+    icon: 'bulletList';
+  };
+  attributes: {
+    body: Schema.Attribute.Text & Schema.Attribute.Required;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedLink extends Struct.ComponentSchema {
   collectionName: 'components_shared_links';
   info: {
@@ -114,6 +126,7 @@ export interface TourVideo extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
+      'history.section': HistorySection;
       'shared.link': SharedLink;
       'shared.nav-item': SharedNavItem;
       'tour.coordinates': TourCoordinates;

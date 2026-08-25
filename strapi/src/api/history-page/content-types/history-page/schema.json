@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "history_pages",
+  "info": {
+    "singularName": "history-page",
+    "pluralName": "history-pages",
+    "displayName": "History Page",
+    "description": "The written history on /history. The Key Dates timeline is edited separately under History Event."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "imageCaption": {
+      "type": "string"
+    },
+    "intro": {
+      "type": "text"
+    },
+    "sections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "history.section"
+    }
+  }
+}
