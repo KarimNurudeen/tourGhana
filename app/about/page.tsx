@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { StaticPage } from '@/components/StaticPage';
 
 export const metadata: Metadata = {
-  title: 'About Tour Ghana',
+  title: 'About',
   description: 'About Tour Ghana, an independent travel guide to Ghana.',
 };
 

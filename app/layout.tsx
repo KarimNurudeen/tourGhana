@@ -7,7 +7,12 @@ import { PageLoader } from '@/components/PageLoader';
 import { getNavigation } from '@/lib/api';
 
 export const metadata: Metadata = {
-  title: 'News-Inspired Tour Design',
+  // Pages set short titles ('Tour Operators', 'Top Attractions'), so the
+  // template appends the site name rather than each page repeating it.
+  title: {
+    default: 'Tour Ghana — The Gateway to Africa',
+    template: '%s | Tour Ghana',
+  },
 };
 
 export default async function RootLayout({
