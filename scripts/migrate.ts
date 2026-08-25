@@ -9,8 +9,12 @@
 // script importing files from outside that project (like ../data/tours)
 // breaks that build. Keeping this at the repo root avoids that entirely.
 //
-// Safe to re-run against a *fresh* Strapi database only — it always creates
-// new entries, it doesn't upsert. Wipe strapi/.tmp/data.db first if re-running.
+// Resumable: tours, regions, categories and uploaded media are all looked up
+// on the live instance first and skipped if present, so a run interrupted by
+// a dropped connection can simply be run again. The sections after the tours
+// (history events, travel tips, quiz questions, topic blocks, category
+// columns) are *not* guarded that way and will duplicate — if a run dies
+// after reaching them, clear those collections before retrying.
 import { readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -88,15 +92,71 @@ async function strapiRequest(path: string, options: RequestInit = {}) {
   return res.json();
 }
 
+// Pages through a collection so a resumed run can see everything that
+// already exists, not just the first 25 entries.
+async function fetchAllEntries(collection: string): Promise<any[]> {
+  const all: any[] = [];
+  for (let page = 1; ; page++) {
+    const res = await strapiRequest(
+      `/api/${collection}?pagination[page]=${page}&pagination[pageSize]=100&status=draft`
+    );
+    all.push(...res.data);
+    if (page >= (res.meta?.pagination?.pageCount ?? 1)) break;
+  }
+  return all;
+}
+
+// Strapi checks a component media field against its `allowedTypes`
+// ("videos" for videos[].src, "images" for videos[].poster). A Blob built
+// without a type reaches Strapi as application/octet-stream and fails that
+// check, so derive the type from the extension.
+const MIME_BY_EXT: Record<string, string> = {
+  jpg: 'image/jpeg',
+  jpeg: 'image/jpeg',
+  png: 'image/png',
+  webp: 'image/webp',
+  avif: 'image/avif',
+  gif: 'image/gif',
+  svg: 'image/svg+xml',
+  mp4: 'video/mp4',
+  webm: 'video/webm',
+  mov: 'video/quicktime',
+};
+
+function mimeTypeFor(filename: string): string {
+  const ext = filename.split('.').pop()?.toLowerCase() ?? '';
+  return MIME_BY_EXT[ext] ?? 'application/octet-stream';
+}
+
+// Strapi stores an uploaded file under the name it was sent with, so the
+// same derivation doubles as the lookup key when resuming a partial run.
+function filenameFor(src: string): string {
+  if (src.startsWith('http://') || src.startsWith('https://')) {
+    return decodeURIComponent(src.split('/').pop()?.split('?')[0] || `image-${Date.now()}.jpg`);
+  }
+  return src.replace(/^\//, '').replace(/\//g, '-');
+}
+
+// Strapi has no upsert, so a re-run after an interrupted migration would
+// duplicate everything. These are seeded from the live instance in main()
+// and consulted before anything is created.
+const mediaIdByFilename = new Map<string, number>();
+
 const uploadCache = new Map<string, number>();
 
-async function uploadImage(src: string | undefined): Promise<number | null> {
+async function uploadMedia(src: string | undefined): Promise<number | null> {
   if (!src) return null;
   const cached = uploadCache.get(src);
   if (cached !== undefined) return cached;
 
+  const filename = filenameFor(src);
+  const existingId = mediaIdByFilename.get(filename);
+  if (existingId !== undefined) {
+    uploadCache.set(src, existingId);
+    return existingId;
+  }
+
   let bytes: Buffer;
-  let filename: string;
 
   try {
     if (src.startsWith('http://') || src.startsWith('https://')) {
@@ -106,11 +166,8 @@ async function uploadImage(src: string | undefined): Promise<number | null> {
         return null;
       }
       bytes = Buffer.from(await res.arrayBuffer());
-      filename = decodeURIComponent(src.split('/').pop()?.split('?')[0] || `image-${Date.now()}.jpg`);
     } else {
-      const localPath = join(PUBLIC_DIR, src.replace(/^\//, ''));
-      bytes = await readFile(localPath);
-      filename = src.replace(/^\//, '').replace(/\//g, '-');
+      bytes = await readFile(join(PUBLIC_DIR, src.replace(/^\//, '')));
     }
   } catch (err) {
     console.warn(`  ! could not read ${src}: ${(err as Error).message}`);
@@ -118,7 +175,7 @@ async function uploadImage(src: string | undefined): Promise<number | null> {
   }
 
   const form = new FormData();
-  form.append('files', new Blob([bytes]), filename);
+  form.append('files', new Blob([bytes], { type: mimeTypeFor(filename) }), filename);
 
   const res = await fetch(`${STRAPI_URL}/api/upload`, {
     method: 'POST',
@@ -130,6 +187,7 @@ async function uploadImage(src: string | undefined): Promise<number | null> {
     return null;
   }
   const [uploaded] = (await res.json()) as { id: number }[];
+  mediaIdByFilename.set(filename, uploaded.id);
   uploadCache.set(src, uploaded.id);
   return uploaded.id;
 }
@@ -159,10 +217,31 @@ async function main() {
 
   console.log(`Migrating into ${STRAPI_URL} ...\n`);
 
+  // 0. Resume support -------------------------------------------------------
+  // A migration that dies partway (a dropped connection mid-upload, say)
+  // leaves real content behind. Rather than force a full wipe before every
+  // retry, load what's already there and skip past it.
+  const existingFiles = await strapiRequest('/api/upload/files');
+  for (const file of Array.isArray(existingFiles) ? existingFiles : (existingFiles.results ?? [])) {
+    mediaIdByFilename.set(file.name, file.id);
+  }
+  const existingRegions = await fetchAllEntries('regions');
+  const existingCategories = await fetchAllEntries('categories');
+  const existingTours = await fetchAllEntries('tours');
+  if (existingFiles.length || existingTours.length) {
+    console.log(
+      `Resuming: ${existingTours.length} tours, ${existingRegions.length} regions, ` +
+        `${existingCategories.length} categories, ${mediaIdByFilename.size} media already present.\n`
+    );
+  }
+
   // 1. Regions & Categories -------------------------------------------------
   console.log(`Creating ${regions.length} regions...`);
-  const regionIdByName = new Map<string, number>();
+  const regionIdByName = new Map<string, number>(
+    existingRegions.map((r) => [r.name as string, r.id as number])
+  );
   for (const r of regions) {
+    if (regionIdByName.has(r.name)) continue;
     const created = await strapiRequest('/api/regions', {
       method: 'POST',
       body: JSON.stringify({ data: { name: r.name, slug: r.slug } }),
@@ -171,8 +250,11 @@ async function main() {
   }
 
   console.log(`Creating ${categories.length} categories...`);
-  const categoryIdByName = new Map<string, number>();
+  const categoryIdByName = new Map<string, number>(
+    existingCategories.map((c) => [c.name as string, c.id as number])
+  );
   for (const c of categories) {
+    if (categoryIdByName.has(c.name)) continue;
     const created = await strapiRequest('/api/categories', {
       method: 'POST',
       body: JSON.stringify({ data: { name: c.name, slug: c.slug } }),
@@ -182,17 +264,25 @@ async function main() {
 
   // 2. Tours (first pass, no `nearby` yet — self-referencing) ---------------
   console.log(`\nCreating ${tours.length} tours (uploading images as we go)...`);
-  const tourIdBySlug = new Map<string, number>();
+  const tourIdBySlug = new Map<string, number>(
+    existingTours.map((t) => [t.slug as string, t.id as number])
+  );
   // Strapi v5's REST API takes the numeric id as a relation *value*, but
   // requires the string documentId in the URL path for single-entry
   // GET/PUT/DELETE — hence tracking both.
-  const tourDocIdBySlug = new Map<string, string>();
+  const tourDocIdBySlug = new Map<string, string>(
+    existingTours.map((t) => [t.slug as string, t.documentId as string])
+  );
 
   for (const tour of tours) {
-    const imageId = await uploadImage(tour.image);
+    if (tourIdBySlug.has(tour.slug)) {
+      console.log(`  = ${tour.slug} (already present, skipped)`);
+      continue;
+    }
+    const imageId = await uploadMedia(tour.image);
     const galleryIds: number[] = [];
     for (const src of tour.gallery) {
-      const id = await uploadImage(src);
+      const id = await uploadMedia(src);
       if (id !== null) galleryIds.push(id);
     }
 
@@ -213,6 +303,24 @@ async function main() {
         )
       : null;
 
+    // videos[].src and videos[].poster are media fields nested in a
+    // component, so they need uploading like any other asset — passing the
+    // raw Cloudinary URL through makes Strapi reject the whole entry with
+    // "Invalid relations".
+    const videoComponents: { src: number; poster: number | null; caption: string }[] = [];
+    for (const video of tour.videos ?? []) {
+      const srcId = await uploadMedia(video.src);
+      if (srcId === null) {
+        console.warn(`  ! skipping video for ${tour.slug}: ${video.src}`);
+        continue;
+      }
+      videoComponents.push({
+        src: srcId,
+        poster: await uploadMedia(video.poster),
+        caption: video.caption,
+      });
+    }
+
     const created = await strapiRequest('/api/tours', {
       method: 'POST',
       body: JSON.stringify({
@@ -227,7 +335,7 @@ async function main() {
           imageCredit: tour.imageCredit ?? null,
           gallery: galleryIds,
           photoCategories: rekeyedPhotoCategories,
-          videos: tour.videos ?? [],
+          videos: videoComponents,
           festivalTiming: tour.festivalTiming ?? null,
           coordinates: tour.coordinates,
           overview: tour.overview,
@@ -241,6 +349,21 @@ async function main() {
     tourIdBySlug.set(tour.slug, created.data.id);
     tourDocIdBySlug.set(tour.slug, created.data.documentId);
     console.log(`  + ${tour.slug} (${galleryIds.length} gallery images)`);
+  }
+
+  // Strapi v5 keeps a separate row per document version, and the numeric id
+  // a POST hands back is not always the one relation validation resolves
+  // against — mixing the two produces "relation(s) ... do not exist" on the
+  // relations below. Re-reading every tour from one source keeps the ids in
+  // a single, consistent space.
+  {
+    const allTours = await fetchAllEntries('tours');
+    tourIdBySlug.clear();
+    tourDocIdBySlug.clear();
+    for (const t of allTours) {
+      tourIdBySlug.set(t.slug, t.id);
+      tourDocIdBySlug.set(t.slug, t.documentId);
+    }
   }
 
   // 3. Wire up `nearby` relations (second pass) ------------------------------
