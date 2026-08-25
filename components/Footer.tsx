@@ -36,6 +36,11 @@ export function Footer() {
             <p className="mt-4 text-[17px] font-semibold text-neutral-400">
               The Gateway to Africa
             </p>
+            <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-neutral-300">
+              Tour Ghana brings the country&rsquo;s attractions, culture and
+              heritage, festivals, accommodation and licensed tour operators
+              together in one place, across all sixteen regions.
+            </p>
           </div>
 
           <nav aria-label="From Tour Ghana">
