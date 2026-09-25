@@ -7,6 +7,7 @@ import httpx
 
 from app.cache import cached
 from app.config import settings
+from app.nearby import compute_nearby
 
 
 def get_client() -> httpx.AsyncClient:
@@ -155,7 +156,10 @@ async def fetch_all_tours() -> list[dict]:
         data = await strapi_get(
             client, "/api/tours", params={**TOUR_POPULATE, "pagination[pageSize]": 100}
         )
-    return [transform_tour(e) for e in data["data"]]
+    tours = [transform_tour(e) for e in data["data"]]
+    for tour in tours:
+        tour.update(compute_nearby(tour, tours))
+    return tours
 
 
 async def fetch_tour_by_slug(slug: str, status: Optional[str] = None) -> Optional[dict]:
@@ -170,7 +174,11 @@ async def fetch_tour_by_slug(slug: str, status: Optional[str] = None) -> Optiona
     entries = data.get("data") or []
     if not entries:
         return None
-    return transform_tour(entries[0])
+    tour = transform_tour(entries[0])
+    # Compute against the published tours plus this (possibly draft) one.
+    others = [t for t in await fetch_all_tours() if t["slug"] != tour["slug"]]
+    tour.update(compute_nearby(tour, others + [tour]))
+    return tour
 
 
 @cached("all_regions")

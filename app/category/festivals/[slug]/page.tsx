@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { CheckIcon, ChevronRightIcon, MapPinIcon } from 'lucide-react';
-import { getTour, getTours, slugify, tourHref } from '@/lib/api';
+import { getTour, getTours } from '@/lib/api';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { QuickFactsPanel } from '@/components/QuickFactsPanel';
 import { DirectionsMap } from '@/components/DirectionsMap';
 import { FestivalCalendar } from '@/components/FestivalCalendar';
+import { NearbySection } from '@/components/NearbySection';
 import { PhotoGallery } from '@/components/PhotoGallery';
 import { TourGrid } from '@/components/TourGrid';
 
@@ -47,11 +47,7 @@ export default async function FestivalDetailPage({ params }: FestivalPageProps) 
 
   const heroImages = Array.from(new Set([tour.image, ...tour.gallery]));
 
-  const [nearbyResults, otherFestivals] = await Promise.all([
-    Promise.all(tour.nearby.map((s) => getTour(s))),
-    getTours({ category: 'Festivals' }),
-  ]);
-  const nearbyTours = nearbyResults.filter((t): t is NonNullable<typeof t> => t !== null && t.slug !== tour.slug);
+  const otherFestivals = await getTours({ category: 'Festivals' });
   const moreFestivals = otherFestivals.filter((t) => t.slug !== tour.slug).slice(0, 4);
 
   return (
@@ -200,46 +196,16 @@ export default async function FestivalDetailPage({ params }: FestivalPageProps) 
               </section>
             </ScrollReveal>
 
-            {nearbyTours.length > 0 && (
-              <ScrollReveal>
-                <section aria-labelledby="nearby" className="mt-12">
-                  <span id="nearby" className="sr-only">
-                    Nearby attractions
-                  </span>
-                  <SectionHeading
-                    title="Nearby attractions"
-                    href={`/region/${slugify(tour.region)}`}
-                  />
-                  <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    {nearbyTours.map((item) => (
-                      <li
-                        key={item.slug}
-                        className="flex gap-4 rounded-xl bg-white p-5 shadow-card">
-                        <div className="min-w-0 flex-1">
-                          <Link
-                            href={tourHref(item)}
-                            className="text-[17px] font-bold leading-snug text-ink hover:text-brand">
-                            {item.name}
-                          </Link>
-                          <p className="mt-2 text-[12px] font-bold uppercase tracking-wide text-neutral-500">
-                            {item.region}
-                          </p>
-                        </div>
-                        <Link href={tourHref(item)} className="shrink-0 overflow-hidden rounded-lg">
-                          <Image
-                            src={item.image}
-                            alt=""
-                            width={96}
-                            height={64}
-                            className="h-16 w-24 object-cover"
-                          />
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              </ScrollReveal>
-            )}
+            <div className="mt-12 space-y-8">
+              <NearbySection places={tour.nearbyPlaces} mode={tour.nearbyMode} region={tour.region} layout="grid" />
+              <NearbySection
+                places={tour.nearbyStays}
+                mode={tour.nearbyStaysMode}
+                region={tour.region}
+                kind="stays"
+                layout="grid"
+              />
+            </div>
           </div>
         </article>
 

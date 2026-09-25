@@ -100,6 +100,25 @@ export type Tour = {
   nearby: string[];
   // The page's full text as it originally appeared, as titled sections.
   sourceText?: SourceSection[];
+  // Worked out by the API from where places are (not hand-picked). "distance":
+  // within ~80 km, nearest first; "region": same-region fallback with no
+  // distances; "none": nothing to show.
+  nearbyMode?: NearbyMode;
+  nearbyPlaces?: NearbyPlace[];
+  nearbyStaysMode?: NearbyMode;
+  nearbyStays?: NearbyPlace[];
+};
+
+export type NearbyMode = 'distance' | 'region' | 'none';
+
+export type NearbyPlace = {
+  slug: string;
+  name: string;
+  region: string;
+  category: string;
+  image: string;
+  // Whole kilometres (0 = under a kilometre); null when there is no distance.
+  distanceKm: number | null;
 };
 
 export type SourceSection = {

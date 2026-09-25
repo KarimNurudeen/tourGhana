@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import { notFound, redirect } from 'next/navigation';
 import { CheckIcon, ChevronRightIcon, MapPinIcon } from 'lucide-react';
 import { getTour, getTours, slugify, tourHref } from '@/lib/api';
@@ -8,6 +7,7 @@ import { QuickFactsPanel } from '@/components/QuickFactsPanel';
 import { ReadMore } from '@/components/ReadMore';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { DirectionsMap } from '@/components/DirectionsMap';
+import { NearbySection } from '@/components/NearbySection';
 import { PhotoGallery } from '@/components/PhotoGallery';
 import { TourGrid } from '@/components/TourGrid';
 
@@ -52,11 +52,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
 
   const heroImages = Array.from(new Set([tour.image, ...tour.gallery].filter(Boolean)));
 
-  const [nearbyResults, categoryTours] = await Promise.all([
-    Promise.all(tour.nearby.map((s) => getTour(s))),
-    getTours({ category: tour.category }),
-  ]);
-  const nearbyTours = nearbyResults.filter((t): t is NonNullable<typeof t> => t !== null && t.slug !== tour.slug);
+  const categoryTours = await getTours({ category: tour.category });
   const alsoIn = categoryTours.filter((t) => t.slug !== tour.slug).slice(0, 4);
 
   const card = 'rounded-xl bg-white p-4 shadow-card sm:p-6';
@@ -229,32 +225,13 @@ export default async function TourDetailPage({ params }: TourPageProps) {
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
             {tour.quickFacts.length > 0 && <div className="hidden lg:block">{quickFacts}</div>}
 
-            {nearbyTours.length > 0 && (
-              <section aria-labelledby="nearby" className="space-y-3">
-                <h2 id="nearby" className={h2}>
-                  Nearby
-                </h2>
-                <ul className="divide-y divide-neutral-200 rounded-xl bg-white px-4 shadow-card">
-                  {nearbyTours.map((item) => (
-                    <li key={item.slug} className="flex items-center gap-4 py-4">
-                      <div className="min-w-0 flex-1">
-                        <Link
-                          href={`/tours/${item.slug}`}
-                          className="text-[16px] font-bold leading-snug text-ink hover:text-brand">
-                          {item.name}
-                        </Link>
-                        <p className="mt-1 text-[12px] font-bold uppercase tracking-wide text-neutral-500">{item.region}</p>
-                      </div>
-                      {item.image && (
-                        <Link href={`/tours/${item.slug}`} className="shrink-0 overflow-hidden rounded-lg">
-                          <Image src={item.image} alt="" width={96} height={64} className="h-16 w-24 object-cover" />
-                        </Link>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
+            <NearbySection places={tour.nearbyPlaces} mode={tour.nearbyMode} region={tour.region} />
+            <NearbySection
+              places={tour.nearbyStays}
+              mode={tour.nearbyStaysMode}
+              region={tour.region}
+              kind="stays"
+            />
           </aside>
         </div>
 

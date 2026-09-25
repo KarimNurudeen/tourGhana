@@ -4,7 +4,8 @@
 //   node scripts/seed-content.mjs            # everything
 //   node scripts/seed-content.mjs regions guide   # just those steps
 //
-// Steps: regions, guide, festivals, tours, accommodation, operators, history, history-links.
+// Steps: regions, guide, festivals, tours, accommodation, operators, history, history-links,
+// coordinates.
 //
 // Safe to re-run: every record is looked up first (by slug / name) and updated
 // or skipped rather than duplicated. Needs a full-access API token in
@@ -247,6 +248,55 @@ if (run('history-links')) {
     linked++;
   }
   console.log(`   ${linked} events linked to a place`);
+}
+
+// ---------------------------------------------------------------- coordinates
+// The places loaded from the scrape came without map positions. These are
+// APPROXIMATE (town or landmark level, good to a kilometre or two): enough for
+// the "nearby" distances and a directions pin near the right place, not for
+// precise navigation. Correct any of them in Strapi under Tour > Coordinates.
+// Only fills a tour that has no coordinates yet; never overwrites an edit.
+const COORDINATES = {
+  'lake-bosomtwi': [6.5, -1.407],
+  'national-museum': [5.555, -0.205],
+  'accra-cultural-centre': [5.551, -0.203],
+  'du-bois-memorial-centre': [5.591, -0.172],
+  'lake-volta': [6.3, 0.06],
+  'cape-three-points': [4.744, -2.093],
+  'wechiau-hippo-sanctuary': [10.05, -2.75],
+  'bobiri-butterfly-sanctuary': [6.69, -1.34],
+  'boti-falls': [6.224, -0.17],
+  'fort-metal-cross-dixcove': [4.797, -1.942],
+  'fort-william-anomabu': [5.169, -1.11],
+  'christiansborg-castle': [5.548, -0.185],
+  'fort-patience-apam': [5.283, -0.735],
+  'fort-amsterdam-abandze': [5.171, -1.091],
+  'fort-good-hope-senya-beraku': [5.402, -0.453],
+  'fort-st-jago-elmina': [5.085, -1.351],
+  'fort-apollonia-beyin': [5.053, -2.671],
+  'fort-batenstein-butre': [4.785, -1.908],
+  'fort-orange-sekondi': [4.934, -1.701],
+  'fort-st-anthonio-axim': [4.865, -2.24],
+  'fort-st-sebastian-shama': [5.005, -1.63],
+  'fort-friederichsburg-princess-town': [4.796, -2.134],
+};
+
+if (run('coordinates')) {
+  console.log('coordinates…');
+  const res = await api('/api/tours?pagination[pageSize]=100&populate[coordinates]=true');
+  const bySlug = new Map(res.data.map((t) => [t.slug, t]));
+  const independence = bySlug.get('independence-square')?.coordinates;
+  const targets = { ...COORDINATES };
+  // The Mausoleum stands beside Independence Square, so borrow its position.
+  if (independence) targets['kwame-nkrumah-mausoleum'] = [independence.lat, independence.lng];
+  let set = 0;
+  for (const [slug, [lat, lng]] of Object.entries(targets)) {
+    const tour = bySlug.get(slug);
+    if (!tour || tour.coordinates) continue;
+    await update('tours', tour.documentId, { coordinates: { lat, lng } });
+    set++;
+  }
+  console.log(`   ${set} tours given approximate coordinates`);
 }
 
 console.log('done');

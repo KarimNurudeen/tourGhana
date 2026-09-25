@@ -72,6 +72,10 @@ class Tour(BaseModel):
     gettingThere: list[str] = []
     tips: list[str] = []
     nearby: list[str] = []
+    nearbyMode: str = "none"
+    nearbyPlaces: list[dict] = []
+    nearbyStaysMode: str = "none"
+    nearbyStays: list[dict] = []
 
 
 class TaxonomyGroup(BaseModel):
