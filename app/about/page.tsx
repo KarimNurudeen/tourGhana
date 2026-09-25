@@ -32,11 +32,11 @@ export default function AboutPage() {
         there from Accra or the nearest city, a short list of what to
         actually look for on the visit, and the nearby sites most people
         combine it with. Attractions can be browsed by{' '}
-        <Link href="/regions" className="font-semibold text-ink underline hover:text-flagGreen">
+        <Link href="/regions" className="font-semibold text-ink underline hover:text-brand">
           region
         </Link>
         , by{' '}
-        <Link href="/attractions" className="font-semibold text-ink underline hover:text-flagGreen">
+        <Link href="/attractions" className="font-semibold text-ink underline hover:text-brand">
           category
         </Link>
         , or searched directly.
@@ -55,7 +55,7 @@ export default function AboutPage() {
       <p>
         Spot something out of date, or have a place, festival or operator
         worth adding? Use the{' '}
-        <Link href="/contact" className="font-semibold text-ink underline hover:text-flagGreen">
+        <Link href="/contact" className="font-semibold text-ink underline hover:text-brand">
           contact page
         </Link>
         .

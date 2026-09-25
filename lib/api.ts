@@ -1,12 +1,17 @@
 import { draftMode } from 'next/headers';
 import type {
+  AccommodationListing,
   CategoryColumn,
+  FestivalListing,
+  GuidePage,
   HistoryEvent,
   LinkItem,
   NavItem,
+  Paged,
   Story,
   TopicBlock,
   Tour,
+  TourOperatorListing,
 } from '@/types/content';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000';
@@ -26,6 +31,13 @@ export type TaxonomyGroup = {
   slug: string;
   name: string;
   tours: Tour[];
+  // Guide text for regions; the API sends empty values for categories.
+  capital?: string | null;
+  note?: string | null;
+  overview?: string[];
+  attractions?: string[];
+  festivals?: string[];
+  wildlife?: string[];
 };
 
 export async function getTours(params?: { region?: string; category?: string }): Promise<Tour[]> {
@@ -156,3 +168,61 @@ export const HERO_ACCOMMODATION_SLUGS = [
   'rock-city-hotel-kwahu',
   'villa-monticello-accra',
 ];
+
+
+// ---------------------------------------------------------------------------
+// Guide content: written pages, festival list, and the two directories.
+// ---------------------------------------------------------------------------
+
+export async function getGuidePages(group?: GuidePage['group']): Promise<GuidePage[]> {
+  return apiFetch<GuidePage[]>(`/api/guide-pages${group ? `?group=${group}` : ''}`);
+}
+
+export async function getGuidePage(slug: string): Promise<GuidePage | null> {
+  try {
+    return await apiFetch<GuidePage>(`/api/guide-pages/${slug}`);
+  } catch {
+    return null;
+  }
+}
+
+export async function getFestivalListings(
+  listType?: FestivalListing['listType']
+): Promise<FestivalListing[]> {
+  return apiFetch<FestivalListing[]>(`/api/festival-listings${listType ? `?listType=${listType}` : ''}`);
+}
+
+function withQuery(path: string, params: Record<string, string | number | undefined>): string {
+  const search = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== undefined && value !== '') search.set(key, String(value));
+  }
+  const qs = search.toString();
+  return qs ? `${path}?${qs}` : path;
+}
+
+export type AccommodationPage = Paged<AccommodationListing> & {
+  regions: string[];
+  grades: string[];
+};
+
+export async function getAccommodation(params: {
+  region?: string;
+  grade?: string;
+  q?: string;
+  page?: number;
+  pageSize?: number;
+}): Promise<AccommodationPage> {
+  return apiFetch<AccommodationPage>(withQuery('/api/accommodation', params));
+}
+
+export type TourOperatorPage = Paged<TourOperatorListing> & { agencyTypes: string[] };
+
+export async function getTourOperators(params: {
+  q?: string;
+  agencyType?: string;
+  page?: number;
+  pageSize?: number;
+}): Promise<TourOperatorPage> {
+  return apiFetch<TourOperatorPage>(withQuery('/api/tour-operators', params));
+}

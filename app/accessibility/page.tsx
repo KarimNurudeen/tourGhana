@@ -48,7 +48,7 @@ export default function AccessibilityPage() {
         get in touch via{' '}
         <a
           href="mailto:hello@tourghana.com"
-          className="font-semibold text-ink underline hover:text-flagGreen">
+          className="font-semibold text-ink underline hover:text-brand">
           hello@tourghana.com
         </a>{' '}
         with what you were trying to do and what happened, so it can be

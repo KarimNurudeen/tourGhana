@@ -1,3 +1,4 @@
+import httpx
 from fastapi import APIRouter
 
 from app.cache import cached
@@ -9,14 +10,21 @@ router = APIRouter()
 @cached("history_page")
 async def _history_page() -> dict:
     async with get_client() as client:
-        data = await strapi_get(
-            client,
-            "/api/history-page",
-            params={
-                "populate[image]": "true",
-                "populate[sections]": "true",
-            },
-        )
+        try:
+            data = await strapi_get(
+                client,
+                "/api/history-page",
+                params={
+                    "populate[image]": "true",
+                    "populate[sections]": "true",
+                },
+            )
+        except httpx.HTTPStatusError as exc:
+            # A single type that has never been saved answers 404; treat it as
+            # an empty page rather than a server error.
+            if exc.response.status_code != 404:
+                raise
+            data = {"data": None}
     entry = data["data"] or {}
     return {
         "image": media_url(entry.get("image")),

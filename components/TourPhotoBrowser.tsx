@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeftIcon, ChevronRightIcon, XIcon } from 'lucide-react';
 
@@ -11,20 +11,29 @@ type TourPhotoBrowserProps = {
   onClose: () => void;
 };
 
+/**
+ * Full-screen photo viewer: a top bar, the whole photo (never cropped) in the
+ * middle, and a strip of thumbnails along the bottom. Arrow keys, swipes and
+ * the on-screen arrows step through; Escape or the X closes it.
+ */
 export function TourPhotoBrowser({ images, name, activeIndex, onClose }: TourPhotoBrowserProps) {
   const [index, setIndex] = useState(0);
+  const activeThumb = useRef<HTMLButtonElement>(null);
+  const touchStart = useRef<number | null>(null);
 
   useEffect(() => {
     if (activeIndex !== null) setIndex(activeIndex);
   }, [activeIndex]);
 
+  const open = activeIndex !== null;
+
   useEffect(() => {
-    if (activeIndex === null) return;
+    if (!open) return;
 
     function handleKey(event: KeyboardEvent) {
       if (event.key === 'Escape') onClose();
-      if (event.key === 'ArrowLeft') showPrev();
-      if (event.key === 'ArrowRight') showNext();
+      if (event.key === 'ArrowLeft') setIndex((i) => (i - 1 + images.length) % images.length);
+      if (event.key === 'ArrowRight') setIndex((i) => (i + 1) % images.length);
     }
 
     document.addEventListener('keydown', handleKey);
@@ -34,100 +43,92 @@ export function TourPhotoBrowser({ images, name, activeIndex, onClose }: TourPho
       document.removeEventListener('keydown', handleKey);
       document.body.style.overflow = previousOverflow;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex]);
+  }, [open, images.length, onClose]);
 
-  if (activeIndex === null) return null;
+  // Keep the current thumbnail centred in the strip.
+  useEffect(() => {
+    if (open) activeThumb.current?.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+  }, [index, open]);
 
-  function showPrev() {
-    setIndex((i) => (i - 1 + images.length) % images.length);
-  }
+  if (!open) return null;
 
-  function showNext() {
-    setIndex((i) => (i + 1) % images.length);
-  }
+  const showPrev = () => setIndex((i) => (i - 1 + images.length) % images.length);
+  const showNext = () => setIndex((i) => (i + 1) % images.length);
+
+  const arrow =
+    'absolute top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-ink shadow-lg transition hover:bg-white';
 
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-label={`${name} photos`}
-      onClick={onClose}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4">
-      <div
-        onClick={(event) => event.stopPropagation()}
-        className="max-h-[92vh] w-full max-w-6xl overflow-y-auto overflow-x-hidden rounded-2xl bg-white shadow-2xl lg:overflow-hidden">
-        <div className="flex items-center justify-between border-b border-neutral-200 px-4 py-4 sm:px-5">
-          <h2 className="text-[20px] font-black text-ink">{name}</h2>
+      className="fixed inset-0 z-[100] flex h-[100dvh] flex-col bg-neutral-950">
+      <header className="flex shrink-0 items-center justify-between gap-4 px-4 py-3 sm:px-6">
+        <h2 className="min-w-0 truncate text-[17px] font-extrabold text-white sm:text-[20px]">{name}</h2>
+        <div className="flex shrink-0 items-center gap-3">
+          <span className="text-[14px] font-semibold tabular-nums text-white/70">
+            {index + 1} / {images.length}
+          </span>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close photos"
-            className="flex h-9 w-9 items-center justify-center rounded-full text-neutral-500 transition hover:bg-neutral-100 hover:text-ink">
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20">
             <XIcon className="h-5 w-5" />
           </button>
         </div>
+      </header>
 
-        <div className="lg:grid lg:h-[65vh] lg:grid-cols-[240px_1fr]">
-          <div className="order-2 flex gap-2 overflow-x-auto p-3 lg:order-1 lg:grid lg:h-full lg:auto-rows-min lg:grid-cols-2 lg:gap-2 lg:overflow-y-auto lg:overflow-x-hidden">
-            {images.map((src, i) => (
+      <div
+        className="relative min-h-0 flex-1"
+        onTouchStart={(e) => (touchStart.current = e.touches[0].clientX)}
+        onTouchEnd={(e) => {
+          if (touchStart.current === null) return;
+          const dx = e.changedTouches[0].clientX - touchStart.current;
+          touchStart.current = null;
+          if (Math.abs(dx) > 50) (dx < 0 ? showNext : showPrev)();
+        }}>
+        <Image
+          key={images[index]}
+          src={images[index]}
+          alt={`${name} photo ${index + 1}`}
+          fill
+          priority
+          className="object-contain px-2 sm:px-16"
+          sizes="100vw"
+        />
+        {images.length > 1 && (
+          <>
+            <button type="button" onClick={showPrev} aria-label="Previous photo" className={`${arrow} left-3 sm:left-5`}>
+              <ChevronLeftIcon className="h-6 w-6" />
+            </button>
+            <button type="button" onClick={showNext} aria-label="Next photo" className={`${arrow} right-3 sm:right-5`}>
+              <ChevronRightIcon className="h-6 w-6" />
+            </button>
+          </>
+        )}
+      </div>
+
+      {images.length > 1 && (
+        <ul className="no-scrollbar flex shrink-0 gap-2 overflow-x-auto px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 sm:px-6">
+          {images.map((src, i) => (
+            <li key={`${src}-${i}`} className="shrink-0">
               <button
-                key={`${src}-${i}`}
+                ref={i === index ? activeThumb : undefined}
                 type="button"
                 onClick={() => setIndex(i)}
                 aria-label={`View photo ${i + 1} of ${images.length}`}
-                className={`relative aspect-[4/3] w-24 shrink-0 overflow-hidden rounded-lg ring-2 transition lg:w-full ${
-                  i === index ? 'ring-flagGreen' : 'ring-transparent hover:ring-neutral-300'
+                aria-current={i === index}
+                className={`relative block h-16 w-24 overflow-hidden rounded-md ring-2 ring-offset-2 ring-offset-neutral-950 transition sm:h-[72px] sm:w-28 ${
+                  i === index ? 'ring-brand' : 'opacity-60 ring-transparent hover:opacity-100'
                 }`}>
-                <Image
-                  src={src}
-                  alt={`${name} photo ${i + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 1024px) 120px, 96px"
-                />
+                <Image src={src} alt="" fill className="object-cover" sizes="112px" />
               </button>
-            ))}
-          </div>
-
-          <div className="relative order-1 aspect-[16/10] overflow-hidden bg-neutral-100 lg:order-2 lg:aspect-auto lg:h-full">
-            <Image
-              src={images[index]}
-              alt={`${name} photo ${index + 1}`}
-              fill
-              priority
-              className="object-cover"
-              sizes="(min-width: 1024px) 70vw, 100vw"
-            />
-
-            {images.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  onClick={showPrev}
-                  aria-label="Previous photo"
-                  className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-ink shadow transition hover:bg-white">
-                  <ChevronLeftIcon className="h-5 w-5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={showNext}
-                  aria-label="Next photo"
-                  className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-ink shadow transition hover:bg-white">
-                  <ChevronRightIcon className="h-5 w-5" />
-                </button>
-              </>
-            )}
-
-            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/70 to-transparent px-4 py-3 text-[12px] font-semibold text-white">
-              <span>{name}</span>
-              <span>
-                {index + 1} / {images.length}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

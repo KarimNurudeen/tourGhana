@@ -78,17 +78,17 @@ export function DirectionsMap({ destination, destinationName }: DirectionsMapPro
           value={origin}
           onChange={(event) => setOrigin(event.target.value)}
           placeholder="Enter a starting point (e.g. Accra)"
-          className="flex-1 border border-neutral-300 bg-white px-4 py-2.5 text-[15px] text-ink placeholder:text-neutral-400 focus:border-flagGreen focus:outline-none"
+          className="flex-1 border border-neutral-300 bg-white px-4 py-2.5 text-[15px] text-ink placeholder:text-neutral-400 focus:border-brand focus:outline-none"
         />
         <button
           type="submit"
           disabled={!isLoaded || loading}
-          className="bg-flagRed px-5 py-2.5 text-[13px] font-bold uppercase tracking-wide text-white transition hover:bg-[#700000] disabled:opacity-50">
+          className="bg-brand px-5 py-2.5 text-[13px] font-bold uppercase tracking-wide text-white transition hover:bg-[#700000] disabled:opacity-50">
           {loading ? 'Finding route…' : 'Get directions'}
         </button>
       </form>
 
-      {error && <p className="mt-3 text-[14px] text-flagRed">{error}</p>}
+      {error && <p className="mt-3 text-[14px] text-brand">{error}</p>}
 
       <div className="relative mt-5 h-[320px] w-full overflow-hidden">
         {isLoaded ? (
@@ -108,7 +108,7 @@ export function DirectionsMap({ destination, destinationName }: DirectionsMapPro
       </div>
 
       {leg && (
-        <div className="mt-5 border-l-4 border-flagGreen bg-flagGreen/5 p-5">
+        <div className="mt-5 border-l-4 border-brand bg-brand/5 p-5">
           <p className="text-[16px] font-bold text-ink">
             {leg.distance?.text} &middot; {leg.duration?.text} drive
           </p>

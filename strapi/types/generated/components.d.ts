@@ -1,5 +1,17 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface GuideSection extends Struct.ComponentSchema {
+  collectionName: 'components_guide_sections';
+  info: {
+    displayName: 'Guide Section';
+    icon: 'bulletList';
+  };
+  attributes: {
+    body: Schema.Attribute.Text & Schema.Attribute.Required;
+    heading: Schema.Attribute.String;
+  };
+}
+
 export interface HistorySection extends Struct.ComponentSchema {
   collectionName: 'components_history_sections';
   info: {
@@ -126,6 +138,7 @@ export interface TourVideo extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
+      'guide.section': GuideSection;
       'history.section': HistorySection;
       'shared.link': SharedLink;
       'shared.nav-item': SharedNavItem;

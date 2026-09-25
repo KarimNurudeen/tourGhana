@@ -443,6 +443,41 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAccommodationListingAccommodationListing
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'accommodation_listings';
+  info: {
+    description: 'Licensed hotels and guest houses (the directory). The curated, photographed stays are Tours in the Where To Stay category.';
+    displayName: 'Accommodation Listing';
+    pluralName: 'accommodation-listings';
+    singularName: 'accommodation-listing';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    emailWebsite: Schema.Attribute.Text;
+    grade: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::accommodation-listing.accommodation-listing'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    region: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCategoryColumnCategoryColumn
   extends Struct.CollectionTypeSchema {
   collectionName: 'category-columns';
@@ -510,6 +545,87 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiFestivalListingFestivalListing
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'festival_listings';
+  info: {
+    description: 'One row per festival in the calendar. Photos and full pages live on Tour (category Festivals); this is the month-by-month list.';
+    displayName: 'Festival Listing';
+    pluralName: 'festival-listings';
+    singularName: 'festival-listing';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    listType: Schema.Attribute.Enumeration<['calendar', 'monthly', 'other']> &
+      Schema.Attribute.DefaultTo<'monthly'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::festival-listing.festival-listing'
+    > &
+      Schema.Attribute.Private;
+    month: Schema.Attribute.String & Schema.Attribute.Required;
+    monthNumber: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 12;
+          min: 1;
+        },
+        number
+      >;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    place: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    sortOrder: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGuidePageGuidePage extends Struct.CollectionTypeSchema {
+  collectionName: 'guide_pages';
+  info: {
+    description: 'Written guide pages (Welcome, Travel Tips, Handicrafts, events, services\u2026). Blank lines in a section body separate paragraphs.';
+    displayName: 'Guide Page';
+    pluralName: 'guide-pages';
+    singularName: 'guide-page';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    group: Schema.Attribute.Enumeration<
+      ['visiting', 'touring', 'events', 'services', 'about']
+    > &
+      Schema.Attribute.DefaultTo<'about'>;
+    intro: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::guide-page.guide-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    sections: Schema.Attribute.Component<'guide.section', true>;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    sortOrder: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHistoryEventHistoryEvent
   extends Struct.CollectionTypeSchema {
   collectionName: 'history-events';
@@ -533,6 +649,7 @@ export interface ApiHistoryEventHistoryEvent
     > &
       Schema.Attribute.Private;
     order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    place: Schema.Attribute.Relation<'manyToOne', 'api::tour.tour'>;
     publishedAt: Schema.Attribute.DateTime;
     text: Schema.Attribute.Text & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -691,9 +808,12 @@ export interface ApiRegionRegion extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    attractions: Schema.Attribute.JSON;
+    capital: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    festivals: Schema.Attribute.JSON;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -703,11 +823,15 @@ export interface ApiRegionRegion extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    note: Schema.Attribute.String;
+    overview: Schema.Attribute.JSON;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    sortOrder: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    wildlife: Schema.Attribute.JSON;
   };
 }
 
@@ -739,6 +863,41 @@ export interface ApiTopicBlockTopicBlock extends Struct.CollectionTypeSchema {
     order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
     topic: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTourOperatorTourOperator
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'tour_operators';
+  info: {
+    description: 'Licensed travel agents and tour operators (the directory).';
+    displayName: 'Tour Operator';
+    pluralName: 'tour-operators';
+    singularName: 'tour-operator';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    agencyType: Schema.Attribute.String;
+    category: Schema.Attribute.String;
+    contact: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::tour-operator.tour-operator'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    postalAddress: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -780,6 +939,7 @@ export interface ApiTourTour extends Struct.CollectionTypeSchema {
     quickFacts: Schema.Attribute.Component<'tour.quick-fact', true>;
     region: Schema.Attribute.Relation<'manyToOne', 'api::region.region'>;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    sourceText: Schema.Attribute.JSON;
     summary: Schema.Attribute.Text & Schema.Attribute.Required;
     tips: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
@@ -1331,8 +1491,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::accommodation-listing.accommodation-listing': ApiAccommodationListingAccommodationListing;
       'api::category-column.category-column': ApiCategoryColumnCategoryColumn;
       'api::category.category': ApiCategoryCategory;
+      'api::festival-listing.festival-listing': ApiFestivalListingFestivalListing;
+      'api::guide-page.guide-page': ApiGuidePageGuidePage;
       'api::history-event.history-event': ApiHistoryEventHistoryEvent;
       'api::history-page.history-page': ApiHistoryPageHistoryPage;
       'api::homepage.homepage': ApiHomepageHomepage;
@@ -1340,6 +1503,7 @@ declare module '@strapi/strapi' {
       'api::quiz-question.quiz-question': ApiQuizQuestionQuizQuestion;
       'api::region.region': ApiRegionRegion;
       'api::topic-block.topic-block': ApiTopicBlockTopicBlock;
+      'api::tour-operator.tour-operator': ApiTourOperatorTourOperator;
       'api::tour.tour': ApiTourTour;
       'api::travel-tip.travel-tip': ApiTravelTipTravelTip;
       'plugin::content-releases.release': PluginContentReleasesRelease;

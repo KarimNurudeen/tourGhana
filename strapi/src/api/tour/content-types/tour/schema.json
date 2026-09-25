@@ -95,6 +95,9 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tour.tour"
+    },
+    "sourceText": {
+      "type": "json"
     }
   }
 }

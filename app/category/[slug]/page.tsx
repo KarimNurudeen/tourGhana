@@ -39,19 +39,19 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <main id="main" className="w-full bg-white">
-      <div className="mx-auto max-w-page px-4 py-10">
+    <main id="main" className="w-full">
+      <div className="mx-auto max-w-feed px-3 py-6 sm:px-4">
         <nav
           aria-label="Breadcrumb"
           className="flex items-center gap-2 text-[13px] font-semibold text-neutral-500">
-          <Link href="/" className="hover:text-flagGreen">
+          <Link href="/" className="hover:text-brand">
             Home
           </Link>
           <ChevronRightIcon className="h-3.5 w-3.5" />
           <span className="text-ink">{category.name}</span>
         </nav>
 
-        <h1 className="mt-4 text-[38px] font-black tracking-tight text-ink sm:text-[46px]">
+        <h1 className="mt-4 text-[30px] font-black tracking-tight text-ink sm:text-[38px]">
           {category.name}
         </h1>
         <p className="mt-3 text-[16px] text-neutral-600">

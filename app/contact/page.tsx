@@ -31,7 +31,7 @@ export default function ContactPage() {
       <p>
         <a
           href="mailto:hello@tourghana.com"
-          className="font-semibold text-ink underline hover:text-flagGreen">
+          className="font-semibold text-ink underline hover:text-brand">
           hello@tourghana.com
         </a>
       </p>

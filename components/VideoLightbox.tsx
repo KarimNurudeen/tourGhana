@@ -72,7 +72,7 @@ export function VideoLightbox({ youtubeId, title, tourHref, onClose }: VideoLigh
               {tourHref && (
                 <Link
                   href={tourHref}
-                  className="shrink-0 text-[13px] font-bold uppercase tracking-wide text-flagGold hover:text-white">
+                  className="shrink-0 text-[13px] font-bold uppercase tracking-wide text-brand hover:text-white">
                   Read the full guide
                 </Link>
               )}

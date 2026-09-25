@@ -40,7 +40,7 @@ export function TourBrowser({ tours, viewLabel = 'View', groupBy = 'region' }: T
   if (tours.length === 0 || !current) return null;
 
   return (
-    <div className="mt-8 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm">
+    <div className="mt-8 overflow-hidden rounded-xl bg-white shadow-card">
       <div className="flex flex-wrap items-center gap-2 border-b border-neutral-200 px-4 py-3 sm:px-5">
         {tabs.map((tab) => {
           const active = tab.id === activeTab;
@@ -77,7 +77,7 @@ export function TourBrowser({ tours, viewLabel = 'View', groupBy = 'region' }: T
               aria-label={tour.name}
               className={`relative aspect-[4/3] w-24 shrink-0 overflow-hidden rounded-lg ring-2 transition lg:w-full ${
                 index === activeIndex
-                  ? 'ring-flagGreen'
+                  ? 'ring-brand'
                   : 'ring-transparent hover:ring-neutral-300'
               }`}>
               <Image

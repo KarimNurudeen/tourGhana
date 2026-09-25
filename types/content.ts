@@ -35,6 +35,9 @@ export type CategoryColumn = {
 export type HistoryEvent = {
   year: string;
   text: string;
+  // Where the card leads: a related place page, or this event on /history.
+  href?: string;
+  placeName?: string | null;
 };
 
 export type QuickFact = {
@@ -87,11 +90,67 @@ export type Tour = {
   photoCategories?: Partial<Record<string, PhotoCategory>>;
   videos?: TourVideo[];
   festivalTiming?: FestivalTiming;
-  coordinates: Coordinates;
+  // Absent for guide-derived places that have no map pin yet.
+  coordinates?: Coordinates | null;
   overview: string[];
   highlights: string[];
   quickFacts: QuickFact[];
   gettingThere: string[];
   tips: string[];
   nearby: string[];
+  // The page's full text as it originally appeared, as titled sections.
+  sourceText?: SourceSection[];
+};
+
+export type SourceSection = {
+  heading: string;
+  paragraphs: string[];
+};
+
+export type GuideSection = {
+  heading: string | null;
+  paragraphs: string[];
+};
+
+export type GuidePage = {
+  slug: string;
+  title: string;
+  group: 'visiting' | 'touring' | 'events' | 'services' | 'about';
+  intro: string | null;
+  sortOrder: number;
+  sections: GuideSection[];
+};
+
+export type FestivalListing = {
+  name: string;
+  month: string;
+  monthNumber: number | null;
+  place: string | null;
+  description: string | null;
+  listType: 'calendar' | 'monthly' | 'other';
+};
+
+export type AccommodationListing = {
+  name: string;
+  region: string;
+  location: string;
+  phone: string | null;
+  emailWebsite: string | null;
+  grade: string;
+};
+
+export type TourOperatorListing = {
+  name: string;
+  category: string;
+  agencyType: string;
+  location: string;
+  postalAddress: string;
+  contact: string[];
+};
+
+export type Paged<T> = {
+  items: T[];
+  total: number;
+  page: number;
+  pageSize: number;
 };

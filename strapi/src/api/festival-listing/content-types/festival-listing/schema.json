@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "festival_listings",
+  "info": {
+    "singularName": "festival-listing",
+    "pluralName": "festival-listings",
+    "displayName": "Festival Listing",
+    "description": "One row per festival in the calendar. Photos and full pages live on Tour (category Festivals); this is the month-by-month list."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "month": { "type": "string", "required": true },
+    "monthNumber": { "type": "integer", "min": 1, "max": 12 },
+    "place": { "type": "string" },
+    "description": { "type": "text" },
+    "listType": {
+      "type": "enumeration",
+      "enum": ["calendar", "monthly", "other"],
+      "default": "monthly"
+    },
+    "sortOrder": { "type": "integer", "default": 0 }
+  }
+}

@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Header } from '@/components/Header';
+import { AppChrome } from '@/components/AppChrome';
 import { Footer } from '@/components/Footer';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { PageLoader } from '@/components/PageLoader';
-import { getNavigation } from '@/lib/api';
+import { getNavigation, getTours } from '@/lib/api';
 
 export const metadata: Metadata = {
   // Pages set short titles ('Tour Operators', 'Top Attractions'), so the
@@ -26,14 +26,14 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { primaryNav, tickerLinks } = await getNavigation();
+  const [{ primaryNav, tickerLinks }, tours] = await Promise.all([getNavigation(), getTours()]);
 
   return (
     <html lang="en">
-      <body className="flex min-h-full w-full flex-col bg-white text-ink">
+      <body className="pb-tabbar flex min-h-full w-full flex-col bg-surface text-ink">
         <PageLoader />
         <SmoothScroll />
-        <Header primaryNav={primaryNav} tickerLinks={tickerLinks} />
+        <AppChrome primaryNav={primaryNav} tickerLinks={tickerLinks} tours={tours} />
         {children}
         <Footer />
       </body>

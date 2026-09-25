@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronRightIcon } from 'lucide-react';
-import { getCategory } from '@/lib/api';
+import { FestivalList } from '@/components/FestivalList';
+import { getCategory, getFestivalListings, getGuidePage } from '@/lib/api';
+import { GuideSections } from '@/components/GuideArticle';
 import { TourBrowser } from '@/components/TourBrowser';
 import { TourGrid } from '@/components/TourGrid';
 
@@ -11,23 +13,27 @@ export const metadata: Metadata = {
 };
 
 export default async function FestivalsPage() {
-  const category = await getCategory('festivals');
+  const [category, listings, guide] = await Promise.all([
+    getCategory('festivals'),
+    getFestivalListings(),
+    getGuidePage('festivals-in-ghana'),
+  ]);
   const festivals = category?.tours ?? [];
 
   return (
-    <main id="main" className="w-full bg-white">
-      <div className="mx-auto max-w-page px-4 py-10">
+    <main id="main" className="w-full">
+      <div className="mx-auto max-w-feed px-3 py-6 sm:px-4">
         <nav
           aria-label="Breadcrumb"
           className="flex items-center gap-2 text-[13px] font-semibold text-neutral-500">
-          <Link href="/" className="hover:text-flagGreen">
+          <Link href="/" className="hover:text-brand">
             Home
           </Link>
           <ChevronRightIcon className="h-3.5 w-3.5" />
           <span className="text-ink">Festivals</span>
         </nav>
 
-        <h1 className="mt-4 text-[38px] font-black tracking-tight text-ink sm:text-[46px]">
+        <h1 className="mt-4 text-[30px] font-black tracking-tight text-ink sm:text-[38px]">
           Festivals in Ghana
         </h1>
         <p className="mt-3 max-w-2xl text-[16px] text-neutral-600">
@@ -43,6 +49,16 @@ export default async function FestivalsPage() {
         <div className="mt-4">
           <TourGrid tours={festivals} />
         </div>
+
+        <div className="mt-12">
+          <FestivalList listings={listings} />
+        </div>
+
+        {guide && (
+          <div className="mt-12 rounded-xl bg-white p-5 shadow-card sm:p-8">
+            <GuideSections sections={guide.sections} />
+          </div>
+        )}
       </div>
     </main>
   );

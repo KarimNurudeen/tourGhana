@@ -124,6 +124,9 @@ def transform_tour(entry: dict) -> dict:
         "gettingThere": entry.get("gettingThere") or [],
         "tips": entry.get("tips") or [],
         "nearby": [n["slug"] for n in nearby if n.get("slug")],
+        # The full text of the page as it originally appeared on the site,
+        # as [{heading, paragraphs[]}]. Empty for tours written from scratch.
+        "sourceText": entry.get("sourceText") or [],
     }
 
 
@@ -173,7 +176,11 @@ async def fetch_tour_by_slug(slug: str, status: Optional[str] = None) -> Optiona
 @cached("all_regions")
 async def fetch_all_regions() -> list[dict]:
     async with get_client() as client:
-        data = await strapi_get(client, "/api/regions", params={"pagination[pageSize]": 100})
+        data = await strapi_get(
+            client,
+            "/api/regions",
+            params={"pagination[pageSize]": 100, "sort": ["sortOrder:asc", "name:asc"]},
+        )
     return data["data"]
 
 
@@ -182,3 +189,26 @@ async def fetch_all_categories() -> list[dict]:
     async with get_client() as client:
         data = await strapi_get(client, "/api/categories", params={"pagination[pageSize]": 100})
     return data["data"]
+
+
+async def fetch_collection(path: str, params: Optional[dict] = None, page_size: int = 100) -> list[dict]:
+    """Every entry of a Strapi collection, paging concurrently. The directory
+    collections hold thousands of rows, so fetching pages one after another
+    would make a cold cache noticeably slow."""
+    import asyncio
+
+    base = {**(params or {}), "pagination[pageSize]": page_size}
+    async with get_client() as client:
+        first = await strapi_get(client, path, params={**base, "pagination[page]": 1})
+        entries = list(first["data"])
+        page_count = first["meta"]["pagination"]["pageCount"]
+        if page_count > 1:
+            rest = await asyncio.gather(
+                *(
+                    strapi_get(client, path, params={**base, "pagination[page]": n})
+                    for n in range(2, page_count + 1)
+                )
+            )
+            for page in rest:
+                entries.extend(page["data"])
+    return entries

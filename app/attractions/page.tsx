@@ -11,9 +11,9 @@ export default async function AttractionsPage() {
   const tours = await getTours();
 
   return (
-    <main id="main" className="w-full bg-white">
-      <div className="mx-auto max-w-page px-4 py-10">
-        <h1 className="text-[38px] font-black tracking-tight text-ink sm:text-[46px]">
+    <main id="main" className="w-full">
+      <div className="mx-auto max-w-feed px-3 py-6 sm:px-4">
+        <h1 className="text-[30px] font-black tracking-tight text-ink sm:text-[38px]">
           Top Attractions
         </h1>
         <p className="mt-3 max-w-2xl text-[16px] text-neutral-600">

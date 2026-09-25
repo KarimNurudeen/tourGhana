@@ -14,6 +14,14 @@ async def _region_groups() -> list[dict]:
         {
             "slug": r["slug"],
             "name": r["name"],
+            # Optional guide text for the region page; empty for regions that
+            # only have tours attached.
+            "capital": r.get("capital") or None,
+            "note": r.get("note") or None,
+            "overview": r.get("overview") or [],
+            "attractions": r.get("attractions") or [],
+            "festivals": r.get("festivals") or [],
+            "wildlife": r.get("wildlife") or [],
             "tours": [t for t in tours if t["region"] == r["name"]],
         }
         for r in regions
