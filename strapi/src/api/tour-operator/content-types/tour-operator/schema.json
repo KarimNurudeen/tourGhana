@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tour_operators",
+  "info": {
+    "singularName": "tour-operator",
+    "pluralName": "tour-operators",
+    "displayName": "Tour Operator",
+    "description": "Licensed travel agents and tour operators (the directory)."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "category": { "type": "string" },
+    "agencyType": { "type": "string" },
+    "location": { "type": "string" },
+    "postalAddress": { "type": "string" },
+    "contact": { "type": "text" }
+  }
+}

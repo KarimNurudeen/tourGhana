@@ -12,12 +12,19 @@ module.exports = {
         flagGold: '#FAF92A',
         flagGreen: '#006633',
         rule: '#e5e5e5',
+        brand: '#E11D26',
+        brandDark: '#B3131A',
+        surface: '#EEEEEE',
       },
       fontFamily: {
         sans: ['Libre Franklin', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
         page: '1240px',
+        feed: '1040px',
+      },
+      boxShadow: {
+        card: '0 1px 3px rgba(0,0,0,0.18)',
       },
     },
   },

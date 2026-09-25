@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { StaticPage } from '@/components/StaticPage';
+import { GuideSections } from '@/components/GuideArticle';
+import { getGuidePage } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: 'Visas & Diplomatic Missions',
@@ -9,7 +11,8 @@ export const metadata: Metadata = {
 
 const sectionHeading = 'border-t border-rule pt-5 text-[22px] font-black uppercase tracking-tight text-ink';
 
-export default function VisasPage() {
+export default async function VisasPage() {
+  const requirements = await getGuidePage('visas');
   return (
     <StaticPage title="Visas & Diplomatic Missions">
       <p>
@@ -21,7 +24,7 @@ export default function VisasPage() {
           href="https://evisa.immigration.gov.gh"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-semibold text-ink underline hover:text-flagGreen">
+          className="font-semibold text-ink underline hover:text-brand">
           evisa.immigration.gov.gh
         </a>{' '}
         or the nearest Ghanaian mission before you book.
@@ -58,9 +61,16 @@ export default function VisasPage() {
         apply well ahead of a planned trip.
       </p>
 
+      {requirements && (
+        <>
+          <h2 className={sectionHeading}>Application requirements</h2>
+          <GuideSections sections={requirements.sections} />
+        </>
+      )}
+
       <p>
         For general planning around when to visit and what to bring, see{' '}
-        <Link href="/travel-tips" className="font-semibold text-ink underline hover:text-flagGreen">
+        <Link href="/travel-tips" className="font-semibold text-ink underline hover:text-brand">
           Travel Tips
         </Link>
         .

@@ -60,7 +60,7 @@ export function Quiz({ questions: quizQuestions }: QuizProps) {
           <button
             type="button"
             onClick={restart}
-            className="mt-5 border-2 border-flagGold px-5 py-2.5 text-[13px] font-bold uppercase tracking-wide text-ink transition hover:bg-flagGold hover:text-black">
+            className="mt-5 border-2 border-brand px-5 py-2.5 text-[13px] font-bold uppercase tracking-wide text-ink transition hover:bg-brand hover:text-white">
             Play again
           </button>
         </div>
@@ -81,7 +81,7 @@ export function Quiz({ questions: quizQuestions }: QuizProps) {
               className="object-cover"
               sizes="(min-width: 1024px) 25vw, 100vw"
             />
-            <span className="absolute left-3 top-3 rounded-full bg-flagGreen px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
+            <span className="absolute left-3 top-3 rounded-full bg-brand px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
               {current.category}
             </span>
           </div>
@@ -96,11 +96,11 @@ export function Quiz({ questions: quizQuestions }: QuizProps) {
               const isCorrectOption = option === current.correctAnswer;
               const revealed = selected !== null;
 
-              let stateClasses = 'border-neutral-300 text-ink hover:border-flagRed';
+              let stateClasses = 'border-neutral-300 text-ink hover:border-brand';
               if (revealed && isCorrectOption) {
-                stateClasses = 'border-flagGreen bg-flagGreen font-semibold text-white';
+                stateClasses = 'border-brand bg-brand font-semibold text-white';
               } else if (revealed && isSelected && !isCorrectOption) {
-                stateClasses = 'border-flagRed bg-flagRed font-semibold text-white';
+                stateClasses = 'border-brand bg-brand font-semibold text-white';
               } else if (revealed) {
                 stateClasses = 'border-neutral-200 text-neutral-400';
               }
@@ -128,7 +128,7 @@ export function Quiz({ questions: quizQuestions }: QuizProps) {
             <button
               type="button"
               onClick={nextQuestion}
-              className="mt-4 w-full border-2 border-flagGold bg-flagGold px-5 py-2.5 text-[13px] font-bold uppercase tracking-wide text-black transition hover:border-flagGreen hover:bg-flagGreen hover:text-white">
+              className="mt-4 w-full border-2 border-brand bg-brand px-5 py-2.5 text-[13px] font-bold uppercase tracking-wide text-white transition hover:bg-brandDark">
               {index + 1 === total ? 'See results' : 'Next question'}
             </button>
           )}

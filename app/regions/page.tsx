@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getRegions } from '@/lib/api';
-import { StaggerReveal } from '@/components/StaggerReveal';
+import { ChevronRightIcon } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Highlights by Region',
@@ -12,31 +12,37 @@ export default async function RegionsIndexPage() {
   const regions = await getRegions();
 
   return (
-    <main id="main" className="w-full bg-white">
-      <div className="mx-auto max-w-page px-4 py-10">
-        <h1 className="text-[38px] font-black tracking-tight text-ink sm:text-[46px]">
+    <main id="main" className="w-full">
+      <div className="mx-auto max-w-feed px-3 py-6 sm:px-4">
+        <h1 className="text-[30px] font-black tracking-tight text-ink sm:text-[38px]">
           Highlights by Region
         </h1>
         <p className="mt-3 max-w-2xl text-[16px] text-neutral-600">
           Browse attractions across Ghana&rsquo;s regions, grouped by where they are.
         </p>
 
-        <StaggerReveal
-          as="ul"
-          className="mt-10 grid gap-6 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-6 grid gap-3 sm:grid-cols-2">
           {regions.map((region) => (
             <li key={region.slug}>
               <Link
                 href={`/region/${region.slug}`}
-                className="block rounded-lg border border-neutral-200 p-6 transition hover:border-flagRed hover:shadow-md">
-                <h2 className="text-[22px] font-black text-flagGreen">{region.name}</h2>
-                <p className="mt-2 text-[14px] text-neutral-500">
-                  {region.tours.length} attraction{region.tours.length === 1 ? '' : 's'}
-                </p>
+                className="flex items-center justify-between rounded-xl bg-white p-5 shadow-card transition hover:shadow-md">
+                <span>
+                  <span className="block text-[20px] font-extrabold text-ink">{region.name}</span>
+                  {region.capital && (
+                    <span className="mt-0.5 block text-[14px] text-neutral-500">Capital: {region.capital}</span>
+                  )}
+                  <span className="mt-1.5 inline-block rounded bg-neutral-200/80 px-2 py-1 text-[12px] font-extrabold uppercase tracking-wide text-brand">
+                    {region.tours.length > 0
+                      ? `${region.tours.length} featured place${region.tours.length === 1 ? '' : 's'}`
+                      : 'Region guide'}
+                  </span>
+                </span>
+                <ChevronRightIcon className="h-6 w-6 text-brand" strokeWidth={3} />
               </Link>
             </li>
           ))}
-        </StaggerReveal>
+        </ul>
       </div>
     </main>
   );

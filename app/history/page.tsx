@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
+import { HashFocus } from '@/components/HashFocus';
 import { getHistoryPage, getHomepage } from '@/lib/api';
 
 export const metadata: Metadata = {
@@ -16,8 +18,9 @@ export default async function HistoryPage() {
   const [{ historyEvents }, history] = await Promise.all([getHomepage(), getHistoryPage()]);
 
   return (
-    <main id="main" className="w-full bg-white">
-      <div className="mx-auto max-w-page px-4 py-10">
+    <main id="main" className="w-full">
+      <HashFocus />
+      <div className="mx-auto max-w-feed px-3 sm:px-4 py-10">
         <h1 className="text-[38px] font-black tracking-tight text-ink sm:text-[46px]">
           History of Ghana
         </h1>
@@ -62,13 +65,23 @@ export default async function HistoryPage() {
             <h2 className="text-[14px] font-bold uppercase tracking-wide text-neutral-500">
               Key dates
             </h2>
-            <div className="mt-5 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+            <div className="mt-5 rounded-xl bg-white p-6 shadow-card">
               <ul className="space-y-8 border-l border-neutral-200 pl-6">
                 {historyEvents.map((event) => (
-                  <li key={event.year} className="relative">
-                    <span className="absolute -left-[27px] top-1.5 h-3 w-3 rounded-full bg-flagRed" />
+                  <li
+                    key={event.year}
+                    id={`year-${event.year}`}
+                    className="relative -my-2 scroll-mt-32 rounded-lg py-2 transition data-[hash-active=true]:bg-brand/10 data-[hash-active=true]:ring-2 data-[hash-active=true]:ring-brand/40">
+                    <span className="absolute -left-[27px] top-3.5 h-3 w-3 rounded-full bg-brand" />
                     <p className="text-[20px] font-bold text-ink">{event.year}</p>
                     <p className="mt-1 text-[16px] text-neutral-600">{event.text}</p>
+                    {event.placeName && event.href && (
+                      <Link
+                        href={event.href}
+                        className="mt-1.5 inline-block text-[14px] font-extrabold text-brand hover:underline">
+                        Visit {event.placeName} &rarr;
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

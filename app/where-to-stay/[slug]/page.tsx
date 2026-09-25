@@ -6,9 +6,9 @@ import { ChevronRightIcon, MapPinIcon } from 'lucide-react';
 import { getTour, getTours, slugify, tourHref } from '@/lib/api';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { ChamferedCard } from '@/components/ChamferedCard';
+import { QuickFactsPanel } from '@/components/QuickFactsPanel';
 import { DirectionsMap } from '@/components/DirectionsMap';
-import { HotelPhotoBrowser } from '@/components/HotelPhotoBrowser';
+import { PhotoGallery } from '@/components/PhotoGallery';
 import { TourGrid } from '@/components/TourGrid';
 
 type HotelPageProps = {
@@ -54,16 +54,16 @@ export default async function HotelDetailPage({ params }: HotelPageProps) {
   const moreHotels = otherHotels.filter((t) => t.slug !== tour.slug).slice(0, 4);
 
   return (
-    <main id="main" className="w-full bg-white">
-      <div className="mx-auto max-w-page px-4 pt-6">
+    <main id="main" className="w-full">
+      <div className="mx-auto max-w-feed px-3 sm:px-4 pt-6">
         <nav
           aria-label="Breadcrumb"
           className="flex flex-wrap items-center gap-2 text-[13px] font-semibold text-neutral-500">
-          <Link href="/" className="hover:text-flagGreen">
+          <Link href="/" className="hover:text-brand">
             Home
           </Link>
           <ChevronRightIcon className="h-3.5 w-3.5" />
-          <Link href="/where-to-stay" className="hover:text-flagGreen">
+          <Link href="/where-to-stay" className="hover:text-brand">
             Where To Stay
           </Link>
           <ChevronRightIcon className="h-3.5 w-3.5" />
@@ -71,10 +71,10 @@ export default async function HotelDetailPage({ params }: HotelPageProps) {
         </nav>
 
         <article className="mt-6 border-t border-rule pt-6">
-          <p className="text-[13px] font-bold uppercase tracking-wide text-flagRed">
+          <p className="text-[13px] font-bold uppercase tracking-wide text-brand">
             Where To Stay
           </p>
-          <h1 className="mt-3 max-w-4xl text-[38px] font-black leading-[1.05] tracking-tight text-ink sm:text-[46px]">
+          <h1 className="mt-3 max-w-4xl text-[30px] font-black leading-[1.08] tracking-tight text-ink sm:text-[40px]">
             {tour.headline}
           </h1>
           <p className="mt-4 flex items-center gap-2 text-[14px] font-bold uppercase tracking-wide text-neutral-500">
@@ -82,15 +82,15 @@ export default async function HotelDetailPage({ params }: HotelPageProps) {
             {tour.region}
           </p>
 
-          <HotelPhotoBrowser
+          <PhotoGallery
             images={heroImages}
             name={tour.name}
             photoCategories={tour.photoCategories}
           />
 
           <div className="mt-10">
-            <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8">
-              <p className="text-[21px] font-semibold leading-relaxed text-ink">
+            <div className="rounded-xl bg-white p-4 shadow-card sm:p-6 lg:p-8">
+              <p className="text-[18px] font-semibold leading-relaxed text-ink sm:text-[21px]">
                 {tour.summary}
               </p>
 
@@ -98,69 +98,50 @@ export default async function HotelDetailPage({ params }: HotelPageProps) {
                 {tour.overview.map((paragraph) => (
                   <p
                     key={paragraph.slice(0, 40)}
-                    className="text-[18px] leading-[1.75] text-neutral-700">
+                    className="text-[16px] leading-[1.75] text-neutral-700 sm:text-[18px]">
                     {paragraph}
                   </p>
                 ))}
               </div>
             </div>
 
-            <ScrollReveal>
-              <div className="relative mt-12 overflow-hidden rounded-2xl border border-flagGreen bg-flagGreen p-8 shadow-sm sm:p-10">
-                <ChamferedCard
-                  cut={56}
-                  pointRadius={14}
-                  className="card-swing bg-[#0b1220] px-8 py-7 shadow-[0_12px_40px_rgba(0,0,0,0.55)] ring-1 ring-black/40 sm:px-10 sm:py-8">
-                  <h2 className="text-[13px] font-black uppercase tracking-[0.2em] text-white/50">
-                    Quick facts
-                  </h2>
-                  <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3 lg:grid-cols-5">
-                    {tour.quickFacts.map((fact) => (
-                      <div key={fact.label}>
-                        <dt className="text-[11px] font-bold uppercase tracking-wide text-white/50">
-                          {fact.label}
-                        </dt>
-                        <dd className="mt-1 text-[16px] font-semibold text-white">
-                          {fact.value}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-                </ChamferedCard>
-              </div>
-            </ScrollReveal>
+            <div className="mt-12">
+              <QuickFactsPanel facts={tour.quickFacts} variant="grid" />
+            </div>
 
             <ScrollReveal>
               <section aria-labelledby="getting-there" className="mt-12">
                 <h2
                   id="getting-there"
-                  className="border-t border-rule pt-5 text-[24px] font-black uppercase tracking-tight text-ink">
+                  className="flex items-center gap-2 text-[22px] font-black tracking-tight text-ink before:h-6 before:w-1.5 before:rounded-full before:bg-brand before:content-['']">
                   Getting there
                 </h2>
-                <div className="mt-5 grid gap-6 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8 lg:grid-cols-[1fr_1.2fr]">
+                <div className="mt-5 grid gap-6 rounded-xl bg-white p-4 shadow-card sm:p-6 lg:p-8 lg:grid-cols-[1fr_1.2fr]">
                   <div>
                     <ul className="space-y-4">
                       {tour.gettingThere.map((item) => (
                         <li
                           key={item.slice(0, 40)}
-                          className="border-l-2 border-flagGold pl-4 text-[17px] leading-relaxed text-neutral-700">
+                          className="border-l-2 border-brand pl-4 text-[17px] leading-relaxed text-neutral-700">
                           {item}
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div>
-                    <h3 className="text-[15px] font-bold uppercase tracking-wide text-ink">
-                      Get directions
-                    </h3>
-                    <div className="mt-4">
-                      <DirectionsMap
-                        destination={tour.coordinates}
-                        destinationName={tour.name}
-                      />
+                  {tour.coordinates && (
+                    <div>
+                      <h3 className="text-[15px] font-bold uppercase tracking-wide text-ink">
+                        Get directions
+                      </h3>
+                      <div className="mt-4">
+                        <DirectionsMap
+                          destination={tour.coordinates}
+                          destinationName={tour.name}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </section>
             </ScrollReveal>
@@ -169,14 +150,14 @@ export default async function HotelDetailPage({ params }: HotelPageProps) {
               <section aria-labelledby="tips" className="mt-12">
                 <h2
                   id="tips"
-                  className="border-t border-rule pt-5 text-[24px] font-black uppercase tracking-tight text-ink">
+                  className="flex items-center gap-2 text-[22px] font-black tracking-tight text-ink before:h-6 before:w-1.5 before:rounded-full before:bg-brand before:content-['']">
                   Good to know
                 </h2>
-                <ul className="mt-5 grid gap-3 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm sm:grid-cols-2 sm:p-8">
+                <ul className="mt-5 grid gap-3 rounded-xl bg-white p-6 shadow-card sm:grid-cols-2 sm:p-8">
                   {tour.tips.map((tip) => (
                     <li
                       key={tip.slice(0, 40)}
-                      className="border-l-4 border-flagGold bg-flagGold/10 px-5 py-4 text-[17px] leading-relaxed text-neutral-700">
+                      className="border-l-4 border-brand bg-brand/5 px-5 py-4 text-[17px] leading-relaxed text-neutral-700">
                       {tip}
                     </li>
                   ))}
@@ -189,7 +170,7 @@ export default async function HotelDetailPage({ params }: HotelPageProps) {
                 <section aria-labelledby="watch" className="mt-12">
                   <h2
                     id="watch"
-                    className="border-t border-rule pt-5 text-[24px] font-black uppercase tracking-tight text-ink">
+                    className="flex items-center gap-2 text-[22px] font-black tracking-tight text-ink before:h-6 before:w-1.5 before:rounded-full before:bg-brand before:content-['']">
                     Watch
                   </h2>
                   <div className="mt-5 grid gap-6 sm:grid-cols-2">
@@ -227,11 +208,11 @@ export default async function HotelDetailPage({ params }: HotelPageProps) {
                     {nearbyTours.map((item) => (
                       <li
                         key={item.slug}
-                        className="flex gap-4 rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+                        className="flex gap-4 rounded-xl bg-white p-5 shadow-card">
                         <div className="min-w-0 flex-1">
                           <Link
                             href={tourHref(item)}
-                            className="text-[17px] font-bold leading-snug text-ink hover:text-flagGreen">
+                            className="text-[17px] font-bold leading-snug text-ink hover:text-brand">
                             {item.name}
                           </Link>
                           <p className="mt-2 text-[12px] font-bold uppercase tracking-wide text-neutral-500">

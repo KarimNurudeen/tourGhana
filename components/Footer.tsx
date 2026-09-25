@@ -1,82 +1,41 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import { BrandLogo } from './BrandLogo';
 
 const siteLinks = [
-  { label: 'About Tour Ghana', href: '/about' },
-  { label: 'Contact Us', href: '/contact' },
-  { label: 'Accessibility Statement', href: '/accessibility' },
-  { label: 'Terms of Use', href: '/terms' },
-  { label: 'Privacy Policy', href: '/privacy' },
-  { label: 'Advertise With Us', href: '/advertise' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Accessibility', href: '/accessibility' },
+  { label: 'Terms', href: '/terms' },
+  { label: 'Privacy', href: '/privacy' },
+  { label: 'Advertise', href: '/advertise' },
 ];
 
 export function Footer() {
   return (
-    <footer className="bg-flagGreen py-16 text-white">
-      <div className="mx-auto max-w-page px-4">
-        <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr]">
-          <div>
-            <Image
-              src="/tour-ghana-logo.png"
-              alt="Tour Ghana"
-              width={744}
-              height={715}
-              className="h-[120px] w-auto"
-            />
-            <p className="mt-4 text-[17px] font-semibold text-neutral-400">
-              The Gateway to Africa
-            </p>
-            <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-neutral-300">
-              Tour Ghana brings the country&rsquo;s attractions, culture and
-              heritage, festivals, accommodation and licensed tour operators
-              together in one place, across all sixteen regions.
+    <footer className="mt-10 bg-ink py-10 text-white">
+      <div className="mx-auto max-w-feed px-4">
+        {/* Logo beside the tagline and blurb, not stacked above them. */}
+        <div className="flex items-center gap-4 sm:gap-8">
+          <BrandLogo className="h-24 shrink-0 sm:h-32" plain />
+          <div className="min-w-0">
+            <p className="text-[15px] font-semibold text-neutral-300">The Gateway to Africa</p>
+            <p className="mt-2 max-w-lg text-[14px] leading-relaxed text-neutral-400">
+              Tour Ghana brings the country&rsquo;s attractions, culture and heritage, festivals,
+              accommodation and licensed tour operators together in one place, across all sixteen
+              regions.
             </p>
           </div>
-
-          <nav aria-label="From Tour Ghana">
-            <h3 className="text-[14px] font-bold uppercase tracking-wide text-neutral-400">
-              From Tour Ghana
-            </h3>
-            <ul className="mt-5 space-y-4">
-              {siteLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-[15px] font-semibold uppercase tracking-wide hover:text-flagGold">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
         </div>
-
-        <div className="mt-14 flex flex-col gap-6 border-t border-white/20 pt-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[15px] text-neutral-300">
-            Copyright {new Date().getFullYear()} Tour Ghana. All Rights Reserved.
-          </p>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/"
-              aria-label="Tour Ghana on Twitter"
-              className="transition hover:opacity-80">
-              <Image src="/social-twitter.png" alt="" width={28} height={28} className="h-7 w-7" />
+        <nav aria-label="From Tour Ghana" className="mt-6 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/10 pt-6">
+          {siteLinks.map((link) => (
+            <Link key={link.href} href={link.href} className="text-[14px] font-semibold hover:text-brand">
+              {link.label}
             </Link>
-            <Link
-              href="/"
-              aria-label="Tour Ghana on Instagram"
-              className="transition hover:opacity-80">
-              <Image src="/social-instagram.png" alt="" width={28} height={28} className="h-7 w-7" />
-            </Link>
-            <Link
-              href="/"
-              aria-label="Tour Ghana on Facebook"
-              className="transition hover:opacity-80">
-              <Image src="/social-facebook.png" alt="" width={28} height={28} className="h-7 w-7" />
-            </Link>
-          </div>
-        </div>
+          ))}
+        </nav>
+        <p className="mt-6 text-[13px] text-neutral-500">
+          Copyright {new Date().getFullYear()} Tour Ghana. All Rights Reserved.
+        </p>
       </div>
     </footer>
   );

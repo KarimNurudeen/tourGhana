@@ -80,7 +80,7 @@ export function SearchOverlay({ open, onClose, tours }: SearchOverlayProps) {
             type="button"
             onClick={onClose}
             aria-label="Close search"
-            className="shrink-0 text-neutral-500 transition hover:text-flagGreen">
+            className="shrink-0 text-neutral-500 transition hover:text-brand">
             <XIcon className="h-5 w-5" />
           </button>
         </div>
@@ -106,7 +106,8 @@ export function SearchOverlay({ open, onClose, tours }: SearchOverlayProps) {
                     href={tourHref(tour)}
                     onClick={onClose}
                     className="flex items-center gap-4 px-5 py-3 transition hover:bg-neutral-50">
-                    <span className="relative h-14 w-20 shrink-0 overflow-hidden rounded-lg">
+                    {tour.image && (
+                      <span className="relative h-14 w-20 shrink-0 overflow-hidden rounded-lg">
                       <Image
                         src={tour.image}
                         alt=""
@@ -115,6 +116,7 @@ export function SearchOverlay({ open, onClose, tours }: SearchOverlayProps) {
                         sizes="80px"
                       />
                     </span>
+                    )}
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-[16px] font-bold text-ink">
                         {tour.name}

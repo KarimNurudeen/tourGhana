@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_guide_sections",
+  "info": {
+    "displayName": "Guide Section",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "body": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

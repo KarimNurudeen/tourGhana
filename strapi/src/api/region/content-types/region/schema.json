@@ -21,6 +21,28 @@
       "type": "uid",
       "targetField": "name",
       "required": true
+    },
+    "capital": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "overview": {
+      "type": "json"
+    },
+    "attractions": {
+      "type": "json"
+    },
+    "festivals": {
+      "type": "json"
+    },
+    "wildlife": {
+      "type": "json"
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

@@ -20,6 +20,28 @@ HOMEPAGE_RELATION_FIELDS = [
 ]
 
 
+def _place_href(place: dict) -> str:
+    """Same routing rule as tourHref() in lib/tour-utils.ts."""
+    category = (place.get("category") or {}).get("name")
+    if category == "Where To Stay":
+        return f"/where-to-stay/{place['slug']}"
+    if category == "Festivals":
+        return f"/category/festivals/{place['slug']}"
+    return f"/tours/{place['slug']}"
+
+
+def _history_event(entry: dict) -> dict:
+    place = entry.get("place")
+    return {
+        "year": entry["year"],
+        "text": entry["text"],
+        # Where the card goes: the related place when there is one, otherwise
+        # this event's own entry on the History page timeline.
+        "href": _place_href(place) if place else f"/history#year-{entry['year']}",
+        "placeName": place.get("name") if place else None,
+    }
+
+
 @cached("homepage")
 async def _homepage_payload() -> dict:
     async with get_client() as client:
@@ -37,7 +59,14 @@ async def _homepage_payload() -> dict:
             params={**deep_populate("lead", "items"), "sort": "order:asc", "pagination[pageSize]": 100},
         )
         history_events_data = await strapi_get(
-            client, "/api/history-events", params={"sort": "order:asc", "pagination[pageSize]": 100}
+            client,
+            "/api/history-events",
+            params={
+                "sort": "order:asc",
+                "pagination[pageSize]": 100,
+                # An event can point at a place page ("related place").
+                "populate[place][populate][category]": "true",
+            },
         )
         travel_tips_data = await strapi_get(
             client, "/api/travel-tips", params={"sort": "order:asc", "pagination[pageSize]": 100}
@@ -77,7 +106,7 @@ async def _homepage_payload() -> dict:
             }
             for c in category_columns_data["data"]
         ],
-        "historyEvents": [{"year": e["year"], "text": e["text"]} for e in history_events_data["data"]],
+        "historyEvents": [_history_event(e) for e in history_events_data["data"]],
         "travelTips": [{"label": t["label"], "detail": t["detail"]} for t in travel_tips_data["data"]],
     }
 

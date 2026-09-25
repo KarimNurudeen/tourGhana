@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "accommodation_listings",
+  "info": {
+    "singularName": "accommodation-listing",
+    "pluralName": "accommodation-listings",
+    "displayName": "Accommodation Listing",
+    "description": "Licensed hotels and guest houses (the directory). The curated, photographed stays are Tours in the Where To Stay category."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "region": { "type": "string" },
+    "location": { "type": "string" },
+    "phone": { "type": "string" },
+    "emailWebsite": { "type": "text" },
+    "grade": { "type": "string" }
+  }
+}

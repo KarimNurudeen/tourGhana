@@ -33,7 +33,7 @@ export default function AdvertisePage() {
         For rates and partnership options, reach out via{' '}
         <a
           href="mailto:hello@tourghana.com"
-          className="font-semibold text-ink underline hover:text-flagGreen">
+          className="font-semibold text-ink underline hover:text-brand">
           hello@tourghana.com
         </a>{' '}
         with a short description of what you&rsquo;re looking for and which

@@ -63,10 +63,10 @@ export function FestivalCalendar({ timing, name }: FestivalCalendarProps) {
   const activeMonths = new Set(timing.months);
 
   return (
-    <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm">
-      <div className="flex items-center gap-2 border-b border-neutral-200 bg-flagGold px-5 py-4">
-        <CalendarDaysIcon className="h-5 w-5 text-black" />
-        <h2 className="text-[16px] font-black uppercase tracking-tight text-black">
+    <div className="overflow-hidden rounded-xl bg-white shadow-card">
+      <div className="flex items-center gap-2 border-b border-neutral-200 bg-brand px-5 py-4">
+        <CalendarDaysIcon className="h-5 w-5 text-white" />
+        <h2 className="text-[16px] font-black uppercase tracking-tight text-white">
           When it happens
         </h2>
       </div>
@@ -79,7 +79,7 @@ export function FestivalCalendar({ timing, name }: FestivalCalendarProps) {
               <div
                 key={label}
                 className={`rounded-md py-2 text-center text-[12px] font-bold uppercase tracking-wide ${
-                  active ? 'bg-flagGreen text-white' : 'bg-neutral-100 text-neutral-400'
+                  active ? 'bg-brand text-white' : 'bg-neutral-100 text-neutral-400'
                 }`}>
                 {label}
               </div>
@@ -92,7 +92,7 @@ export function FestivalCalendar({ timing, name }: FestivalCalendarProps) {
         )}
 
         {timing.note && (
-          <p className="mt-5 border-l-4 border-flagGold bg-flagGold/10 px-4 py-3 text-[14px] leading-relaxed text-neutral-700">
+          <p className="mt-5 border-l-4 border-brand bg-brand/5 px-4 py-3 text-[14px] leading-relaxed text-neutral-700">
             {timing.note}
           </p>
         )}
@@ -141,7 +141,7 @@ function MonthGridPreview({
                   day === null
                     ? ''
                     : isFestivalDay
-                    ? 'bg-flagRed font-bold text-white'
+                    ? 'bg-brand font-bold text-white'
                     : 'text-neutral-600'
                 }`}>
                 {day ?? ''}
@@ -151,7 +151,7 @@ function MonthGridPreview({
         )}
       </div>
       <p className="mt-4 text-[15px] font-semibold text-ink">
-        Next likely date: <span className="text-flagRed">{dateLabel}</span>
+        Next likely date: <span className="text-brand">{dateLabel}</span>
       </p>
       <p className="mt-1 text-[13px] text-neutral-500">
         Based on {name}’s usual pattern — confirm locally nearer the time.
