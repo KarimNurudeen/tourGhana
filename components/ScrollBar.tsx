@@ -9,10 +9,13 @@ import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
  */
 export function ScrollBar({
   target,
+  targetId,
   label,
   className = 'mt-2',
 }: {
   target: RefObject<HTMLElement | null>;
+  /** The id of the scrolling element, so the bar can say what it controls. */
+  targetId: string;
   label: string;
   className?: string;
 }) {
@@ -87,6 +90,7 @@ export function ScrollBar({
         role="scrollbar"
         aria-label={`${label} position`}
         aria-orientation="horizontal"
+        aria-controls={targetId}
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round((thumb.pos / (1 - thumb.size)) * 100)}
