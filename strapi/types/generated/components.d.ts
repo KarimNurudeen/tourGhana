@@ -9,6 +9,8 @@ export interface GuideSection extends Struct.ComponentSchema {
   attributes: {
     body: Schema.Attribute.Text & Schema.Attribute.Required;
     heading: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    imageCredit: Schema.Attribute.String;
   };
 }
 

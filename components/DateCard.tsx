@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightIcon } from 'lucide-react';
 import type { HistoryEvent } from '@/types/content';
@@ -10,6 +11,11 @@ export function DateCard({ event }: { event: HistoryEvent }) {
       <Link
         href={href}
         className="flex h-full flex-col overflow-hidden rounded-xl border-t-4 border-brand bg-white p-4 shadow-card transition hover:shadow-md active:scale-[0.99]">
+        {event.placeImage && (
+          <span className="relative -mx-4 -mt-4 mb-3 block h-24 overflow-hidden bg-neutral-200">
+            <Image src={event.placeImage} alt="" fill className="object-cover" sizes="250px" />
+          </span>
+        )}
         <span className="text-[34px] font-black leading-none tracking-tight text-brand">{event.year}</span>
         <span className="mt-3 line-clamp-4 text-[16px] font-bold leading-snug text-ink">{event.text}</span>
         <span className="mt-auto flex items-center gap-1.5 pt-4 text-[13px] font-extrabold text-neutral-600">

@@ -31,6 +31,9 @@ export type TaxonomyGroup = {
   slug: string;
   name: string;
   tours: Tour[];
+  // The region's own photo, else its first place's photo.
+  image?: string | null;
+  imageCredit?: string | null;
   // Guide text for regions; the API sends empty values for categories.
   capital?: string | null;
   note?: string | null;

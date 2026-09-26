@@ -8,6 +8,7 @@ const siteLinks = [
   { label: 'Terms', href: '/terms' },
   { label: 'Privacy', href: '/privacy' },
   { label: 'Advertise', href: '/advertise' },
+  { label: 'Photo credits', href: '/credits' },
 ];
 
 export function Footer() {

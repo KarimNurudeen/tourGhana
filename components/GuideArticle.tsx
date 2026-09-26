@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { GuideSection } from '@/types/content';
 
 const h2 =
@@ -37,12 +38,36 @@ function Paragraphs({ paragraphs }: { paragraphs: string[] }) {
 export function GuideSections({ sections }: { sections: GuideSection[] }) {
   return (
     <div className="space-y-8">
-      {sections.map((section, i) => (
-        <section key={`${section.heading}-${i}`} className="space-y-3">
-          {section.heading && <h2 className={h2}>{section.heading}</h2>}
-          <Paragraphs paragraphs={section.paragraphs} />
-        </section>
-      ))}
+      {sections.map((section, i) => {
+        const text = (
+          <div className="min-w-0 space-y-3">
+            {section.heading && <h2 className={h2}>{section.heading}</h2>}
+            <Paragraphs paragraphs={section.paragraphs} />
+          </div>
+        );
+        if (!section.image) return <section key={`${section.heading}-${i}`}>{text}</section>;
+        return (
+          <section
+            key={`${section.heading}-${i}`}
+            className="grid items-start gap-4 sm:grid-cols-[minmax(0,240px)_minmax(0,1fr)] sm:gap-6">
+            <figure>
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-neutral-200">
+                <Image
+                  src={section.image}
+                  alt={section.heading ?? ''}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 640px) 240px, 100vw"
+                />
+              </div>
+              {section.imageCredit && (
+                <figcaption className="mt-1.5 text-[11px] leading-snug text-neutral-500">{section.imageCredit}</figcaption>
+              )}
+            </figure>
+            {text}
+          </section>
+        );
+      })}
     </div>
   );
 }

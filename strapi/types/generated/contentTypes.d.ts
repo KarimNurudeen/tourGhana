@@ -562,6 +562,8 @@ export interface ApiFestivalListingFestivalListing
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'>;
+    imageCredit: Schema.Attribute.String;
     listType: Schema.Attribute.Enumeration<['calendar', 'monthly', 'other']> &
       Schema.Attribute.DefaultTo<'monthly'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -608,6 +610,8 @@ export interface ApiGuidePageGuidePage extends Struct.CollectionTypeSchema {
       ['visiting', 'touring', 'events', 'services', 'about']
     > &
       Schema.Attribute.DefaultTo<'about'>;
+    image: Schema.Attribute.Media<'images'>;
+    imageCredit: Schema.Attribute.String;
     intro: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -814,6 +818,8 @@ export interface ApiRegionRegion extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     festivals: Schema.Attribute.JSON;
+    image: Schema.Attribute.Media<'images'>;
+    imageCredit: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

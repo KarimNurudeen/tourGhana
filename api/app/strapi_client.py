@@ -187,7 +187,11 @@ async def fetch_all_regions() -> list[dict]:
         data = await strapi_get(
             client,
             "/api/regions",
-            params={"pagination[pageSize]": 100, "sort": ["sortOrder:asc", "name:asc"]},
+            params={
+                "pagination[pageSize]": 100,
+                "sort": ["sortOrder:asc", "name:asc"],
+                "populate[image]": "true",
+            },
         )
     return data["data"]
 

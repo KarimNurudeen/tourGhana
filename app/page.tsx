@@ -47,7 +47,14 @@ export default async function Home() {
       .map((slug) => guideBySlug.get(slug))
       .filter((p): p is GuidePage => Boolean(p))
       .map((p) => (
-        <RowCard key={p.slug} title={p.title} href={guideHref(p.slug)} excerpt={excerpt(p)} plain />
+        <RowCard
+          key={p.slug}
+          title={p.title}
+          href={guideHref(p.slug)}
+          excerpt={excerpt(p)}
+          image={p.image ?? undefined}
+          plain={!p.image}
+        />
       ));
 
   const tourCard = (t: Tour) => (
@@ -77,8 +84,8 @@ export default async function Home() {
       key={r.slug}
       title={r.name.replace(/ Region$/, '')}
       href={`/region/${r.slug}`}
-      image={r.tours.find((t) => t.image)?.image}
-      plain={!r.tours.some((t) => t.image)}
+      image={r.image ?? undefined}
+      plain={!r.image}
      
       meta={[r.capital ? `Capital: ${r.capital}` : null, r.tours.length ? `${r.tours.length} featured` : null]
         .filter(Boolean)

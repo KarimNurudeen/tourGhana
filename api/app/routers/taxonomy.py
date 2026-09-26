@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 
 from app.cache import cached
-from app.strapi_client import fetch_all_categories, fetch_all_regions, fetch_all_tours
+from app.strapi_client import fetch_all_categories, fetch_all_regions, fetch_all_tours, media_url
 
 router = APIRouter()
 
@@ -10,10 +10,26 @@ router = APIRouter()
 async def _region_groups() -> list[dict]:
     regions = await fetch_all_regions()
     tours = await fetch_all_tours()
-    return [
-        {
+    def cover(region: dict, region_tours: list[dict]) -> tuple[str | None, str | None]:
+        """The region's own photo when it has one, else the first place with a photo."""
+        own = media_url(region.get("image"))
+        if own:
+            return own, region.get("imageCredit")
+        for t in region_tours:
+            if t["image"]:
+                return t["image"], t.get("imageCredit")
+        return None, None
+
+    result = []
+    for r in regions:
+        region_tours = [t for t in tours if t["region"] == r["name"]]
+        image, credit = cover(r, region_tours)
+        result.append(
+            {
             "slug": r["slug"],
             "name": r["name"],
+            "image": image,
+            "imageCredit": credit,
             # Optional guide text for the region page; empty for regions that
             # only have tours attached.
             "capital": r.get("capital") or None,
@@ -22,10 +38,10 @@ async def _region_groups() -> list[dict]:
             "attractions": r.get("attractions") or [],
             "festivals": r.get("festivals") or [],
             "wildlife": r.get("wildlife") or [],
-            "tours": [t for t in tours if t["region"] == r["name"]],
-        }
-        for r in regions
-    ]
+            "tours": region_tours,
+            }
+        )
+    return result
 
 
 @cached("category_groups")

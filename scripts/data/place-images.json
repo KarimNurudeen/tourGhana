@@ -1,0 +1,1041 @@
+{
+ "images": [
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "lake-bosomtwi"
+   },
+   "file": "File:Lake Bosomtwi with dead wood.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Lake_Bosomtwi_with_dead_wood.jpg/1920px-Lake_Bosomtwi_with_dead_wood.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Lake_Bosomtwi_with_dead_wood.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Isaac Sowah Badu / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "national-museum"
+   },
+   "file": "File:Main entrance of National Museum of Ghana.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Main_entrance_of_National_Museum_of_Ghana.jpg/1920px-Main_entrance_of_National_Museum_of_Ghana.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Main_entrance_of_National_Museum_of_Ghana.jpg",
+   "license": "CC BY-SA 3.0",
+   "credit": "Photo: Livinba / Wikimedia Commons (CC BY-SA 3.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "accra-cultural-centre"
+   },
+   "file": "File:National Cultural Center of Ghana, Korle-Klottey (IMG 20230201 162214).jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/National_Cultural_Center_of_Ghana%2C_Korle-Klottey_%28IMG_20230201_162214%29.jpg/1920px-National_Cultural_Center_of_Ghana%2C_Korle-Klottey_%28IMG_20230201_162214%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:National_Cultural_Center_of_Ghana,_Korle-Klottey_(IMG_20230201_162214).jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Matti Blume / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "lake-volta"
+   },
+   "file": "File:Areas around the volta lake, Akosombo Ghana.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Areas_around_the_volta_lake%2C_Akosombo_Ghana.jpg/1920px-Areas_around_the_volta_lake%2C_Akosombo_Ghana.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Areas_around_the_volta_lake,_Akosombo_Ghana.jpg",
+   "license": "CC BY-SA 3.0",
+   "credit": "Photo: Bakudie / Wikimedia Commons (CC BY-SA 3.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "cape-three-points"
+   },
+   "file": "File:Cape Three Points Lighthouse 1875.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Cape_Three_Points_Lighthouse_1875.jpg/1920px-Cape_Three_Points_Lighthouse_1875.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Cape_Three_Points_Lighthouse_1875.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Friedmut Abel / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "bobiri-butterfly-sanctuary"
+   },
+   "file": "File:Ghana’s Declining Forest Reserves (153763 - bobiri intact lrg).jpg",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Ghana%E2%80%99s_Declining_Forest_Reserves_%28153763_-_bobiri_intact_lrg%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "page": "https://commons.wikimedia.org/wiki/File:Ghana%E2%80%99s_Declining_Forest_Reserves_(153763_-_bobiri_intact_lrg).jpg",
+   "license": "Public domain",
+   "credit": "NASA Earth Observatory / Wikimedia Commons (public domain)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "boti-falls"
+   },
+   "file": "File:Boti Falls, Ghana.jpg",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Boti_Falls%2C_Ghana.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "page": "https://commons.wikimedia.org/wiki/File:Boti_Falls,_Ghana.jpg",
+   "license": "CC0",
+   "credit": "Photo: Newfoundlandguy / Wikimedia Commons (CC0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "fort-metal-cross-dixcove"
+   },
+   "file": "File:Fort Metal Cross 21.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Fort_Metal_Cross_21.jpg/1920px-Fort_Metal_Cross_21.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Fort_Metal_Cross_21.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Esthee2010 / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "fort-william-anomabu"
+   },
+   "file": "File:Fort William, Anomabo 15.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Fort_William%2C_Anomabo_15.jpg/1920px-Fort_William%2C_Anomabo_15.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Fort_William,_Anomabo_15.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Fquasie / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "christiansborg-castle"
+   },
+   "file": "File:Osu Castle (also known as Fort Christiansborg or Christiansborg Castle) in Accra, Ghana.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Osu_Castle_%28also_known_as_Fort_Christiansborg_or_Christiansborg_Castle%29_in_Accra%2C_Ghana.jpg/1920px-Osu_Castle_%28also_known_as_Fort_Christiansborg_or_Christiansborg_Castle%29_in_Accra%2C_Ghana.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Osu_Castle_(also_known_as_Fort_Christiansborg_or_Christiansborg_Castle)_in_Accra,_Ghana.jpg",
+   "license": "CC0",
+   "credit": "Photo: Twi inaccr / Wikimedia Commons (CC0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "fort-patience-apam"
+   },
+   "file": "File:Le fort de la Patience à Apam de l'un et de l'autre côté - btv1b8595575s.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Le_fort_de_la_Patience_%C3%A0_Apam_de_l%27un_et_de_l%27autre_c%C3%B4t%C3%A9_-_btv1b8595575s.jpg/1920px-Le_fort_de_la_Patience_%C3%A0_Apam_de_l%27un_et_de_l%27autre_c%C3%B4t%C3%A9_-_btv1b8595575s.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Le_fort_de_la_Patience_%C3%A0_Apam_de_l%27un_et_de_l%27autre_c%C3%B4t%C3%A9_-_btv1b8595575s.jpg",
+   "license": "Public domain",
+   "credit": "Historic engraving, Bibliothèque nationale de France / Wikimedia Commons (public domain)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "fort-amsterdam-abandze"
+   },
+   "file": "File:Ghana, Abandze, Fort Amsterdam (Cormantijn), hoofdingang.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Ghana%2C_Abandze%2C_Fort_Amsterdam_%28Cormantijn%29%2C_hoofdingang.jpg/1920px-Ghana%2C_Abandze%2C_Fort_Amsterdam_%28Cormantijn%29%2C_hoofdingang.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Ghana,_Abandze,_Fort_Amsterdam_(Cormantijn),_hoofdingang.jpg",
+   "license": "CC BY-SA 3.0",
+   "credit": "Photo: Janky / Wikimedia Commons (CC BY-SA 3.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "fort-good-hope-senya-beraku"
+   },
+   "file": "File:Fort Good Hope 4.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Fort_Good_Hope_4.jpg/1920px-Fort_Good_Hope_4.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Fort_Good_Hope_4.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Nandi D / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "fort-st-jago-elmina"
+   },
+   "file": "File:Fort st jago elmina ghana.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Fort_st_jago_elmina_ghana.jpg/1920px-Fort_st_jago_elmina_ghana.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Fort_st_jago_elmina_ghana.jpg",
+   "license": "CC BY 3.0",
+   "credit": "Photo: Edward Kamau / Wikimedia Commons (CC BY 3.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "fort-apollonia-beyin"
+   },
+   "file": "File:Fort Apollonia in Ghana 17.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Fort_Apollonia_in_Ghana_17.jpg/1920px-Fort_Apollonia_in_Ghana_17.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Fort_Apollonia_in_Ghana_17.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Esthee2010 / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "fort-batenstein-butre"
+   },
+   "file": "File:Fort Batenstein, top floor.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Fort_Batenstein%2C_top_floor.jpg/1920px-Fort_Batenstein%2C_top_floor.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Fort_Batenstein,_top_floor.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Macabe5387 / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "fort-orange-sekondi"
+   },
+   "file": "File:Fort orange 14.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Fort_orange_14.jpg/1920px-Fort_orange_14.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Fort_orange_14.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Kwameghana / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "fort-st-anthonio-axim"
+   },
+   "file": "File:Fort Saint Anthony in Axim, Western Region, Ghana.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Fort_Saint_Anthony_in_Axim%2C_Western_Region%2C_Ghana.jpg/1920px-Fort_Saint_Anthony_in_Axim%2C_Western_Region%2C_Ghana.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Fort_Saint_Anthony_in_Axim,_Western_Region,_Ghana.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Jesuraj Alakassery / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "fort-st-sebastian-shama"
+   },
+   "file": "File:Fort St. Sebastian (Shama, Ghana 2013).jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Fort_St._Sebastian_%28Shama%2C_Ghana_2013%29.jpg/1920px-Fort_St._Sebastian_%28Shama%2C_Ghana_2013%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Fort_St._Sebastian_(Shama,_Ghana_2013).jpg",
+   "license": "CC BY-SA 2.0",
+   "credit": "Photo: Maarten van der Bent / Wikimedia Commons (CC BY-SA 2.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "fort-friederichsburg-princess-town"
+   },
+   "file": "File:Groß Friedrichsburg.JPG",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Gro%C3%9F_Friedrichsburg.JPG/1920px-Gro%C3%9F_Friedrichsburg.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Gro%C3%9F_Friedrichsburg.JPG",
+   "license": "CC BY 3.0",
+   "credit": "Photo: Obruni / Wikimedia Commons (CC BY 3.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "kwame-nkrumah-mausoleum"
+   },
+   "file": "File:Kwame Nkrumah mausoleum - panoramio.jpg",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Kwame_Nkrumah_mausoleum_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "page": "https://commons.wikimedia.org/wiki/File:Kwame_Nkrumah_mausoleum_-_panoramio.jpg",
+   "license": "CC BY-SA 3.0",
+   "credit": "Photo: Simon Ontoyin / Wikimedia Commons (CC BY-SA 3.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "wechiau-hippo-sanctuary"
+   },
+   "file": "File:The Wechiau Hippopotamus Sanctuary.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/The_Wechiau_Hippopotamus_Sanctuary.jpg/1920px-The_Wechiau_Hippopotamus_Sanctuary.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:The_Wechiau_Hippopotamus_Sanctuary.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Kradolferp / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "regions",
+    "name": "Bono Region"
+   },
+   "file": "File:A hippopotamus partially submerged in Bui dam.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/A_hippopotamus_partially_submerged_in_Bui_dam.jpg/1920px-A_hippopotamus_partially_submerged_in_Bui_dam.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:A_hippopotamus_partially_submerged_in_Bui_dam.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Ibrahim Achiri / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "regions",
+    "name": "Bono East Region"
+   },
+   "file": "File:FINAL STAGE OF KINTAMPO WATER FALLS.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/FINAL_STAGE_OF_KINTAMPO_WATER_FALLS.jpg/1920px-FINAL_STAGE_OF_KINTAMPO_WATER_FALLS.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:FINAL_STAGE_OF_KINTAMPO_WATER_FALLS.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: MUDA7533 / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "regions",
+    "name": "Oti Region"
+   },
+   "file": "File:Local canoe transportation service at Dambai.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Local_canoe_transportation_service_at_Dambai.jpg/1920px-Local_canoe_transportation_service_at_Dambai.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Local_canoe_transportation_service_at_Dambai.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Mykojo / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "regions",
+    "name": "North East Region"
+   },
+   "file": "File:Gambaga escarpment.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Gambaga_escarpment.jpg/1920px-Gambaga_escarpment.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Gambaga_escarpment.jpg",
+   "license": "CC BY 4.0",
+   "credit": "Photo: Christian Yakubu / Wikimedia Commons (CC BY 4.0)"
+  },
+  {
+   "target": {
+    "collection": "regions",
+    "name": "Western North Region"
+   },
+   "file": "File:Bia National Park.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Bia_National_Park.jpg/1920px-Bia_National_Park.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Bia_National_Park.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: AmarAfshin / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "regions",
+    "name": "Brong Ahafo Region"
+   },
+   "file": "File:Cercopithecus mona, Boabeng Fiema, Monkey Sanctuary, Ghana.JPG",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Cercopithecus_mona%2C_Boabeng_Fiema%2C_Monkey_Sanctuary%2C_Ghana.JPG/1920px-Cercopithecus_mona%2C_Boabeng_Fiema%2C_Monkey_Sanctuary%2C_Ghana.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Cercopithecus_mona,_Boabeng_Fiema,_Monkey_Sanctuary,_Ghana.JPG",
+   "license": "CC BY-SA 3.0",
+   "credit": "Photo: AlexisENVN / Wikimedia Commons (CC BY-SA 3.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Nini Suhien National Park & Ankasa Resource Reserve"
+   },
+   "file": "File:Ankasa Conservation 1.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Ankasa_Conservation_1.jpg/1920px-Ankasa_Conservation_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Ankasa_Conservation_1.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: SAgbley / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Boabeng – Fiema Monkey Sanctuary"
+   },
+   "file": "File:Mona monkey at Boabeng Fiema Monkey sanctuary 02.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Mona_monkey_at_Boabeng_Fiema_Monkey_sanctuary_02.jpg/1920px-Mona_monkey_at_Boabeng_Fiema_Monkey_sanctuary_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Mona_monkey_at_Boabeng_Fiema_Monkey_sanctuary_02.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Princebarak / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Tagbo Falls"
+   },
+   "file": "File:Tagbo Falls flows from the Ghana-Togo range.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Tagbo_Falls_flows_from_the_Ghana-Togo_range.jpg/1920px-Tagbo_Falls_flows_from_the_Ghana-Togo_range.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Tagbo_Falls_flows_from_the_Ghana-Togo_range.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Kradolferp / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Amedzofe"
+   },
+   "file": "File:Amedzofe village Ghana.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Amedzofe_village_Ghana.jpg/1920px-Amedzofe_village_Ghana.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Amedzofe_village_Ghana.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Williams Penuku / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Tafi Atome Monkey Sanctuary"
+   },
+   "file": "File:Tafi Atome woods.JPG",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Tafi_Atome_woods.JPG/1920px-Tafi_Atome_woods.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Tafi_Atome_woods.JPG",
+   "license": "CC BY-SA 3.0",
+   "credit": "Photo: Peterfitzgerald / Wikimedia Commons (CC BY-SA 3.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Bia National Park & Resource Reserve/Biosphere Reserve"
+   },
+   "file": "File:Bia National Park, and a rice farm.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Bia_National_Park%2C_and_a_rice_farm.jpg/1920px-Bia_National_Park%2C_and_a_rice_farm.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Bia_National_Park,_and_a_rice_farm.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: AmarAfshin / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Bui National Park"
+   },
+   "file": "File:Bui Bayou.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Bui_Bayou.jpg/1920px-Bui_Bayou.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Bui_Bayou.jpg",
+   "license": "CC BY-SA 3.0",
+   "credit": "Photo: Kelsdark / Wikimedia Commons (CC BY-SA 3.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Keta Lagoon Complex Ramsar Site"
+   },
+   "file": "File:Keta Lagoon-3.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Keta_Lagoon-3.jpg/1920px-Keta_Lagoon-3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Keta_Lagoon-3.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Owula kpakpo / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Kyabobo National Park"
+   },
+   "file": "File:Hiking at Kyabobo National Park.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Hiking_at_Kyabobo_National_Park.jpg/1920px-Hiking_at_Kyabobo_National_Park.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Hiking_at_Kyabobo_National_Park.jpg",
+   "license": "CC BY-SA 3.0",
+   "credit": "Photo: Sean Moran / Wikimedia Commons (CC BY-SA 3.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Agumatsa Wildlife Sanctuary"
+   },
+   "file": "File:Wli waterfall hike.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Wli_waterfall_hike.jpg/1920px-Wli_waterfall_hike.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Wli_waterfall_hike.jpg",
+   "license": "CC BY 2.0",
+   "credit": "Photo: Stig Nygaard / Wikimedia Commons (CC BY 2.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Shai Hills Resource Reserve"
+   },
+   "file": "File:Shai Hills, Shai-Osudoku (P1100104).jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Shai_Hills%2C_Shai-Osudoku_%28P1100104%29.jpg/1920px-Shai_Hills%2C_Shai-Osudoku_%28P1100104%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Shai_Hills,_Shai-Osudoku_(P1100104).jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Matti Blume / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Owabi Wildlife Sanctuary"
+   },
+   "file": "File:River Dam at Owabi Ramsar Site.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/River_Dam_at_Owabi_Ramsar_Site.jpg/1920px-River_Dam_at_Owabi_Ramsar_Site.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:River_Dam_at_Owabi_Ramsar_Site.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Els holmes / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "recreation",
+    "heading": "La Pleasure Beach"
+   },
+   "file": "File:Labadi beach 3.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Labadi_beach_3.jpg/1920px-Labadi_beach_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Labadi_beach_3.jpg",
+   "license": "CC BY 4.0",
+   "credit": "Photo: Cca Raheem / Wikimedia Commons (CC BY 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "recreation",
+    "heading": "Ada Foah Beach"
+   },
+   "file": "File:Ada Foah Beach 1.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Ada_Foah_Beach_1.jpg/1920px-Ada_Foah_Beach_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Ada_Foah_Beach_1.jpg",
+   "license": "CC BY 4.0",
+   "credit": "Photo: Philip Nalangan / Wikimedia Commons (CC BY 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "recreation",
+    "heading": "Elmina Beach Resort"
+   },
+   "file": "File:Elmina beach and twonship.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Elmina_beach_and_twonship.jpg/1920px-Elmina_beach_and_twonship.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Elmina_beach_and_twonship.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Jones Anlimah / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "recreation",
+    "heading": "Busua Beach"
+   },
+   "file": "File:Busua Beach Resort setting in Western region, Ghana.jpg",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Busua_Beach_Resort_setting_in_Western_region%2C_Ghana.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "page": "https://commons.wikimedia.org/wiki/File:Busua_Beach_Resort_setting_in_Western_region,_Ghana.jpg",
+   "license": "CC BY 2.0",
+   "credit": "Photo: Mac-Jordan Degadjor / Wikimedia Commons (CC BY 2.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "recreation",
+    "heading": "Kokrobite Beach"
+   },
+   "file": "File:Kokrobite Beach - Ghana.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Kokrobite_Beach_-_Ghana.jpg/1920px-Kokrobite_Beach_-_Ghana.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Kokrobite_Beach_-_Ghana.jpg",
+   "license": "Public domain",
+   "credit": "Photo: User: (WT-shared) Mouse at wts wikivoyage / Wikimedia Commons (public domain)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "recreation",
+    "heading": "Manet Paradise on the Volta River"
+   },
+   "file": "File:Ada river boat.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Ada_river_boat.jpg/1920px-Ada_river_boat.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Ada_river_boat.jpg",
+   "license": "CC BY-SA 3.0",
+   "credit": "Photo: Dieu-Donné Gameli / Wikimedia Commons (CC BY-SA 3.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "recreation",
+    "heading": "Tills No1 Beach Hotel"
+   },
+   "file": "File:Till's No. 1 Resort in Fetteh - panoramio.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Till%27s_No._1_Resort_in_Fetteh_-_panoramio.jpg/1920px-Till%27s_No._1_Resort_in_Fetteh_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Till%27s_No._1_Resort_in_Fetteh_-_panoramio.jpg",
+   "license": "CC BY 3.0",
+   "credit": "Photo: Roger Husvik / Wikimedia Commons (CC BY 3.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "recreation",
+    "heading": "Bojo Beach"
+   },
+   "file": "File:Bojo Beach Resort.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Bojo_Beach_Resort.jpg/1920px-Bojo_Beach_Resort.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Bojo_Beach_Resort.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Fquasie / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "handicrafts",
+    "heading": "Kente Cloth"
+   },
+   "file": "File:Kente pattern making.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Kente_pattern_making.jpg/1920px-Kente_pattern_making.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Kente_pattern_making.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Mwintirew / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "handicrafts",
+    "heading": "Pottery"
+   },
+   "file": "File:A traditional pot at Wa fadama 2.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/A_traditional_pot_at_Wa_fadama_2.jpg/1920px-A_traditional_pot_at_Wa_fadama_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:A_traditional_pot_at_Wa_fadama_2.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Daara Original / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "handicrafts",
+    "heading": "Coffins"
+   },
+   "file": "File:Accra (Ghana) - Fantasy coffins (adebuu adekai) - 8.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Accra_%28Ghana%29_-_Fantasy_coffins_%28adebuu_adekai%29_-_8.jpg/1920px-Accra_%28Ghana%29_-_Fantasy_coffins_%28adebuu_adekai%29_-_8.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Accra_(Ghana)_-_Fantasy_coffins_(adebuu_adekai)_-_8.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: René Edward Knupfer-Müller / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "handicrafts",
+    "heading": "Beads"
+   },
+   "file": "File:Old Krobo Beads, Ghana.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Old_Krobo_Beads%2C_Ghana.jpg/1920px-Old_Krobo_Beads%2C_Ghana.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Old_Krobo_Beads,_Ghana.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: MohammedT10 / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-pages",
+    "slug": "heritage-sites"
+   },
+   "file": "File:Kentikrono Shrine (2).jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Kentikrono_Shrine_%282%29.jpg/1920px-Kentikrono_Shrine_%282%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Kentikrono_Shrine_(2).jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Noahalorwu / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Kakum National Park & Assin Attandanso Resource Reserve"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "kakum-national-park"
+   }
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Mole National Park"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "mole-national-park"
+   }
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Paga Crocodile Pond"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "paga-crocodile-pond"
+   }
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Aburi Botanical Gardens"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "aburi-gardens"
+   }
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Wechiau Hippo Sanctuary"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "wechiau-hippo-sanctuary"
+   }
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "ecotourism",
+    "heading": "Wli Falls"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "wli-waterfalls"
+   }
+  },
+  {
+   "target": {
+    "collection": "guide-sections",
+    "slug": "heritage-sites",
+    "heading": "UNESCO World Heritage Sites"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "cape-coast-castle"
+   }
+  },
+  {
+   "target": {
+    "collection": "guide-pages",
+    "slug": "ecotourism"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "kakum-national-park"
+   }
+  },
+  {
+   "target": {
+    "collection": "guide-pages",
+    "slug": "forts-and-castles"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "cape-coast-castle"
+   }
+  },
+  {
+   "target": {
+    "collection": "guide-pages",
+    "slug": "culture-heritage"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "manhyia-palace"
+   }
+  },
+  {
+   "target": {
+    "collection": "guide-pages",
+    "slug": "panafest"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "panafest-emancipation-day"
+   }
+  },
+  {
+   "target": {
+    "collection": "guide-pages",
+    "slug": "emancipation-day"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "panafest-emancipation-day"
+   }
+  },
+  {
+   "target": {
+    "collection": "guide-pages",
+    "slug": "chale-wote"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "chale-wote-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Kundum (Nzema and Ahanta, Western)",
+    "listType": "other"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "kundum-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Fiok (Builsa)",
+    "listType": "other"
+   },
+   "file": "File:Fiok 10.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Fiok_10.jpg/1920px-Fiok_10.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Fiok_10.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Christian Yakubu / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Dipo",
+    "listType": "calendar"
+   },
+   "file": "File:Dipo Festival.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Dipo_Festival.jpg/1920px-Dipo_Festival.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Dipo_Festival.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Sunkanmi12 / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Damba Festival",
+    "listType": "monthly"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "damba-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Ngmayem Festival",
+    "listType": "monthly"
+   },
+   "file": "File:Ngmayem Festival in Ghana 6.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Ngmayem_Festival_in_Ghana_6.jpg/1920px-Ngmayem_Festival_in_Ghana_6.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Ngmayem_Festival_in_Ghana_6.jpg",
+   "license": "CC BY-SA 4.0",
+   "credit": "Photo: Fquasie / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Dipo",
+    "listType": "monthly"
+   },
+   "reuse": {
+    "collection": "festival-listings",
+    "name": "Dipo",
+    "listType": "calendar"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Aboakyer",
+    "listType": "calendar"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "aboakyer-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Aboakyir (Deer Hunt) Festival",
+    "listType": "monthly"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "aboakyer-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Bakatue",
+    "listType": "calendar"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "bakatue-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Damba",
+    "listType": "calendar"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "damba-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Bakatue Festival",
+    "listType": "monthly"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "bakatue-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Homowo",
+    "listType": "calendar"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "homowo-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Homowo Festival",
+    "listType": "monthly"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "homowo-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Awubia Festival",
+    "listType": "monthly"
+   },
+   "file": "File:Awutu Awubia Festival 2024 06.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Awutu_Awubia_Festival_2024_06.jpg/1920px-Awutu_Awubia_Festival_2024_06.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Awutu_Awubia_Festival_2024_06.jpg",
+   "license": "CC BY 4.0",
+   "credit": "Photo: Pambelle12 / Wikimedia Commons (CC BY 4.0)"
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Kundum Festival",
+    "listType": "monthly"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "kundum-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Fetu Afahye",
+    "listType": "calendar"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "fetu-afahye-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Odwira",
+    "listType": "calendar"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "odwira-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Kobine",
+    "listType": "calendar"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "kobine-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Fetu Afahye Festival",
+    "listType": "monthly"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "fetu-afahye-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Akwambo Festival",
+    "listType": "monthly"
+   },
+   "file": "File:Apam akwambo images.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Apam_akwambo_images.jpg/1920px-Apam_akwambo_images.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Apam_akwambo_images.jpg",
+   "license": "CC0",
+   "credit": "Photo: Gomoa / Wikimedia Commons (CC0)"
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Odwira Festival",
+    "listType": "monthly"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "odwira-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Kobine Festival",
+    "listType": "monthly"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "kobine-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Hogbetsotso",
+    "listType": "calendar"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "hogbetsotso-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Hogbetsotso Festival",
+    "listType": "monthly"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "hogbetsotso-festival"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Eiok Festival",
+    "listType": "monthly"
+   },
+   "reuse": {
+    "collection": "festival-listings",
+    "name": "Fiok (Builsa)",
+    "listType": "other"
+   }
+  },
+  {
+   "target": {
+    "collection": "festival-listings",
+    "name": "Adae and Akwasidae Festivals",
+    "listType": "monthly"
+   },
+   "reuse": {
+    "collection": "tours",
+    "slug": "akwasidae-festival"
+   }
+  }
+ ]
+}

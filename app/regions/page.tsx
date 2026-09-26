@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { getRegions } from '@/lib/api';
 import { ChevronRightIcon } from 'lucide-react';
@@ -26,8 +27,13 @@ export default async function RegionsIndexPage() {
             <li key={region.slug}>
               <Link
                 href={`/region/${region.slug}`}
-                className="flex items-center justify-between rounded-xl bg-white p-5 shadow-card transition hover:shadow-md">
-                <span>
+                className="flex items-center gap-4 rounded-xl bg-white p-4 shadow-card transition hover:shadow-md">
+                {region.image && (
+                  <span className="relative h-20 w-28 shrink-0 overflow-hidden rounded-lg bg-neutral-200">
+                    <Image src={region.image} alt="" fill className="object-cover" sizes="112px" />
+                  </span>
+                )}
+                <span className="min-w-0 flex-1">
                   <span className="block text-[20px] font-extrabold text-ink">{region.name}</span>
                   {region.capital && (
                     <span className="mt-0.5 block text-[14px] text-neutral-500">Capital: {region.capital}</span>
@@ -38,7 +44,7 @@ export default async function RegionsIndexPage() {
                       : 'Region guide'}
                   </span>
                 </span>
-                <ChevronRightIcon className="h-6 w-6 text-brand" strokeWidth={3} />
+                <ChevronRightIcon className="h-6 w-6 shrink-0 text-brand" strokeWidth={3} />
               </Link>
             </li>
           ))}

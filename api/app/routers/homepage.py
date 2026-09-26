@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from app.cache import cached
-from app.strapi_client import deep_populate, get_client, stories_from, strapi_get, tour_to_story
+from app.strapi_client import deep_populate, get_client, media_url, stories_from, strapi_get, tour_to_story
 
 router = APIRouter()
 
@@ -39,6 +39,7 @@ def _history_event(entry: dict) -> dict:
         # this event's own entry on the History page timeline.
         "href": _place_href(place) if place else f"/history#year-{entry['year']}",
         "placeName": place.get("name") if place else None,
+        "placeImage": media_url(place.get("image")) if place else None,
     }
 
 
@@ -66,6 +67,7 @@ async def _homepage_payload() -> dict:
                 "pagination[pageSize]": 100,
                 # An event can point at a place page ("related place").
                 "populate[place][populate][category]": "true",
+                "populate[place][populate][image]": "true",
             },
         )
         travel_tips_data = await strapi_get(

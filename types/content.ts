@@ -38,6 +38,7 @@ export type HistoryEvent = {
   // Where the card leads: a related place page, or this event on /history.
   href?: string;
   placeName?: string | null;
+  placeImage?: string | null;
 };
 
 export type QuickFact = {
@@ -129,6 +130,8 @@ export type SourceSection = {
 export type GuideSection = {
   heading: string | null;
   paragraphs: string[];
+  image?: string | null;
+  imageCredit?: string | null;
 };
 
 export type GuidePage = {
@@ -137,6 +140,8 @@ export type GuidePage = {
   group: 'visiting' | 'touring' | 'events' | 'services' | 'about';
   intro: string | null;
   sortOrder: number;
+  image?: string | null;
+  imageCredit?: string | null;
   sections: GuideSection[];
 };
 
@@ -147,6 +152,8 @@ export type FestivalListing = {
   place: string | null;
   description: string | null;
   listType: 'calendar' | 'monthly' | 'other';
+  image?: string | null;
+  imageCredit?: string | null;
 };
 
 export type AccommodationListing = {

@@ -6,7 +6,7 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException, Query
 
 from app.cache import cached
-from app.strapi_client import fetch_collection
+from app.strapi_client import fetch_collection, media_url
 
 router = APIRouter()
 
@@ -22,8 +22,15 @@ def _page(entry: dict) -> dict:
         "group": entry.get("group") or "about",
         "intro": entry.get("intro"),
         "sortOrder": entry.get("sortOrder") or 0,
+        "image": media_url(entry.get("image")),
+        "imageCredit": entry.get("imageCredit") or None,
         "sections": [
-            {"heading": s.get("heading") or None, "paragraphs": _paragraphs(s.get("body"))}
+            {
+                "heading": s.get("heading") or None,
+                "paragraphs": _paragraphs(s.get("body")),
+                "image": media_url(s.get("image")),
+                "imageCredit": s.get("imageCredit") or None,
+            }
             for s in (entry.get("sections") or [])
         ],
     }
@@ -32,7 +39,12 @@ def _page(entry: dict) -> dict:
 @cached("guide_pages")
 async def _guide_pages() -> list[dict]:
     entries = await fetch_collection(
-        "/api/guide-pages", {"populate[sections]": "true", "sort": ["sortOrder:asc", "title:asc"]}
+        "/api/guide-pages",
+        {
+            "populate[image]": "true",
+            "populate[sections][populate][image]": "true",
+            "sort": ["sortOrder:asc", "title:asc"],
+        },
     )
     return [_page(e) for e in entries]
 
@@ -56,7 +68,8 @@ async def get_guide_page(slug: str):
 @cached("festival_listings")
 async def _festival_listings() -> list[dict]:
     entries = await fetch_collection(
-        "/api/festival-listings", {"sort": ["monthNumber:asc", "sortOrder:asc"]}
+        "/api/festival-listings",
+        {"populate[image]": "true", "sort": ["monthNumber:asc", "sortOrder:asc"]},
     )
     return [
         {
@@ -66,6 +79,8 @@ async def _festival_listings() -> list[dict]:
             "place": e.get("place") or None,
             "description": e.get("description") or None,
             "listType": e.get("listType") or "monthly",
+            "image": media_url(e.get("image")),
+            "imageCredit": e.get("imageCredit") or None,
         }
         for e in entries
     ]

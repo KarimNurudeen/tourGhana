@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ChevronDownIcon } from 'lucide-react';
 import type { FestivalListing } from '@/types/content';
 
@@ -22,10 +23,15 @@ export function FestivalList({ listings }: { listings: FestivalListing[] }) {
             {calendar.map((f) => (
               <li key={`${f.month}-${f.name}`} className="flex gap-3 px-4 py-3">
                 <span className="w-24 shrink-0 text-[13px] font-extrabold uppercase text-brand">{f.month}</span>
-                <span className="min-w-0">
+                <span className="min-w-0 flex-1">
                   <span className="block text-[16px] font-extrabold text-ink">{f.name}</span>
                   {f.place && <span className="block text-[14px] text-neutral-600">{f.place}</span>}
                 </span>
+                {f.image && (
+                  <span className="relative h-14 w-20 shrink-0 overflow-hidden rounded-md bg-neutral-200">
+                    <Image src={f.image} alt={f.name} fill className="object-cover" sizes="80px" />
+                  </span>
+                )}
               </li>
             ))}
           </ul>
@@ -46,14 +52,21 @@ export function FestivalList({ listings }: { listings: FestivalListing[] }) {
                   {monthly
                     .filter((f) => f.month === month)
                     .map((f) => (
-                      <li key={f.name} className="px-4 py-3">
-                        <p className="text-[16px] font-extrabold text-ink">{f.name}</p>
-                        {f.description &&
-                          f.description.split('\n\n').map((p) => (
-                            <p key={p.slice(0, 40)} className="mt-1 text-[15px] leading-relaxed text-neutral-700">
-                              {p}
-                            </p>
-                          ))}
+                      <li key={f.name} className="flex gap-3 px-4 py-3">
+                        {f.image && (
+                          <span className="relative h-16 w-24 shrink-0 overflow-hidden rounded-md bg-neutral-200">
+                            <Image src={f.image} alt={f.name} fill className="object-cover" sizes="96px" />
+                          </span>
+                        )}
+                        <div className="min-w-0">
+                          <p className="text-[16px] font-extrabold text-ink">{f.name}</p>
+                          {f.description &&
+                            f.description.split('\n\n').map((p) => (
+                              <p key={p.slice(0, 40)} className="mt-1 text-[15px] leading-relaxed text-neutral-700">
+                                {p}
+                              </p>
+                            ))}
+                        </div>
                       </li>
                     ))}
                 </ul>

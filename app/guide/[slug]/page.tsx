@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronRightIcon } from 'lucide-react';
 import { notFound } from 'next/navigation';
@@ -51,6 +52,14 @@ export default async function GuidePageRoute({ params }: GuidePageProps) {
             {page.title}
           </h1>
           {page.intro && <p className="mt-3 text-[17px] text-neutral-600">{page.intro}</p>}
+          {page.image && (
+            <figure className="mt-5">
+              <div className="relative aspect-[16/9] w-full max-w-3xl overflow-hidden rounded-xl bg-neutral-200">
+                <Image src={page.image} alt={page.title} fill priority className="object-cover" sizes="(min-width: 768px) 768px, 100vw" />
+              </div>
+              {page.imageCredit && <figcaption className="mt-1.5 text-[12px] text-neutral-500">{page.imageCredit}</figcaption>}
+            </figure>
+          )}
           <div className="mt-6 max-w-3xl">
             <GuideSections sections={page.sections} />
           </div>

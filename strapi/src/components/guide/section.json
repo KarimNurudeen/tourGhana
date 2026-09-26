@@ -12,6 +12,16 @@
     "body": {
       "type": "text",
       "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "imageCredit": {
+      "type": "string"
     }
   }
 }

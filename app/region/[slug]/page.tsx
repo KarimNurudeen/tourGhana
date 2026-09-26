@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronRightIcon } from 'lucide-react';
 import { notFound } from 'next/navigation';
@@ -64,6 +65,15 @@ export default async function RegionPage({ params }: RegionPageProps) {
           {region.tours.length} featured place{region.tours.length === 1 ? '' : 's'} in this region.
           {region.note ? ` ${region.note}.` : ''}
         </p>
+
+        {region.image && (
+          <figure className="mt-6">
+            <div className="relative aspect-[16/8] w-full overflow-hidden rounded-xl bg-neutral-200">
+              <Image src={region.image} alt={region.name} fill priority className="object-cover" sizes="(min-width: 1040px) 1000px, 100vw" />
+            </div>
+            {region.imageCredit && <figcaption className="mt-1.5 text-[12px] text-neutral-500">{region.imageCredit}</figcaption>}
+          </figure>
+        )}
 
         <div className="mt-8">
           <TourGrid tours={region.tours} />
