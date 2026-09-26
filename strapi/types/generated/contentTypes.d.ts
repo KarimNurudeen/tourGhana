@@ -594,7 +594,7 @@ export interface ApiFestivalListingFestivalListing
 export interface ApiGuidePageGuidePage extends Struct.CollectionTypeSchema {
   collectionName: 'guide_pages';
   info: {
-    description: 'Written guide pages (Welcome, Travel Tips, Handicrafts, events, services\u2026). Blank lines in a section body separate paragraphs.';
+    description: "Written guide pages. Blank lines in a section body separate paragraphs. Optional: featured places (with an optional 'distance from' place), related links, and a travel-agent list.";
     displayName: 'Guide Page';
     pluralName: 'guide-pages';
     singularName: 'guide-page';
@@ -606,6 +606,9 @@ export interface ApiGuidePageGuidePage extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    distanceFrom: Schema.Attribute.Relation<'manyToOne', 'api::tour.tour'>;
+    featuredHeading: Schema.Attribute.String;
+    featuredTours: Schema.Attribute.Relation<'manyToMany', 'api::tour.tour'>;
     group: Schema.Attribute.Enumeration<
       ['visiting', 'touring', 'events', 'services', 'about']
     > &
@@ -613,6 +616,7 @@ export interface ApiGuidePageGuidePage extends Struct.CollectionTypeSchema {
     image: Schema.Attribute.Media<'images'>;
     imageCredit: Schema.Attribute.String;
     intro: Schema.Attribute.Text;
+    links: Schema.Attribute.Component<'shared.link', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -621,6 +625,8 @@ export interface ApiGuidePageGuidePage extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     sections: Schema.Attribute.Component<'guide.section', true>;
+    showTravelAgents: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     sortOrder: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     title: Schema.Attribute.String & Schema.Attribute.Required;

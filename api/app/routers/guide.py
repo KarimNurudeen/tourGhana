@@ -6,7 +6,8 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException, Query
 
 from app.cache import cached
-from app.strapi_client import fetch_collection, media_url
+from app.nearby import distance_km
+from app.strapi_client import fetch_all_tours, fetch_collection, media_url
 
 router = APIRouter()
 
@@ -15,7 +16,35 @@ def _paragraphs(body: Optional[str]) -> list[str]:
     return [p.strip() for p in (body or "").split("\n\n") if p.strip()]
 
 
-def _page(entry: dict) -> dict:
+def _featured(entry: dict, tours_by_slug: dict[str, dict]) -> list[dict]:
+    """Places an editor picked for this page, as cards. When the page names a
+    "distance from" place, each card carries the straight-line distance to it."""
+    origin_slug = (entry.get("distanceFrom") or {}).get("slug")
+    origin = (tours_by_slug.get(origin_slug) or {}).get("coordinates") if origin_slug else None
+    cards = []
+    for picked in entry.get("featuredTours") or []:
+        tour = tours_by_slug.get(picked.get("slug"))
+        if not tour:
+            continue
+        km = None
+        if origin and tour.get("coordinates"):
+            km = int(round(distance_km(origin, tour["coordinates"])))
+        cards.append(
+            {
+                "slug": tour["slug"],
+                "name": tour["name"],
+                "region": tour["region"],
+                "category": tour["category"],
+                "image": tour.get("image") or "",
+                "distanceKm": km,
+            }
+        )
+    if origin:
+        cards.sort(key=lambda c: (c["distanceKm"] is None, c["distanceKm"] or 0))
+    return cards
+
+
+def _page(entry: dict, tours_by_slug: dict[str, dict]) -> dict:
     return {
         "slug": entry["slug"],
         "title": entry["title"],
@@ -24,6 +53,11 @@ def _page(entry: dict) -> dict:
         "sortOrder": entry.get("sortOrder") or 0,
         "image": media_url(entry.get("image")),
         "imageCredit": entry.get("imageCredit") or None,
+        "featuredHeading": entry.get("featuredHeading") or None,
+        "featured": _featured(entry, tours_by_slug),
+        "distanceFrom": (entry.get("distanceFrom") or {}).get("name"),
+        "links": [{"label": l["label"], "href": l["href"]} for l in (entry.get("links") or [])],
+        "showTravelAgents": bool(entry.get("showTravelAgents")),
         "sections": [
             {
                 "heading": s.get("heading") or None,
@@ -43,10 +77,14 @@ async def _guide_pages() -> list[dict]:
         {
             "populate[image]": "true",
             "populate[sections][populate][image]": "true",
+            "populate[featuredTours]": "true",
+            "populate[distanceFrom]": "true",
+            "populate[links]": "true",
             "sort": ["sortOrder:asc", "title:asc"],
         },
     )
-    return [_page(e) for e in entries]
+    tours_by_slug = {t["slug"]: t for t in await fetch_all_tours()}
+    return [_page(e, tours_by_slug) for e in entries]
 
 
 @router.get("/api/guide-pages")

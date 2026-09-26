@@ -5,7 +5,7 @@
 //   node scripts/seed-content.mjs regions guide   # just those steps
 //
 // Steps: regions, guide, festivals, tours, accommodation, operators, history, history-links,
-// coordinates.
+// coordinates, more-pages.
 //
 // Safe to re-run: every record is looked up first (by slug / name) and updated
 // or skipped rather than duplicated. Needs a full-access API token in
@@ -297,6 +297,91 @@ if (run('coordinates')) {
     set++;
   }
   console.log(`   ${set} tours given approximate coordinates`);
+}
+
+// ---------------------------------------------------------------- More pages
+// The pages behind the menu's "More" group were thin (a paragraph or two each).
+// This gives each one places to go, related links and, for airline ticketing,
+// a list of IATA travel agents, without changing any of the existing text.
+// "distanceFrom" makes the featured places show how far they are from it.
+const MORE_PAGES = {
+  'welcome-to-ghana': {
+    heading: 'Where to begin',
+    tours: ['cape-coast-castle', 'kakum-national-park', 'mole-national-park', 'independence-square', 'aburi-gardens', 'wli-waterfalls', 'manhyia-palace', 'labadi-beach'],
+    links: [
+      ['Tourist attractions', '/attractions'],
+      ['Highlights by region', '/regions'],
+      ['Festivals', '/category/festivals'],
+      ['Visas and entry', '/visas'],
+      ['Travel tips', '/travel-tips'],
+      ['Where to stay', '/where-to-stay'],
+    ],
+  },
+  'airline-ticketing': {
+    heading: 'First stops after landing in Accra',
+    tours: ['independence-square', 'kwame-nkrumah-mausoleum', 'national-museum', 'labadi-beach', 'accra-cultural-centre', 'aburi-gardens'],
+    showTravelAgents: true,
+    links: [
+      ['Visas and entry', '/visas'],
+      ['Travel tips', '/travel-tips'],
+      ['Where to stay', '/where-to-stay'],
+      ['Tour operators', '/tour-operators'],
+    ],
+  },
+  'car-rentals': {
+    heading: 'Day trips by road from Accra',
+    distanceFrom: 'independence-square',
+    tours: ['aburi-gardens', 'boti-falls', 'lake-volta', 'fort-good-hope-senya-beraku', 'fort-patience-apam', 'cape-coast-castle', 'elmina-castle', 'kakum-national-park'],
+    links: [
+      ['Travel tips (getting around)', '/travel-tips'],
+      ['Tour operators', '/tour-operators'],
+      ['Highlights by region', '/regions'],
+      ['Where to stay', '/where-to-stay'],
+    ],
+  },
+  restaurants: {
+    heading: 'Eat your way around Ghana',
+    tours: ['accra-food'],
+    links: [
+      ['Cuisine: regional dishes', '/guide/cuisine'],
+      ['Food and dining', '/category/food-dining'],
+      ['Where to stay', '/where-to-stay'],
+      ['Festivals and food', '/category/festivals'],
+    ],
+  },
+  recreation: {
+    heading: 'Beaches and things to do outdoors',
+    tours: ['labadi-beach', 'busua-beach-resort', 'cape-three-points', 'elmina-harbour', 'kakum-national-park', 'wli-waterfalls', 'boti-falls', 'lake-volta'],
+    links: [
+      ['Ecotourism', '/guide/ecotourism'],
+      ['Festivals', '/category/festivals'],
+      ['Nature and wildlife', '/category/parks-wildlife'],
+      ['Where to stay', '/where-to-stay'],
+    ],
+  },
+};
+
+if (run('more-pages')) {
+  console.log('more pages…');
+  const tourIds = new Map((await all('tours')).map((t) => [t.slug, t.documentId]));
+  const pages = new Map((await all('guide-pages')).map((p) => [p.slug, p.documentId]));
+  let done = 0;
+  for (const [slug, cfg] of Object.entries(MORE_PAGES)) {
+    const id = pages.get(slug);
+    if (!id) throw new Error(`no guide page ${slug}`);
+    const missing = cfg.tours.filter((t) => !tourIds.has(t));
+    if (missing.length) console.log(`   (skipping unknown places for ${slug}: ${missing.join(', ')})`);
+    const data = {
+      featuredHeading: cfg.heading,
+      featuredTours: cfg.tours.filter((t) => tourIds.has(t)).map((t) => tourIds.get(t)),
+      links: cfg.links.map(([label, href]) => ({ label, href })),
+      showTravelAgents: Boolean(cfg.showTravelAgents),
+    };
+    if (cfg.distanceFrom && tourIds.has(cfg.distanceFrom)) data.distanceFrom = tourIds.get(cfg.distanceFrom);
+    await update('guide-pages', id, data);
+    done++;
+  }
+  console.log(`   ${done} pages given places, links and related content`);
 }
 
 console.log('done');

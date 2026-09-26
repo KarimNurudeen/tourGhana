@@ -142,6 +142,12 @@ export type GuidePage = {
   sortOrder: number;
   image?: string | null;
   imageCredit?: string | null;
+  // Places picked for the page (with distance from `distanceFrom` when set).
+  featuredHeading?: string | null;
+  featured?: NearbyPlace[];
+  distanceFrom?: string | null;
+  links?: LinkItem[];
+  showTravelAgents?: boolean;
   sections: GuideSection[];
 };
 

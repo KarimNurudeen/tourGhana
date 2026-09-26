@@ -5,7 +5,7 @@
     "singularName": "guide-page",
     "pluralName": "guide-pages",
     "displayName": "Guide Page",
-    "description": "Written guide pages (Welcome, Travel Tips, Handicrafts, events, services\u2026). Blank lines in a section body separate paragraphs."
+    "description": "Written guide pages. Blank lines in a section body separate paragraphs. Optional: featured places (with an optional 'distance from' place), related links, and a travel-agent list."
   },
   "options": {
     "draftAndPublish": false
@@ -53,6 +53,28 @@
     },
     "imageCredit": {
       "type": "string"
+    },
+    "featuredHeading": {
+      "type": "string"
+    },
+    "featuredTours": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour"
+    },
+    "distanceFrom": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tour.tour"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link"
+    },
+    "showTravelAgents": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

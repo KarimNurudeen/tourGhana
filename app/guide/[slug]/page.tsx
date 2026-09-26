@@ -4,11 +4,18 @@ import Link from 'next/link';
 import { ChevronRightIcon } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { GuideSections } from '@/components/GuideArticle';
-import { getGuidePage, getGuidePages } from '@/lib/api';
+import { CardRow } from '@/components/CardRow';
+import { ContactLinks } from '@/components/Directory';
+import { RowCard } from '@/components/RowCard';
+import { getGuidePage, getGuidePages, getTourOperators } from '@/lib/api';
+import { tourHref } from '@/lib/tour-utils';
 
 type GuidePageProps = {
   params: Promise<{ slug: string }>;
 };
+
+const h2 =
+  "flex items-center gap-2 text-[20px] font-black tracking-tight text-ink before:h-5 before:w-1.5 before:shrink-0 before:rounded-full before:bg-brand before:content-[''] sm:text-[22px]";
 
 const GROUP_LABEL: Record<string, string> = {
   visiting: 'Visiting',
@@ -35,6 +42,10 @@ export default async function GuidePageRoute({ params }: GuidePageProps) {
   const { slug } = await params;
   const page = await getGuidePage(slug);
   if (!page) notFound();
+
+  const agents = page.showTravelAgents ? await getTourOperators({ agencyType: 'IATA', pageSize: 6 }) : null;
+  const featured = page.featured ?? [];
+  const links = page.links ?? [];
 
   return (
     <main id="main" className="w-full">
@@ -64,6 +75,85 @@ export default async function GuidePageRoute({ params }: GuidePageProps) {
             <GuideSections sections={page.sections} />
           </div>
         </article>
+
+        {featured.length > 0 && (
+          <section aria-labelledby="featured" className="mt-8 space-y-3">
+            <h2 id="featured" className={h2}>
+              {page.featuredHeading ?? 'Places to go'}
+            </h2>
+            {page.distanceFrom && (
+              <p className="-mt-1 text-[13px] text-neutral-500">
+                Distances are in a straight line, so allow extra time by road.
+              </p>
+            )}
+            <CardRow label={page.featuredHeading ?? 'Places to go'}>
+              {featured.map((place) => (
+                <RowCard
+                  key={place.slug}
+                  title={place.name}
+                  href={tourHref(place)}
+                  image={place.image || undefined}
+                  meta={
+                    place.distanceKm !== null && page.distanceFrom
+                      ? place.distanceKm === 0
+                        ? `In ${page.distanceFrom}`
+                        : `${place.distanceKm} km from ${page.distanceFrom.split(',').pop()?.trim()}`
+                      : place.region
+                  }
+                />
+              ))}
+            </CardRow>
+          </section>
+        )}
+
+        {agents && agents.items.length > 0 && (
+          <section aria-labelledby="agents" className="mt-8 space-y-3">
+            <h2 id="agents" className={h2}>
+              IATA travel agents
+            </h2>
+            <ul className="grid gap-3 md:grid-cols-2">
+              {agents.items.map((agent) => (
+                <li key={`${agent.name}-${agent.location}`} className="rounded-xl bg-white p-4 shadow-card">
+                  <p className="text-[17px] font-extrabold leading-snug text-ink">{agent.name}</p>
+                  {agent.location && <p className="mt-1 text-[14px] text-neutral-600">{agent.location}</p>}
+                  {agent.contact.length > 0 && (
+                    <ul className="mt-2 space-y-0.5 break-words text-[14px] text-neutral-700">
+                      {agent.contact.slice(0, 4).map((line) => (
+                        <li key={line}>
+                          <ContactLinks text={line} />
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/tour-operators?agencyType=IATA#directory"
+              className="inline-flex items-center text-[13px] font-extrabold uppercase tracking-wide text-brand">
+              All {agents.total} IATA agents <ChevronRightIcon className="h-4 w-4" strokeWidth={3} />
+            </Link>
+          </section>
+        )}
+
+        {links.length > 0 && (
+          <section aria-labelledby="related" className="mt-8 space-y-3">
+            <h2 id="related" className={h2}>
+              Related
+            </h2>
+            <ul className="flex flex-wrap gap-2">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="block rounded-full bg-white px-4 py-2 text-[14px] font-extrabold text-ink shadow-card hover:text-brand">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </div>
     </main>
   );
