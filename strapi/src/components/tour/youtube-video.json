@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_tour_youtube_videos",
+  "info": {
+    "displayName": "YouTube Video",
+    "icon": "play",
+    "description": "A video embedded from YouTube. Paste the video id (the part after v= in the address)."
+  },
+  "options": {},
+  "attributes": {
+    "videoId": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "channel": {
+      "type": "string"
+    }
+  }
+}

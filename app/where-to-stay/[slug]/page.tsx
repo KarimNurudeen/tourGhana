@@ -9,6 +9,7 @@ import { QuickFactsPanel } from '@/components/QuickFactsPanel';
 import { DirectionsMap } from '@/components/DirectionsMap';
 import { NearbySection } from '@/components/NearbySection';
 import { PhotoGallery } from '@/components/PhotoGallery';
+import { TourVideos } from '@/components/TourVideos';
 import { TourGrid } from '@/components/TourGrid';
 
 type HotelPageProps = {
@@ -161,34 +162,7 @@ export default async function HotelDetailPage({ params }: HotelPageProps) {
               </section>
             </ScrollReveal>
 
-            {tour.videos && tour.videos.length > 0 && (
-              <ScrollReveal>
-                <section aria-labelledby="watch" className="mt-12">
-                  <h2
-                    id="watch"
-                    className="flex items-center gap-2 text-[22px] font-black tracking-tight text-ink before:h-6 before:w-1.5 before:rounded-full before:bg-brand before:content-['']">
-                    Watch
-                  </h2>
-                  <div className="mt-5 grid gap-6 sm:grid-cols-2">
-                    {tour.videos.map((video) => (
-                      <div key={video.src}>
-                        <video
-                          controls
-                          playsInline
-                          preload="metadata"
-                          poster={video.poster}
-                          className="aspect-video w-full rounded-2xl bg-black object-cover shadow-lg">
-                          <source src={video.src} type="video/mp4" />
-                        </video>
-                        <p className="mt-3 text-[13px] text-neutral-600">
-                          {video.caption}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </ScrollReveal>
-            )}
+            <TourVideos name={tour.name} uploaded={tour.videos ?? []} youtube={tour.youtubeVideos ?? []} />
 
             <div className="mt-12 space-y-8">
               <NearbySection places={tour.nearbyPlaces} mode={tour.nearbyMode} region={tour.region} layout="grid" />

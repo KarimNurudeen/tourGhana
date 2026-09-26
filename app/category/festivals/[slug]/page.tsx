@@ -10,6 +10,7 @@ import { DirectionsMap } from '@/components/DirectionsMap';
 import { FestivalCalendar } from '@/components/FestivalCalendar';
 import { NearbySection } from '@/components/NearbySection';
 import { PhotoGallery } from '@/components/PhotoGallery';
+import { TourVideos } from '@/components/TourVideos';
 import { TourGrid } from '@/components/TourGrid';
 
 type FestivalPageProps = {
@@ -135,6 +136,10 @@ export default async function FestivalDetailPage({ params }: FestivalPageProps) 
                 </ul>
               </section>
             </ScrollReveal>
+
+            <div className="mt-12">
+              <TourVideos name={tour.name} uploaded={tour.videos ?? []} youtube={tour.youtubeVideos ?? []} />
+            </div>
 
             <div className="mt-12">
               <QuickFactsPanel facts={tour.quickFacts} variant="grid" />

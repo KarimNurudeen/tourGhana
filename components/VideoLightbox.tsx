@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { XIcon } from 'lucide-react';
@@ -13,6 +13,16 @@ type VideoLightboxProps = {
 };
 
 export function VideoLightbox({ youtubeId, title, tourHref, onClose }: VideoLightboxProps) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  // YouTube's player grabs keyboard focus once it loads, so Escape would go to
+  // the video instead of closing this. Keep focus on the close button.
+  useEffect(() => {
+    if (!youtubeId) return;
+    const t = setTimeout(() => closeRef.current?.focus(), 50);
+    return () => clearTimeout(t);
+  }, [youtubeId]);
+
   useEffect(() => {
     if (!youtubeId) return;
 
@@ -44,6 +54,7 @@ export function VideoLightbox({ youtubeId, title, tourHref, onClose }: VideoLigh
           transition={{ duration: 0.25, ease: 'easeOut' }}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4">
           <button
+            ref={closeRef}
             type="button"
             onClick={onClose}
             aria-label="Close video"
@@ -64,6 +75,7 @@ export function VideoLightbox({ youtubeId, title, tourHref, onClose }: VideoLigh
                 title={title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
+                onLoad={() => closeRef.current?.focus()}
                 className="absolute inset-0 h-full w-full"
               />
             </div>

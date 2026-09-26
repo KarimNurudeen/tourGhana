@@ -5,7 +5,7 @@
 //   node scripts/seed-content.mjs regions guide   # just those steps
 //
 // Steps: regions, guide, festivals, tours, accommodation, operators, history, history-links,
-// coordinates, more-pages.
+// coordinates, more-pages, videos.
 //
 // Safe to re-run: every record is looked up first (by slug / name) and updated
 // or skipped rather than duplicated. Needs a full-access API token in
@@ -382,6 +382,24 @@ if (run('more-pages')) {
     done++;
   }
   console.log(`   ${done} pages given places, links and related content`);
+}
+
+// ---------------------------------------------------------------- YouTube videos
+// Embeds curated YouTube videos on each place (scripts/data/place-videos.json,
+// found with scripts/find-videos.mjs and checked by hand). Only fills a place
+// that has none yet, so videos an editor adds in Strapi are never overwritten.
+if (run('videos')) {
+  console.log('youtube videos…');
+  const picks = JSON.parse(await readFile(join(__dirname, 'data', 'place-videos.json'), 'utf8')).videos;
+  const res = await api('/api/tours?pagination[pageSize]=100&populate[youtubeVideos]=true');
+  let filled = 0;
+  for (const tour of res.data) {
+    const chosen = picks[tour.slug];
+    if (!chosen?.length || (tour.youtubeVideos ?? []).length) continue;
+    await update('tours', tour.documentId, { youtubeVideos: chosen });
+    filled++;
+  }
+  console.log(`   ${filled} places given videos`);
 }
 
 console.log('done');

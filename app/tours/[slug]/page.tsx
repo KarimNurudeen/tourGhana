@@ -9,6 +9,7 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { DirectionsMap } from '@/components/DirectionsMap';
 import { NearbySection } from '@/components/NearbySection';
 import { PhotoGallery } from '@/components/PhotoGallery';
+import { TourVideos } from '@/components/TourVideos';
 import { TourGrid } from '@/components/TourGrid';
 
 type TourPageProps = {
@@ -198,28 +199,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
               </section>
             )}
 
-            {tour.videos && tour.videos.length > 0 && (
-              <section aria-labelledby="watch" className="space-y-3">
-                <h2 id="watch" className={h2}>
-                  Watch
-                </h2>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {tour.videos.map((video) => (
-                    <div key={video.src}>
-                      <video
-                        controls
-                        playsInline
-                        preload="metadata"
-                        poster={video.poster}
-                        className="aspect-video w-full rounded-xl bg-black object-cover shadow-card">
-                        <source src={video.src} type="video/mp4" />
-                      </video>
-                      {video.caption && <p className="mt-2 text-[13px] text-neutral-600">{video.caption}</p>}
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
+            <TourVideos name={tour.name} uploaded={tour.videos ?? []} youtube={tour.youtubeVideos ?? []} />
           </div>
 
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">

@@ -98,6 +98,11 @@
     },
     "sourceText": {
       "type": "json"
+    },
+    "youtubeVideos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "tour.youtube-video"
     }
   }
 }

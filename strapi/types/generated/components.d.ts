@@ -137,6 +137,20 @@ export interface TourVideo extends Struct.ComponentSchema {
   };
 }
 
+export interface TourYoutubeVideo extends Struct.ComponentSchema {
+  collectionName: 'components_tour_youtube_videos';
+  info: {
+    description: 'A video embedded from YouTube. Paste the video id (the part after v= in the address).';
+    displayName: 'YouTube Video';
+    icon: 'play';
+  };
+  attributes: {
+    channel: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    videoId: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
@@ -149,6 +163,7 @@ declare module '@strapi/strapi' {
       'tour.festival-timing': TourFestivalTiming;
       'tour.quick-fact': TourQuickFact;
       'tour.video': TourVideo;
+      'tour.youtube-video': TourYoutubeVideo;
     }
   }
 }

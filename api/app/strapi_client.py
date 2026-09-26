@@ -45,6 +45,7 @@ TOUR_POPULATE = {
     "populate[gallery]": "true",
     "populate[nearby]": "true",
     "populate[videos][populate]": "*",
+    "populate[youtubeVideos]": "true",
     # Components are omitted entirely unless named here — quickFacts came back
     # as [] and coordinates/festivalTiming as None, so tour pages rendered an
     # empty Quick Facts panel and no map pin. festivalTiming holds a nested
@@ -117,6 +118,11 @@ def transform_tour(entry: dict) -> dict:
         "gallery": gallery_urls,
         "photoCategories": photo_categories,
         "videos": videos or None,
+        "youtubeVideos": [
+            {"videoId": v["videoId"], "title": v.get("title") or "", "channel": v.get("channel") or ""}
+            for v in (entry.get("youtubeVideos") or [])
+            if v.get("videoId")
+        ],
         "festivalTiming": entry.get("festivalTiming"),
         "coordinates": entry.get("coordinates"),
         "overview": entry.get("overview") or [],

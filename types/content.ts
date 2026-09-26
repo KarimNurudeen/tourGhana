@@ -52,6 +52,12 @@ export type TourVideo = {
   caption: string;
 };
 
+export type YouTubeVideo = {
+  videoId: string;
+  title: string;
+  channel: string;
+};
+
 export type Coordinates = {
   lat: number;
   lng: number;
@@ -90,6 +96,8 @@ export type Tour = {
   // keyed by image src (from `image` or `gallery`).
   photoCategories?: Partial<Record<string, PhotoCategory>>;
   videos?: TourVideo[];
+  // Videos embedded from YouTube (uploaded MP4s are in `videos`).
+  youtubeVideos?: YouTubeVideo[];
   festivalTiming?: FestivalTiming;
   // Absent for guide-derived places that have no map pin yet.
   coordinates?: Coordinates | null;

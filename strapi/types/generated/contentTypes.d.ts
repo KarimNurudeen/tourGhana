@@ -958,6 +958,7 @@ export interface ApiTourTour extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     videos: Schema.Attribute.Component<'tour.video', true>;
+    youtubeVideos: Schema.Attribute.Component<'tour.youtube-video', true>;
   };
 }
 

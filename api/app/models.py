@@ -72,6 +72,7 @@ class Tour(BaseModel):
     gettingThere: list[str] = []
     tips: list[str] = []
     nearby: list[str] = []
+    youtubeVideos: list[dict] = []
     nearbyMode: str = "none"
     nearbyPlaces: list[dict] = []
     nearbyStaysMode: str = "none"
