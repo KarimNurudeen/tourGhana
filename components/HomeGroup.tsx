@@ -44,6 +44,7 @@ export function RowSection({
   hrefLabel,
   blurb,
   children,
+  after,
 }: {
   id: string;
   title: string;
@@ -51,11 +52,16 @@ export function RowSection({
   hrefLabel?: string;
   blurb?: string;
   children: React.ReactNode;
+  /** Content after the card row but still inside the section, e.g. a video
+   * strip — never pass this as `children`, since CardRow renders its
+   * children as the <li> items of one <ul> and anything else breaks that. */
+  after?: React.ReactNode;
 }) {
   return (
     <SubSection id={id} title={title} href={href} hrefLabel={hrefLabel}>
       {blurb && <p className="-mt-1 text-[14px] text-neutral-600">{blurb}</p>}
       <CardRow label={title}>{children}</CardRow>
+      {after}
     </SubSection>
   );
 }

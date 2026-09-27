@@ -1091,6 +1091,87 @@
    "page": "https://commons.wikimedia.org/wiki/File:Solnedgang_p%C3%A5_Labadi_beach.jpg",
    "license": "CC BY 2.0",
    "credit": "Photo: Stig Nygaard from Copenhagen, Denmark / Wikimedia Commons (CC BY 2.0)"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "royal-senchi-resort-akosombo"
+   },
+   "force": true,
+   "url": "https://theroyalsenchi.com/wp-content/uploads/2023/12/DJI_0015-min.jpg",
+   "page": "https://theroyalsenchi.com/",
+   "credit": "Photo courtesy of The Royal Senchi (theroyalsenchi.com), used with attribution"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "zaina-lodge-mole"
+   },
+   "force": true,
+   "url": "https://zainalodge-ghana.com/wp-content/uploads/2021/08/Room-Image-6-min.jpg",
+   "page": "https://zainalodge-ghana.com/",
+   "credit": "Photo courtesy of Zaina Lodge (zainalodge-ghana.com), used with attribution"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "volta-serene-hotel-ho"
+   },
+   "force": true,
+   "url": "https://voltaserenehotel.com/wp-content/uploads/2025/09/CRW_4326-700x466.jpeg",
+   "page": "https://voltaserenehotel.com/",
+   "credit": "Photo courtesy of Volta Serene Hotel (voltaserenehotel.com), used with attribution"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "busua-beach-resort"
+   },
+   "force": true,
+   "url": "https://tt3.ams3.digitaloceanspaces.com/busua/IMG_8760.jpg",
+   "page": "https://busuabeachresort.net/",
+   "credit": "Photo courtesy of Busua Beach Resort (busuabeachresort.net), used with attribution"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "noda-hotel-kumasi"
+   },
+   "force": true,
+   "url": "https://www.nodahotel.com/images/gal1.jpg",
+   "page": "https://www.nodahotel.com/",
+   "credit": "Photo courtesy of Noda Hotel (nodahotel.com), used with attribution"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "golden-tulip-kumasi-city"
+   },
+   "force": true,
+   "url": "https://a.otcdn.com/imglib/hotelphotos/7/8/038/hotel-golden-tulip-kumasi-city-20240608225529392700.webp",
+   "page": "https://destinia.com/en/hotels/africa/ghana/ashanti/kumasi/golden-tulip-kumasi-city/ho-38807",
+   "credit": "Photo via Destinia hotel listing, used with attribution"
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "sun-city-hotel-tamale"
+   },
+   "clear": true
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "royal-park-hotel-bolgatanga"
+   },
+   "clear": true
+  },
+  {
+   "target": {
+    "collection": "tours",
+    "slug": "upland-hotel-wa"
+   },
+   "clear": true
   }
  ]
 }

@@ -3,6 +3,7 @@ import { Quiz } from '@/components/Quiz';
 import { DateCard } from '@/components/DateCard';
 import { RowCard } from '@/components/RowCard';
 import { RowSection, SubSection } from '@/components/HomeGroup';
+import { PlaceVideoStrip, type StripVideo } from '@/components/PlaceVideoStrip';
 import { SectionNav } from '@/components/SectionNav';
 import { VideoRow } from '@/components/VideoRow';
 import { getGuidePages, getHomepage, getQuiz, getRegions, getTours, tourHref } from '@/lib/api';
@@ -64,6 +65,22 @@ export default async function Home() {
   // Places with a photo first, so the start of every row looks finished.
   const withPhotoFirst = (list: Tour[]) => [...list.filter((t) => t.image), ...list.filter((t) => !t.image)];
 
+  // A section's videos: one per place, round-robin across the places that have
+  // any, so a single place with several videos doesn't crowd out the rest.
+  const sectionVideos = (list: Tour[], limit = 6): StripVideo[] => {
+    const withVideos = list.filter((t) => (t.youtubeVideos ?? []).length > 0);
+    const out: StripVideo[] = [];
+    for (let round = 0; out.length < limit; round++) {
+      const before = out.length;
+      for (const t of withVideos) {
+        const v = t.youtubeVideos![round];
+        if (v && out.length < limit) out.push({ ...v, tourName: t.name, tourHref: tourHref(t) });
+      }
+      if (out.length === before) break;
+    }
+    return out;
+  };
+
   // Top Attractions: the curated picks first, then any other attraction with a photo.
   const curatedSlugs = (topicBlocks.find((b) => b.id === 'top-attractions') ?? { lead: {}, more: [] }) as {
     lead: { slug?: string };
@@ -107,7 +124,11 @@ export default async function Home() {
       id: 'forts',
       label: 'Forts & Castles',
       node: (
-        <RowSection id="forts" title="Forts and Castles in Ghana" href="/category/forts-castles">
+        <RowSection
+          id="forts"
+          title="Forts and Castles in Ghana"
+          href="/category/forts-castles"
+          after={<PlaceVideoStrip videos={sectionVideos(byCategory('Forts & Castles'))} label="Forts and Castles" />}>
           {withPhotoFirst(byCategory('Forts & Castles')).map(tourCard)}
         </RowSection>
       ),
@@ -116,7 +137,16 @@ export default async function Home() {
       id: 'nature',
       label: 'Nature & Wildlife',
       node: (
-        <RowSection id="nature" title="Nature, Wildlife and Coast in Ghana" href="/category/parks-wildlife">
+        <RowSection
+          id="nature"
+          title="Nature, Wildlife and Coast in Ghana"
+          href="/category/parks-wildlife"
+          after={
+            <PlaceVideoStrip
+              videos={sectionVideos(byCategory('Parks & Wildlife', 'Coast & Beaches'))}
+              label="Nature and Wildlife"
+            />
+          }>
           {withPhotoFirst(byCategory('Parks & Wildlife', 'Coast & Beaches')).sort((a, b) => rankOf(a) - rankOf(b)).map(tourCard)}
         </RowSection>
       ),
@@ -125,7 +155,11 @@ export default async function Home() {
       id: 'culture',
       label: 'Culture & Heritage',
       node: (
-        <RowSection id="culture" title="Ghana's Culture and Heritage" href="/category/culture-heritage">
+        <RowSection
+          id="culture"
+          title="Ghana's Culture and Heritage"
+          href="/category/culture-heritage"
+          after={<PlaceVideoStrip videos={sectionVideos(byCategory('Culture & Heritage'))} label="Culture and Heritage" />}>
           {withPhotoFirst(byCategory('Culture & Heritage')).map(tourCard)}
           {guideCards(['culture-heritage', 'handicrafts', 'heritage-sites', 'ecotourism'])}
         </RowSection>
@@ -144,7 +178,12 @@ export default async function Home() {
       id: 'festivals',
       label: 'Festivals',
       node: (
-        <RowSection id="festivals" title="Festivals in Ghana" href="/category/festivals" hrefLabel="Festival calendar">
+        <RowSection
+          id="festivals"
+          title="Festivals in Ghana"
+          href="/category/festivals"
+          hrefLabel="Festival calendar"
+          after={<PlaceVideoStrip videos={sectionVideos(byCategory('Festivals'))} label="Festivals" />}>
           {byCategory('Festivals').map(tourCard)}
         </RowSection>
       ),
@@ -162,7 +201,12 @@ export default async function Home() {
       id: 'stay',
       label: 'Where To Stay',
       node: (
-        <RowSection id="stay" title="Where To Stay" href="/where-to-stay" hrefLabel="Hotel directory">
+        <RowSection
+          id="stay"
+          title="Where To Stay"
+          href="/where-to-stay"
+          hrefLabel="Hotel directory"
+          after={<PlaceVideoStrip videos={sectionVideos(byCategory('Where To Stay'))} label="Where To Stay" />}>
           {byCategory('Where To Stay').map(tourCard)}
         </RowSection>
       ),

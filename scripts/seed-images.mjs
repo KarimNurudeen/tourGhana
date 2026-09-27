@@ -117,6 +117,16 @@ for (const entry of manifest.images) {
   const { collection, ...target } = entry.target;
   const label = `${collection}/${target.slug ?? target.name}${target.heading ? ` › ${target.heading}` : ''}`;
   try {
+    if (entry.clear) {
+      const spec = TARGETS[collection];
+      const found = await api(`/api/${collection}?${spec.find(target)}&pagination[pageSize]=1`);
+      const record = found.data[0];
+      if (!record) throw new Error('target not found');
+      await api(`/api/${collection}/${record.documentId}`, { method: 'PUT', body: JSON.stringify({ data: { image: null, imageCredit: null } }) });
+      added++;
+      console.log(`   - cleared ${label} (no verified real photo)`);
+      continue;
+    }
     if (collection === 'guide-sections') {
       // A section is one item of a guide page's repeatable "sections"; updating
       // it means sending the page's whole list back, ids included.
@@ -127,7 +137,7 @@ for (const entry of manifest.images) {
       if (!page) throw new Error('page not found');
       const section = page.sections.find((x) => x.heading === target.heading);
       if (!section) throw new Error('section not found');
-      if (section.image && !FORCE) {
+      if (section.image && !FORCE && !entry.force) {
         skipped++;
         continue;
       }
@@ -146,7 +156,7 @@ for (const entry of manifest.images) {
       const found = await api(`/api/${collection}?${spec.find(target)}&populate[image]=true&pagination[pageSize]=1`);
       const record = found.data[0];
       if (!record) throw new Error('target not found');
-      if (record.image && !FORCE) {
+      if (record.image && !FORCE && !entry.force) {
         skipped++;
         continue;
       }
