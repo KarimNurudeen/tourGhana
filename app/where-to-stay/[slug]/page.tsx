@@ -45,7 +45,7 @@ export default async function HotelDetailPage({ params }: HotelPageProps) {
     notFound();
   }
 
-  const heroImages = Array.from(new Set([tour.image, ...tour.gallery]));
+  const heroImages = Array.from(new Set([tour.image, ...tour.gallery].filter(Boolean)));
 
   const otherHotels = await getTours({ category: 'Where To Stay' });
   const moreHotels = otherHotels.filter((t) => t.slug !== tour.slug).slice(0, 4);

@@ -46,7 +46,7 @@ export default async function FestivalDetailPage({ params }: FestivalPageProps) 
     notFound();
   }
 
-  const heroImages = Array.from(new Set([tour.image, ...tour.gallery]));
+  const heroImages = Array.from(new Set([tour.image, ...tour.gallery].filter(Boolean)));
 
   const otherFestivals = await getTours({ category: 'Festivals' });
   const moreFestivals = otherFestivals.filter((t) => t.slug !== tour.slug).slice(0, 4);
