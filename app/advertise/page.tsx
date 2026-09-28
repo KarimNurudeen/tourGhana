@@ -32,9 +32,9 @@ export default function AdvertisePage() {
       <p>
         For rates and partnership options, reach out via{' '}
         <a
-          href="mailto:hello@tourghana.com"
+          href="mailto:hellotourghana@gmail.com"
           className="font-semibold text-ink underline hover:text-brand">
-          hello@tourghana.com
+          hellotourghana@gmail.com
         </a>{' '}
         with a short description of what you&rsquo;re looking for and which
         pages or regions are most relevant to you.

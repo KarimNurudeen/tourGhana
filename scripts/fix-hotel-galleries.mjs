@@ -37,7 +37,7 @@ await loadEnvFile(join(__dirname, '.env'));
 const STRAPI_URL = process.env.STRAPI_URL ?? 'http://localhost:1337';
 const TOKEN = process.env.STRAPI_API_TOKEN;
 if (!TOKEN) throw new Error('STRAPI_API_TOKEN is not set (scripts/.env)');
-const USER_AGENT = 'TourGhanaImageSeeder/1.0 (https://www.tourghana.com; karimnurudeen13@gmail.com)';
+const USER_AGENT = 'TourGhanaImageSeeder/1.0 (https://www.tourghana.com; hellotourghana@gmail.com)';
 
 async function api(path, options = {}) {
   const res = await fetch(`${STRAPI_URL}${path}`, {

@@ -20,7 +20,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const FORCE = process.argv.includes('--force');
 
 // Wikimedia asks automated clients to identify themselves.
-const USER_AGENT = 'TourGhanaImageSeeder/1.0 (https://www.tourghana.com; karimnurudeen13@gmail.com)';
+const USER_AGENT = 'TourGhanaImageSeeder/1.0 (https://www.tourghana.com; hellotourghana@gmail.com)';
 
 async function loadEnvFile(path) {
   let text;

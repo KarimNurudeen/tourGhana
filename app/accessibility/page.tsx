@@ -47,9 +47,9 @@ export default function AccessibilityPage() {
         reader, keyboard-only navigation, or any other assistive technology,
         get in touch via{' '}
         <a
-          href="mailto:hello@tourghana.com"
+          href="mailto:hellotourghana@gmail.com"
           className="font-semibold text-ink underline hover:text-brand">
-          hello@tourghana.com
+          hellotourghana@gmail.com
         </a>{' '}
         with what you were trying to do and what happened, so it can be
         fixed.
